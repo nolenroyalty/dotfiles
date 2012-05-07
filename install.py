@@ -1,28 +1,40 @@
 import os
 import sys
 
-dot_files = {"/.test":"/test/test", "/.testrc":"/test/testrc"}
-#dot_files = ["test", "test/testrc"]
-old_dir_name = "/old_dotfiles"
+should_clobber_old = len(sys.argv) > 1 and sys.argv[1].lower() == "-f"
 
+dot_dirs = ["dotvim", "dotbash"]
+dot_dirs = ["/" + d for d in dot_dirs]
+old_dir_name = "/old_dotfiles"
 home = os.getenv("HOME")
-old_dir_path = home + old_dir_name
-src_path = os.getcwd()
+old_dir_path = home + old_dir_name + "/"
+cwd = os.getcwd()
+
+
+if os.path.exists(old_dir_path) and should_clobber_old:
+    print("Killing old dir at " + old_dir_path)
+    for f in os.listdir(old_dir_path):
+        os.remove(old_dir_path + f)
+    os.rmdir(old_dir_path)
 
 try:
     os.mkdir(old_dir_path)
 except OSError, e:
     print("Could not create directory: {0}\nExiting".format(e))
     sys.exit(1)
+else:
+    print("Created directory at " + old_dir_path)
 
-for fname, fpath in dot_files.iteritems():
+src_dirs = [cwd + dr for dr in dot_dirs]
+
+for src, dst, old in ((src_dir + "/" + fname, home + "/." + fname[1:], old_dir_path + fname) for src_dir in src_dirs for fname in os.listdir(src_dir)):
     try:
-        os.rename(home + fname, old_dir_path + fname)
+        os.rename(dst, old)
     except OSError, e:
-        if os.path.exists(home + fname):
-            print("Could not rename {0} to {1}: {2}\nExiting".format(home + fname, old_dir_path + fname, e))
+        if os.path.exists(dst):
+            print("Could not move {0} to {1}: {2}\nExiting".format(dst, old, e))
+            sys.exit(1)
     else:
-        print("Moved {0} to {1}".format(home + fname, old_dir_path + fname))
-
-    print("Linking {0} to {1}".format(home + fname, os.getcwd() + fpath))
-    os.symlink(os.getcwd() + fpath, home + fname)
+        print("Moved {0} to {1}".format(dst, old))
+    os.symlink(src, dst)
+    print("Linked {0} to {1}".format(src, dst))
