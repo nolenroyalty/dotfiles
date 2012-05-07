@@ -1,14 +1,13 @@
 import os
 import sys
 
-should_clobber_old = len(sys.argv) > 1 and sys.argv[1].lower() == "-f"
-
-dot_dirs = ["dotvim", "dotbash"]
-dot_dirs = ["/" + d for d in dot_dirs]
+dot_dirs = ["/dotvim", "/dotbash"]
 old_dir_name = "/old_dotfiles"
+
 home = os.getenv("HOME")
-old_dir_path = home + old_dir_name + "/"
 cwd = os.getcwd()
+old_dir_path = home + old_dir_name + "/"
+should_clobber_old = len(sys.argv) > 1 and sys.argv[1].lower() == "-f"
 
 
 if os.path.exists(old_dir_path) and should_clobber_old:
@@ -16,6 +15,7 @@ if os.path.exists(old_dir_path) and should_clobber_old:
     for f in os.listdir(old_dir_path):
         os.remove(old_dir_path + f)
     os.rmdir(old_dir_path)
+
 
 try:
     os.mkdir(old_dir_path)
@@ -25,7 +25,9 @@ except OSError, e:
 else:
     print("Created directory at " + old_dir_path)
 
+
 src_dirs = [cwd + dr for dr in dot_dirs]
+
 
 for src, dst, old in ((src_dir + "/" + fname, home + "/." + fname[1:], old_dir_path + fname) for src_dir in src_dirs for fname in os.listdir(src_dir)):
     try:
