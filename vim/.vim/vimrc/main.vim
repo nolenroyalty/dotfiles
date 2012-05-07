@@ -6,6 +6,11 @@ source ~/.vim/vimrc/general_settings.vim
 source ~/.vim/vimrc/languages.vim
 "for more general plugin stuff
 source ~/.vim/vimrc/plugin.vim
+"need to find a really good tab completion solution
+set completeopt=menuone,longest,preview
+set complete-=-i
+set pumheight=10
+set wildmenu
 "nnoremap <C-,> ,
 "nnoremap , ;
 "call pathogen#infect()
@@ -44,6 +49,7 @@ source ~/.vim/vimrc/plugin.vim
 "au BufEnter python let let g:pep8_map='<Leader>8'
 "let g:bufExplorerDefaultHelp=0
 "let g:miniBufExplorerMoreThanOne=1
+
 "set completeopt=menuone,longest,preview
 "set pumheight=10
 "for autocomplete
@@ -59,6 +65,8 @@ source ~/.vim/vimrc/plugin.vim
 
 "j      commenting out
         map <Leader>j <Leader>cc
+        map <Leader>J <Leader>cu
+
 "`      last edited buffer
         map <Leader>` :b#<Cr>
 
@@ -67,6 +75,9 @@ source ~/.vim/vimrc/plugin.vim
 
 "b      open buffer switching
         map <Leader>b :b 
+
+"nf     format numbers on line
+        map <Leader>nf :s/\(\d\)\(\(\d\d\d\)\+\d\@!\)\@=/\1,<Cr>
 
 "<C-d>  clone and comment out line
         map <Leader><C-d> yypk<Leader>C
@@ -84,7 +95,7 @@ source ~/.vim/vimrc/plugin.vim
         map <Leader>h :e ~/.
 
 "vv     open vimrc
-        map <Leader>vv :e ~/.vimrc<Cr>
+        map <Leader>vv :e ~/.vim/vimrc/main.vim<Cr>
 
 "R      Rope tricks
 "        nmap <Leader>Rrn :RopeRename<Cr>
