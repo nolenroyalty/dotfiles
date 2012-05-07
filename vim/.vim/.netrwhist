@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/usr/local/Cellar/bash-completion/1.3/etc/bash_completion.d'
 let g:netrw_dirhist_2='/usr/local/etc/bash_completion.d'
 let g:netrw_dirhist_3='/private/etc/defaults'
+let g:netrw_dirhist_4='/Users/scale/.test'
+let g:netrw_dirhist_5='/Users/scale/old_dotfiles.test'
+let g:netrw_dirhist_6='/Users/scale/old_dotfiles/.test'
+let g:netrw_dirhist_7='/Users/scale/.test'
