@@ -3,6 +3,9 @@ source ~/.bash_aliases
 #using ~/.profile for paths
 source ~/.profile
 
+export HISTSIZE=3000
+export HISTCONTROL=ignoredups
+
 #terminal settings stuff, kind of works...nice prompt
 export PS1="\\[${COLOR_GREEN}\\]\\u:\w$ \\[${COLOR_NC}\\]"
 export CLICOLOR=1
