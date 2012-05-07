@@ -2,6 +2,8 @@
 source ~/.bash_aliases
 #using ~/.profile for paths
 source ~/.profile
+#only for mac
+source ~/.bash_private
 
 export HISTSIZE=3000
 export HISTCONTROL=ignoredups
