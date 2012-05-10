@@ -18,7 +18,6 @@ map <C-j> 15j
 map <C-k> 15k
 map <C-h> ^
 map <C-l> $
-map ZZ :wqa<Cr>
 nmap zh z<Cr>
 nmap zl zb
 nmap zm z.
