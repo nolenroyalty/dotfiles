@@ -1,7 +1,8 @@
 import os
 import sys
 
-dot_dirs = ["/dotprivate", "/dotvim", "/dotbash"]
+#dot_dirs = ["/dotprivate", "/dotvim", "/dotbash"]
+dot_dirs = ["/dotvim"]
 old_dir_name = "/old_dotfiles"
 
 home = os.getenv("HOME")
@@ -39,4 +40,4 @@ for src, dst, old in ((src_dir + "/" + fname, home + "/." + fname[1:], old_dir_p
     else:
         print("Moved {0} to {1}".format(dst, old))
     os.symlink(src, dst)
-    print("Linked {0} to {1}".format(src, dst))
+    print("{1} -> {0}".format(src, dst))
