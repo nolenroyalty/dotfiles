@@ -39,15 +39,19 @@ BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
 #export PS1="\\[${COLOR_GREEN}\\]\\u:\w$ \\[${COLOR_NC}\\]"
 #PS1="${BLUE}(${NORMAL}\w${BLUE})\n${NORMAL}\u${BLUE}@\h ${RED}\$ ${NORMAL}"
-PS1="${GREEN}(${NORMAL}\w${GREEN})\n${BLUE}\u${NORMAL}@\h ${RED}\$ ${NORMAL}"
+#PROMPT_COMMAND='RET=$?; echo; if [ $RET != 0 ] ; then echo "rc: $RET"; fi; if [ "$PWD" != "$HOME" ]; then if [ $( ls -A | wc -l ) -lt 20 ]; then ls -mAF; fi; else ls -mF; fi'
+#PS1="${GREEN}\w\n${BLUE}\u${NORMAL}@\h ${RED}\$ ${NORMAL}"
+PS1="${BLUE}\u${NORMAL}@\h ${GREEN}\w ${RED}\$ ${NORMAL}"
+#PS1="${GREEN}\u${NORMAL} in ${GREEN}$( pwd ) ($( OUT=$( ls -A | wc -l ); echo $OUT ) entries, $(( $( ls -A | wc -l ) - $( ls | wc -l ) )) hidden)\n${BGREEN}\# \! \$ ${NORMAL}"
+#PS1="${GREEN}\w ${NORMAL}($( OUT=$( ls -A | wc -l); echo $OUT ) entries, $(( $( ls -A | wc -l ) - $( ls | wc -l ) )) hidden)\n${BLUE}\u${NORMAL}@\h ${RED}\$ ${NORMAL}"
 
-case "$TERM" in
-    xterm*|rxvt*)
-        PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
-        ;;
-*)
-        ;;
-esac
+#case "$TERM" in
+    #xterm*|rxvt*)
+        #PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD}\007"'
+        #;;
+#*)
+        #;;
+#esac
 
 #these two lines makes c-w awesome! and my funky c-backspace implementation
 stty -ixon #disable ^s/^q
