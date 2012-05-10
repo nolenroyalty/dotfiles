@@ -12,7 +12,7 @@ let mapleader = ";"
 "General useful mappings.  Q to play macro q, c-j and c-k for quick vertical
 "movement, c-h and c-l for start and end of line, ZZ kills all windows and
 "saves, zh/zl/zm to move link to top/bottom/middle, c-\ to
-"highlight/unhighlight search, vv to open vimrc, s to space a word
+"highlight/unhighlight search, vv to open vimrc
 nnoremap Q @q
 map <C-j> 15j
 map <C-k> 15k
