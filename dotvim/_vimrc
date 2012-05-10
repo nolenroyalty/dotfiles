@@ -1,1 +1,150 @@
-source ~/.vim/vimrc/main.vim
+"-----------------------------------------------------------------------------
+"Experimental values
+"-----------------------------------------------------------------------------
+"let g:miniBufExplSplitBelow=1
+set scrolloff=2
+"-----------------------------------------------------------------------------
+"Mappings
+"-----------------------------------------------------------------------------
+" way better than backslash...
+let mapleader = ";"
+
+"General useful mappings.  Q to play macro q, c-j and c-k for quick vertical
+"movement, c-h and c-l for start and end of line, ZZ kills all windows and
+"saves, zh/zl/zm to move link to top/bottom/middle, c-\ to
+"highlight/unhighlight search, vv to open vimrc, s to space a word
+nnoremap Q @q
+map <C-j> 15j
+map <C-k> 15k
+map <C-h> ^
+map <C-l> $
+map ZZ :wqa<Cr>
+nmap zh z<Cr>
+nmap zl zb
+nmap zm z.
+noremap <C-\> :set hlsearch! hlsearch?<CR>
+map <Leader>vv :e ~/.vimrc<CR>
+
+"Comment-based stuff: j for comment, J for uncomment, c-d to clone and comment
+map <Leader>j <Leader>cc
+map <Leader>J <Leader>cu
+map <Leader><C-d> yypk<Leader>cc
+
+"Buffer based stuff: ` to jump to last edited, D to delete current, b open buffer switching
+"e to open file, h to open home in home dir, W to write as sudo, c-n/p for
+"buffer jump
+map <Leader>` :b#<Cr>
+map <Leader>D <C-w>k<C-w>kd<Cr><C-w>j
+map <Leader>b :b 
+map <Leader>e :e 
+map <Leader>h :e ~/
+map <Leader>W :w !sudo tee %
+nmap <C-n> :bn<Cr>
+nmap <C-p> :bp<Cr>
+
+"make tab work right
+vmap <tab> >gv
+vmap <S-tab> <gv
+nmap <tab> v>><esc>
+nmap <S-tab> v<<<esc>
+
+"Emacs keybindings for command line
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-d> <Del>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+
+"-----------------------------------------------------------------------------
+"Settings
+"-----------------------------------------------------------------------------
+"need to find a really good tab completion solution
+set completeopt=menuone,longest,preview
+set complete-=-i
+set pumheight=10
+set wildmenu
+"whitespace stuff, based on python recommendations for the most part
+set tabstop=8
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set backspace=indent,eol,start
+set shiftround
+"let tabstop=4
+"set softtabstop=8
+
+call pathogen#infect()
+syntax on
+filetype on
+filetype plugin indent on
+colorscheme jellybeans
+syntax enable
+
+"absolute line numbers bottom right, relative line numbers on the left.  Love
+"relativenumber so much..
+set ruler
+set relativenumber
+
+"word wrapping but only line breaks when enter is pressed
+set wrap
+set linebreak
+set nolist
+
+" Display tabs and trailing spaces visually
+set list
+set listchars=tab:\ \ ,trail:·
+
+"incremental search, case insensitive unless you use caps lock, defaults to
+"global
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+
+"avoid annoying prompts
+set shortmess=atI
+set showcmd
+
+"not compatible with vi
+set nocompatible
+set mouse=a
+
+"-----------------------------------------------------------------------------
+"Minor extension stuff
+"-----------------------------------------------------------------------------
+let g:snips_author = "Nolen Royalty"
+let g:miniBufExplorerMoreThanOne = 1
+let g:pydiction_location = '/Users/scale/.vim/vimfiles/ftplugin/pydiction/complete-dict'
+map <Leader><C-t> :TagbarToggle<Cr>
+let g:tagbar_compact = 1
+let g:tagbar_autofocus = 1
+
+"-----------------------------------------------------------------------------
+"Autocommands
+"-----------------------------------------------------------------------------
+"takes care of how autocomplete menus should appear and disappear
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+"For when vim is opened via an alias
+au BufRead vv set syntax=vim
+"For some reason some of thse settings don't set so I use autocommands
+au FileType html,xhtml set autoindent
+au BufEnter * set relativenumber
+au BufEnter * set wrap
+"python stuff
+au FileType python syntax keyword pythonReturn return
+au FileType python hi pythonTodo ctermfg=red
+au FileType python let python_highlight_all = 1
+"testing 1 2 3
+au FileType * set formatoptions-=ro
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
+autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
+autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;

@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/scale/google_drive/code/nolen/dotfiles/dotprivate_dotfiles'
+let g:netrw_dirhist_2='/Users/scale/google_drive/code/nolen/dotfiles/dotprivate_dotfiles/_private_dotfiles'
+let g:netrw_dirhist_3='/Users/scale/google_drive/code/nolen/dotfiles/dotvim/_vim/ftplugin/python/pyflakes'
+let g:netrw_dirhist_4='/Users/scale/google_drive/code/nolen/dotfiles/dotvim/_vim/ftplugin/python/pyflakes/pyflakes'
+let g:netrw_dirhist_5='/Users/scale/google_drive/code/etp/current'
+let g:netrw_dirhist_6='/Users/scale/google_drive/code/nolen/dotfiles/dotvim/_vim'
+let g:netrw_dirhist_7='/Users/scale/Downloads'
+let g:netrw_dirhist_8='/Users/scale/Downloads/pdfs'
+let g:netrw_dirhist_9='/Users/scale/Desktop/Hazel (775).prefPane'
