@@ -1,5 +1,5 @@
 alias bp='bpython'
-alias vv='vim ~/.vim/vimrc/main.vim'
+alias vv='vim ~/.vimrc'
 alias vh='cd ~/.vim'
 alias vbp='vim ~/.bash_profile'
 alias vbr='vim ~/.bashrc'
