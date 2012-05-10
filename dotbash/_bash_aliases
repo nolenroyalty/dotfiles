@@ -1,17 +1,18 @@
+#!/bin/bash
 alias bp='bpython'
+
+if ls -F --color=auto >&/dev/null ; then
+    alias ls='ls -F --color=auto'
+else
+    if ls -F -G >&/dev/null ; then
+        alias ls='ls -F -G'
+    fi
+fi
+
+alias rel='. ~/.bash_profile'
+
 alias vv='vim ~/.vimrc'
-alias vh='cd ~/.vim'
 alias vbp='vim ~/.bash_profile'
 alias vbr='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
 alias vpp='vim ~/.profile'
-alias vpn='vim ~/.pentadactylrc'
-alias sshe='~/.cmds/etp'
-alias sshef='~/.cmds/etpforward'
-alias sshm='~/.cmds/mongo'
-alias sshmf='~/.cmds/mongoforward'
-alias gdr='cd ~/google_drive'
-alias code='cd ~/google_drive/code'
-alias etp='cd ~/google_drive/code/etp'
-alias lsa='ls -a'
-alias rel='. ~/.bash_profile'

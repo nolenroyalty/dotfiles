@@ -1,7 +1,7 @@
 import os
 import sys
 
-dot_dirs = ["/dotvim, /dotbash"]
+dot_dirs = ["/dotprivate, /dotvim, /dotbash"]
 old_dir_name = "/old_dotfiles"
 
 home = os.getenv("HOME")
