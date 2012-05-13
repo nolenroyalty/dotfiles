@@ -394,8 +394,8 @@ let s:MRUList = range(1, bufnr('$'))
 
 "set update time for the CursorHold function so that it is called 100ms after
 "a key is pressed
-"setlocal updatetime=300
-setlocal updatetime=4000
+setlocal updatetime=300
+"setlocal updatetime=4000
 
 augroup MiniBufExplorer
 autocmd MiniBufExplorer BufDelete      * call <SID>DEBUG('-=> BufDelete AutoCmd', 10) |call <SID>AutoUpdate(expand('<abuf>'),bufnr("%"))
