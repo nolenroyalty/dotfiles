@@ -34,14 +34,21 @@ BGREEN='\[\033[1;32m\]'
 GREEN='\[\033[0;32m\]'
 BRED='\[\033[1;31m\]'
 RED='\[\033[0;31m\]'
+LRED='\[\033[1;31m\]'
 BBLUE='\[\033[1;34m\]'
 BLUE='\[\033[0;34m\]'
 NORMAL='\[\033[00m\]'
+CYAN='\[\033[0;36m\]'
+LCYAN='\[\033[1;36m\]'
+YELLOW='\[\033[1;33m\]'
+PURPLE='\[\033[0;35m\]'
+PS1="${GREEN}\w\n${BLUE}\u${NORMAL}@\h ${CYAN}\! ${RED}\$ ${NORMAL}"
 #export PS1="\\[${COLOR_GREEN}\\]\\u:\w$ \\[${COLOR_NC}\\]"
 #PS1="${BLUE}(${NORMAL}\w${BLUE})\n${NORMAL}\u${BLUE}@\h ${RED}\$ ${NORMAL}"
 #PROMPT_COMMAND='RET=$?; echo; if [ $RET != 0 ] ; then echo "rc: $RET"; fi; if [ "$PWD" != "$HOME" ]; then if [ $( ls -A | wc -l ) -lt 20 ]; then ls -mAF; fi; else ls -mF; fi'
 #PS1="${GREEN}\w\n${BLUE}\u${NORMAL}@\h ${RED}\$ ${NORMAL}"
-PS1="${BLUE}\u${NORMAL}@\h ${GREEN}\w ${RED}\$ ${NORMAL}"
+#PS1="${BLUE}\u${NORMAL}@\h ${GREEN}\w ${RED}\$ ${NORMAL}"
+#PS1="${GREEN}\w ${BLUE}\u${NORMAL}@\h ${RED}\$ ${NORMAL}"
 #PS1="${GREEN}\u${NORMAL} in ${GREEN}$( pwd ) ($( OUT=$( ls -A | wc -l ); echo $OUT ) entries, $(( $( ls -A | wc -l ) - $( ls | wc -l ) )) hidden)\n${BGREEN}\# \! \$ ${NORMAL}"
 #PS1="${GREEN}\w ${NORMAL}($( OUT=$( ls -A | wc -l); echo $OUT ) entries, $(( $( ls -A | wc -l ) - $( ls | wc -l ) )) hidden)\n${BLUE}\u${NORMAL}@\h ${RED}\$ ${NORMAL}"
 
