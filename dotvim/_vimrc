@@ -26,9 +26,13 @@ nmap <Leader>w :w<CR>
 noremap <C-\> :set hlsearch! hlsearch?<CR>
 map <Leader>vv :e ~/.vimrc<CR>
 
-"For file completion!
+"insert mode completion: c-j/c-k for c-n/c-p, c-f for file completion, c-/ to
+"append / and continue file completion, c-s for omnicomplete
 imap <C-f> <C-x><C-f>
 imap <C-_> /<BS><C-x><C-f>
+imap <C-j> <C-n>
+imap <C-k> <C-p>
+imap <C-s> <C-x><C-o>
 
 "Comment-based stuff: j for comment, J for uncomment, c-d to clone and comment
 map <Leader>j <Leader>cc
