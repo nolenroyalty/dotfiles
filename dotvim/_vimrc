@@ -1,8 +1,8 @@
 "-----------------------------------------------------------------------------
 "Experimental values
 "-----------------------------------------------------------------------------
-"let g:miniBufExplSplitBelow=1
 set scrolloff=2
+
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -26,9 +26,13 @@ nmap <Leader>w :w<CR>
 noremap <C-\> :set hlsearch! hlsearch?<CR>
 map <Leader>vv :e ~/.vimrc<CR>
 
-"For file completion!
+"insert mode completion: c-j/c-k for c-n/c-p, c-f for file completion, c-/ to
+"append / and continue file completion, c-s for omnicomplete
 imap <C-f> <C-x><C-f>
 imap <C-_> /<BS><C-x><C-f>
+imap <C-j> <C-n>
+imap <C-k> <C-p>
+imap <C-s> <C-x><C-o>
 
 "Comment-based stuff: j for comment, J for uncomment, c-d to clone and comment
 map <Leader>j <Leader>cc
@@ -68,17 +72,17 @@ cnoremap <C-p> <Up>
 "need to find a really good tab completion solution
 set completeopt=menuone,longest,preview
 set complete-=-i
+set ofu=syntaxcomplete#Complete
 set pumheight=10
 set wildmenu
 "whitespace stuff, based on python recommendations for the most part
+"used to have tabstop=4, softtabstop=8
 set tabstop=8
 set expandtab
 set softtabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
 set shiftround
-"let tabstop=4
-"set softtabstop=8
 
 call pathogen#infect()
 syntax on
@@ -119,9 +123,9 @@ set mouse=a
 "-----------------------------------------------------------------------------
 "Minor extension stuff
 "-----------------------------------------------------------------------------
-let g:snips_author = "Nolen Royalty"
 let g:miniBufExplorerMoreThanOne = 1
-let g:pydiction_location = '/Users/scale/.vim/vimfiles/ftplugin/pydiction/complete-dict'
+"let g:pydiction_location = '/Users/scale/.vim/vimfiles/ftplugin/pydiction/complete-dict'
+let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
 map <Leader><C-t> :TagbarToggle<Cr>
 let g:tagbar_compact = 1
 let g:tagbar_autofocus = 1
@@ -132,16 +136,20 @@ let g:tagbar_autofocus = 1
 "takes care of how autocomplete menus should appear and disappear
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
 "For when vim is opened via an alias
 au BufRead vv set syntax=vim
+
 "For some reason some of thse settings don't set so I use autocommands
 au FileType html,xhtml set autoindent
 au BufEnter * set relativenumber
 au BufEnter * set wrap
+
 "python stuff
 au FileType python syntax keyword pythonReturn return
 au FileType python hi pythonTodo ctermfg=red
 au FileType python let python_highlight_all = 1
+
 "testing 1 2 3
 au FileType * set formatoptions-=ro
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -153,3 +161,4 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
 autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
+
