@@ -29,7 +29,6 @@ else:
 
 src_dirs = [cwd + dr for dr in dot_dirs]
 
-
 for src, dst, old in ((src_dir + "/" + fname, home + "/." + fname[1:], old_dir_path + fname) for src_dir in src_dirs for fname in os.listdir(src_dir)):
     try:
         os.rename(dst, old)
