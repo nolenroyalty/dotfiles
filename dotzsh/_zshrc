@@ -14,6 +14,7 @@ alias vv='vim ~/.vimrc'
 alias vz='vim ~/.zshrc'
 alias rel='source ~./zshrc'
 alias bp='bpython'
+alias ...='../..'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
