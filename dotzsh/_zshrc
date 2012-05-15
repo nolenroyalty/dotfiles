@@ -12,7 +12,7 @@ ZSH_THEME="kphoen"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vv='vim ~/.vimrc'
 alias vz='vim ~/.zshrc'
-alias rel='source ~./zshrc'
+alias rel='source ~/.zshrc'
 alias bp='bpython'
 alias ...='../..'
 
@@ -36,6 +36,7 @@ alias ...='../..'
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git, brew, github, osx, perl, pip, python)
 
+source $HOME/.profile
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
