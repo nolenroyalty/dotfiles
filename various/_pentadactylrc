@@ -63,9 +63,11 @@ map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
 
 
 "for quick navigation of next/prev
-map <C-S-n> fnext<Esc>
-map <C-S-m> fnext<CR>
-map <C-S-p> fprev<CR>
+"map <C-S-n> fnext<Esc>
+"map <C-S-m> fnext<CR>
+"map <C-S-p> fprev<CR>
+map <C-S-n> ]]
+map <C-S-p> [[
 
 "these make life easier
 map <C-j> 15j
