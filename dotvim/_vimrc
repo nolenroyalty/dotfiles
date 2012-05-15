@@ -1,9 +1,6 @@
 "-----------------------------------------------------------------------------
 "Experimental values
 "-----------------------------------------------------------------------------
-"let g:indexer_debugLogLevel = 2
-"let g:indexer_vimExecutable ="/usr/local/bin/vim"
-let g:indexer_disableCtagsWarning=1
 set scrolloff=2
 
 "-----------------------------------------------------------------------------
