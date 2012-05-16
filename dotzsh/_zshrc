@@ -10,6 +10,7 @@ ZSH_THEME="kphoen"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias vim='vim.gnome'
 alias vv='vim ~/.vimrc'
 alias vz='vim ~/.zshrc'
 alias rel='source ~/.zshrc'
@@ -20,6 +21,9 @@ alias code='cd ~/google_drive/code/'
 alias vim="stty stop '' -ixoff ; vim"
 # `Frozing' tty, so after any command terminal settings will be restored
 ttyctl -f
+
+alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
+alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
