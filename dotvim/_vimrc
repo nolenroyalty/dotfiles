@@ -32,7 +32,6 @@ imap <C-f> <C-x><C-f>
 imap <C-_> /<BS><C-x><C-f>
 imap <C-j> <C-n>
 imap <C-k> <C-p>
-imap <C-s> <C-x><C-o>
 
 "Comment-based stuff: j for comment, J for uncomment, c-d to clone and comment
 map <Leader>j <Leader>cc
