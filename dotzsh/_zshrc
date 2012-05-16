@@ -15,6 +15,11 @@ alias vz='vim ~/.zshrc'
 alias rel='source ~/.zshrc'
 alias bp='bpython'
 alias ...='../..'
+alias code='cd ~/google_drive/code/'
+# So I can use ctrl-s in vim maybe
+alias vim="stty stop '' -ixoff ; vim"
+# `Frozing' tty, so after any command terminal settings will be restored
+ttyctl -f
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
