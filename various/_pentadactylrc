@@ -3,13 +3,15 @@ set scrolltime=1
 set scroll=0
 "set maxitems=15
 set maxitems=10
+hi -a Hint  font: "Arial";
+hi -a Hint font-size: 7.5pt;
 
-au LocationChange google.com/search* imap <Tab> <Down>
-au LocationChange google.com/search* imap <S-Tab> <Up>
-au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
-au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
-imap <C-k> <Up>
-imap <C-j> <Down>
+"au LocationChange google.com/search* imap <Tab> <Down>
+"au LocationChange google.com/search* imap <S-Tab> <Up>
+"au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
+"au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
+"imap <C-k> <Up>
+"imap <C-j> <Down>
 
 map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 
@@ -68,10 +70,10 @@ map <C-S-m> fnext<CR>
 map <C-S-p> fprev<CR>
 
 "these make life easier
-map <C-j> 15j
-map <C-k> 15k
-map J 6j
-map K 6k
+nmap <C-j> 15j
+nmap <C-k> 15k
+nmap J 6j
+nmap K 6k
 
 map <C-o> :back<CR>
 map <C-i> :forward<CR>
