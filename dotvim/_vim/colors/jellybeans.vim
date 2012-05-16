@@ -515,7 +515,8 @@ if !s:low_color
   hi NonText ctermbg=233
   hi LineNr ctermbg=233
   hi DiffText ctermfg=81
-  hi Normal ctermbg=233
+  "hi Normal ctermbg=233
+  hi Normal ctermfg=252 ctermbg=None
   hi DbgBreakPt ctermbg=53
 endif
 
