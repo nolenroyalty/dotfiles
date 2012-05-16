@@ -1,9 +1,4 @@
 "-----------------------------------------------------------------------------
-"Experimental values
-"-----------------------------------------------------------------------------
-set scrolloff=2
-
-"-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
 " way better than backslash...
@@ -27,11 +22,12 @@ noremap <C-\> :set hlsearch! hlsearch?<CR>
 map <Leader>vv :e ~/.vimrc<CR>
 
 "insert mode completion: c-j/c-k for c-n/c-p, c-f for file completion, c-/ to
-"append / and continue file completion
+"append / and continue file completion, c-s for comnicompletion
 imap <C-f> <C-x><C-f>
 imap <C-_> /<BS><C-x><C-f>
 imap <C-j> <C-n>
 imap <C-k> <C-p>
+imap <C-s> <C-x><C-o>
 
 "Comment-based stuff: j for comment, J for uncomment, c-d to clone and comment
 map <Leader>j <Leader>cc
@@ -95,6 +91,10 @@ syntax enable
 set ruler
 set relativenumber
 
+"Always have 2 lines of 'buffer' between the cursor and the top/bottom of the
+"screen, except at the top/bottom of the document.  Pretty comfy.
+set scrolloff=2
+
 "word wrapping but only line breaks when enter is pressed
 set wrap
 set linebreak
@@ -123,7 +123,6 @@ set mouse=a
 "Minor extension stuff
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
-"let g:pydiction_location = '/Users/scale/.vim/vimfiles/ftplugin/pydiction/complete-dict'
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
 map <Leader><C-t> :TagbarToggle<Cr>
 let g:tagbar_compact = 1
@@ -149,7 +148,10 @@ au FileType python syntax keyword pythonReturn return
 au FileType python hi pythonTodo ctermfg=red
 au FileType python let python_highlight_all = 1
 
-"testing 1 2 3
+"stop my laziness from getting the best of me with the horrors of no strict/warnings in perl
+autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
+
+"autocommands for specialized omnicompletion
 au FileType * set formatoptions-=ro
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
@@ -159,5 +161,3 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
-autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
-
