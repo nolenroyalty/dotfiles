@@ -4,10 +4,10 @@ set scroll=0
 "set maxitems=15
 set maxitems=10
 
-au LocationChange google.com/search* imap <Tab> <Down>
-au LocationChange google.com/search* imap <S-Tab> <Up>
-au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
-au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
+"au LocationChange google.com/search* imap <Tab> <Down>
+"au LocationChange google.com/search* imap <S-Tab> <Up>
+"au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
+"au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
 imap <C-k> <Up>
 imap <C-j> <Down>
 
