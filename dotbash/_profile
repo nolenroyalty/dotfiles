@@ -1,4 +1,4 @@
-PATH=/usr/local/bin/ctags:/usr/local/share/python:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+PATH=/usr/local/bin/ctags:/usr/local/share/python:/usr/local/share:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 export PATH
 export PATH=/usr/local/byobu/bin:$PATH
 if [ -f /usr/local/bin/brew ]; then
