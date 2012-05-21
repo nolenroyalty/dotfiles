@@ -6,6 +6,11 @@ set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 7.5pt;
 
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <A-f> <C-Right>
+imap <A-b> <C-Left>
+
 "au LocationChange google.com/search* imap <Tab> <Down>
 "au LocationChange google.com/search* imap <S-Tab> <Up>
 "au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
@@ -21,6 +26,8 @@ cmap <C-f> <Right>
 cmap ƒ <A-Right>
 cmap <M-b> <A-Left>
 cmap <M-f> <A-Right>
+cmap <A-b> <C-Left>
+cmap <A-f> <C-Right>
 cmap <M-d> <A-Del>
 
 imap <C-q> <C-t>
