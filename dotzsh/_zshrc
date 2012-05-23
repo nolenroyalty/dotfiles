@@ -12,13 +12,22 @@ ZSH_THEME="kphoen"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='vim.gnome'
 alias vv='vim ~/.vimrc'
-alias vz='vim ~/.zshrc'
+alias zz='vim ~/.zshrc'
 alias rel='source ~./zshrc'
 alias bp='bpython'
-
+#alias ...='../..'
+#alias code='cd ~/google_drive/code/'
+#alias etp='cd ~/google_drive/code/etp/'
+alias code='cd ~/code'
+alias etp='cd ~/code/etp'
+# So I can use ctrl-s in vim maybe
+alias vim="stty stop '' -ixoff ; vim"
+# `Frozing' tty, so after any command terminal settings will be restored
+ttyctl -f
 alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
 alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
-
+#ctrl-delete to forward kill word
+bindkey "[3;5~" kill-word
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
