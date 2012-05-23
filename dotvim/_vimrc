@@ -3,7 +3,18 @@
 "-----------------------------------------------------------------------------
 set scrolloff=2
 hi Normal ctermfg=252 ctermbg=None
-
+set t_Co=256
+inoremap ;j <Esc>
+cnoremap ;j <C-e><C-u><Cr>
+inoremap ;; ;
+vnoremap ;j <Esc>
+"These allow alt-f and alt-b to jump between words in insert mode
+inoremap f <C-Right>
+inoremap b <C-Left>
+cnoremap f <C-Right>
+cnoremap b <C-Left>
+"inoremap <C-b> <Left>
+"inoremap <C-f> <Right>
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -163,3 +174,4 @@ autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
 autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
 
+vnoremap ;j <Esc>
