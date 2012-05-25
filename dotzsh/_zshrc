@@ -7,16 +7,26 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="kphoen"
 
+# No more annoying pushd messages...
+setopt PUSHD_SILENT
+
+# Blank pushd goes to home
+setopt PUSHD_TO_HOME
+
+# protect against crazy rm...
+setopt RM_STAR_WAIT
+
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim='vim.gnome'
 alias vv='vim ~/.vimrc'
-alias vz='vim ~/.zshrc'
+alias zz='vim ~/.zshrc'
 alias rel='source ~/.zshrc'
 alias bp='bpython'
-alias ...='../..'
+#alias ...='../..'
 alias code='cd ~/google_drive/code/'
+alias etp='cd ~/google_drive/code/etp/'
 # So I can use ctrl-s in vim maybe
 alias vim="stty stop '' -ixoff ; vim"
 # `Frozing' tty, so after any command terminal settings will be restored
