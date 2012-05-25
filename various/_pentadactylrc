@@ -10,8 +10,8 @@ hi -a Hint font-size: 7.5pt;
 "au LocationChange google.com/search* imap <S-Tab> <Up>
 "au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
 "au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
-"imap <C-k> <Up>
-"imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-j> <Down>
 
 map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 

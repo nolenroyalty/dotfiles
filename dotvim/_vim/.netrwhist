@@ -1,13 +1,22 @@
+<<<<<<< HEAD
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+=======
 let g:netrw_dirhist_cnt =5
 >>>>>>> .merge_file_ruTvVM
+>>>>>>> ddb75cccd65e286c0782c7a067258d2907fe81f7
 let g:netrw_dirhist_1='/Users/scale/google_drive/code/nolen/dotfiles/dotvim/_vim/after'
 let g:netrw_dirhist_2='/Users/scale/google_drive/code/dotfiles/dotvim/_vim/ftplugin/python/pyflakes'
 let g:netrw_dirhist_3='/Users/scale/.oh-my-zsh/plugins'
 let g:netrw_dirhist_4='/Users/scale/google_drive/code/etp/output_rep'
 <<<<<<< .merge_file_PQbxeN
 let g:netrw_dirhist_5='/Users/scale/google_drive/code/dotfiles/dotvim/_vim/plugin'
+<<<<<<< HEAD
+let g:netrw_dirhist_6='/Users/scale/google_drive/code/dotfiles/dotvim/_vim'
+=======
 =======
 let g:netrw_dirhist_5='/home/nolen/.pentadactyl'
 let g:netrw_dirhist_6='/home/nolen/.oh-my-zsh/plugins'
 let g:netrw_dirhist_7='/home/nolen/.oh-my-zsh/plugins/ssh-agent'
 >>>>>>> .merge_file_ruTvVM
+>>>>>>> ddb75cccd65e286c0782c7a067258d2907fe81f7
