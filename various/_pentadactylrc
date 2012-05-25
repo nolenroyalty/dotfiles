@@ -4,7 +4,14 @@ set scroll=0
 "set maxitems=15
 set maxitems=10
 hi -a Hint  font: "Arial";
-hi -a Hint font-size: 7.5pt;
+hi -a Hint font-size: 8pt;
+
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <A-f> <C-Right>
+imap <A-b> <C-Left>
+imap ;j <Esc>
+cmap ;j <Esc>
 
 "au LocationChange google.com/search* imap <Tab> <Down>
 "au LocationChange google.com/search* imap <S-Tab> <Up>

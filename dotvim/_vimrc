@@ -1,4 +1,12 @@
 "-----------------------------------------------------------------------------
+"Experimental values
+"-----------------------------------------------------------------------------
+set scrolloff=2
+"inoremap ;j <Esc>
+"cnoremap ;j <C-e><C-u><Cr>
+"inoremap ;; ;
+"vnoremap ;j <Esc>
+"-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
 " way better than backslash...
@@ -122,9 +130,9 @@ set nocompatible
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-map <Leader><C-t> :TagbarToggle<Cr>
+map <Leader><C-t> m`:TagbarToggle<Cr>``
 let g:tagbar_compact = 1
-let g:tagbar_autofocus = 1
+"let g:tagbar_autofocus = 1
 
 "-----------------------------------------------------------------------------
 "Autocommands
@@ -144,7 +152,7 @@ au BufEnter * set wrap
 "python stuff
 au FileType python syntax keyword pythonReturn return
 au FileType python hi pythonTodo ctermfg=red
-au FileType python let python_highlight_all = 1
+au FileType python let python_highlight_all = 2
 
 "stop my laziness from getting the best of me with the horrors of no strict/warnings in perl
 autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
@@ -159,3 +167,7 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
+autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
+
+hi clear MatchParen
+hi MatchParen ctermbg=Red
