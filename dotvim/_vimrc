@@ -116,7 +116,6 @@ set showcmd
 
 "not compatible with vi
 set nocompatible
-set mouse=a
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
