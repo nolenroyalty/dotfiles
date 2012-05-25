@@ -4,5 +4,6 @@ export PATH=/usr/local/byobu/bin:$PATH
 if [ -f /usr/local/bin/brew ]; then
     export BYOBU_PREFIX=`brew --prefix`
 fi
+export PYTHONPATH=/home/nolen/code:/home/nolen/code/etp:/home/nolen/code/etp/repmanhattan
 #PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}" export PATH
 #
