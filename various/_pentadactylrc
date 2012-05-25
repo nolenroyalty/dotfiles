@@ -13,12 +13,17 @@ imap <A-b> <C-Left>
 imap ;j <Esc>
 cmap ;j <Esc>
 
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <A-f> <C-Right>
+imap <A-b> <C-Left>
+
 "au LocationChange google.com/search* imap <Tab> <Down>
 "au LocationChange google.com/search* imap <S-Tab> <Up>
 "au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
 "au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
-"imap <C-k> <Up>
-"imap <C-j> <Down>
+imap <C-k> <Up>
+imap <C-j> <Down>
 
 map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 
@@ -28,6 +33,8 @@ cmap <C-f> <Right>
 cmap ƒ <A-Right>
 cmap <M-b> <A-Left>
 cmap <M-f> <A-Right>
+cmap <A-b> <C-Left>
+cmap <A-f> <C-Right>
 cmap <M-d> <A-Del>
 
 imap <C-q> <C-t>
@@ -72,9 +79,11 @@ map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
 
 
 "for quick navigation of next/prev
-map <C-S-n> fnext<Esc>
-map <C-S-m> fnext<CR>
-map <C-S-p> fprev<CR>
+"map <C-S-n> fnext<Esc>
+"map <C-S-m> fnext<CR>
+"map <C-S-p> fprev<CR>
+map <C-S-n> ]]
+map <C-S-p> [[
 
 "these make life easier
 nmap <C-j> 15j
