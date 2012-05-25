@@ -257,6 +257,7 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:lcfg)
     let l:bge = empty(a:lcbg)
 
+    "CHANGES HERE
     if !l:fge && !l:bge
       exec "hi ".a:group." ctermfg=".a:lcfg." ctermbg=".a:lcbg
     elseif !l:fge && l:bge
@@ -268,7 +269,9 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
     let l:fge = empty(a:fg)
     let l:bge = empty(a:bg)
 
+    """"THIS SHIT DOES STUFF
     if !l:fge && !l:bge
+      "exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
       exec "hi ".a:group." guifg=#".a:fg." guibg=#".a:bg." ctermfg=".s:rgb(a:fg)." ctermbg=".s:rgb(a:bg)
     elseif !l:fge && l:bge
       exec "hi ".a:group." guifg=#".a:fg." guibg=NONE ctermfg=".s:rgb(a:fg)." ctermbg=NONE"
@@ -289,7 +292,8 @@ fun! s:X(group, fg, bg, attr, lcfg, lcbg)
 endfun
 " }}}
 
-call s:X("Normal","e8e8d3","151515","","White","")
+"""CHANGES HERE"""
+"call s:X("Normal","e8e8d3","151515","","White","")
 set background=dark
 
 if !exists("g:jellybeans_use_lowcolor_black") || g:jellybeans_use_lowcolor_black
@@ -301,7 +305,8 @@ endif
 if version >= 700
   call s:X("CursorLine","","1c1c1c","","",s:termBlack)
   call s:X("CursorColumn","","1c1c1c","","",s:termBlack)
-  call s:X("MatchParen","ffffff","80a090","bold","","DarkCyan")
+  """"CHANGE HERE
+  "call s:X("MatchParen","ffffff","80a090","bold","","DarkCyan")
 
   call s:X("TabLine","000000","b0b8c0","italic","",s:termBlack)
   call s:X("TabLineFill","9098a0","","","",s:termBlack)
@@ -312,10 +317,13 @@ if version >= 700
   call s:X("PmenuSel","101010","eeeeee","",s:termBlack,"White")
 endif
 
-call s:X("Visual","","404040","","",s:termBlack)
+""""CHANGE HERE
+"call s:X("Visual","","404040","","",s:termBlack)
 call s:X("Cursor","","b0d0f0","","","")
 
-call s:X("LineNr","605958","151515","none",s:termBlack,"")
+""""CHANGE HERE
+"call s:X("LineNr","605958","151515","none",s:termBlack,"")
+call s:X("LineNr", "A9CEE8","","none","s:termBlack","")
 call s:X("Comment","888888","","italic","Grey","")
 "call s:X("String","888888","","italic","Grey","")
 "call s:X("String","8fbfdc","","","","")
@@ -386,7 +394,8 @@ call s:X("PreProc","8fbfdc","","","LightBlue","")
 hi! link Operator Normal
 
 call s:X("Type","ffb964","","","Yellow","")
-call s:X("NonText","606060","151515","",s:termBlack,"")
+""""CHANGE HERE
+"call s:X("NonText","606060","151515","",s:termBlack,"")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 
@@ -512,11 +521,14 @@ if !s:low_color
   hi CursorColumn ctermbg=234
   hi CursorLine ctermbg=234
   hi SpecialKey ctermbg=234
-  hi NonText ctermbg=233
-  hi LineNr ctermbg=233
+  """CHANGE HERE
+  "hi NonText ctermbg=233
+  "hi LineNr ctermbg=233
   hi DiffText ctermfg=81
   "hi Normal ctermbg=233
-  hi Normal ctermfg=252 ctermbg=None
+  hi Normal ctermfg=252
+  """""""""""CHANGES HERE"""""""""""
+  "hi Normal ctermfg=252 ctermbg=None
   hi DbgBreakPt ctermbg=53
 endif
 
