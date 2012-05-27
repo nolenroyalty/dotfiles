@@ -1,7 +1,23 @@
 "-----------------------------------------------------------------------------
+"Values that must be at the top of the file
+"-----------------------------------------------------------------------------
+"Without being at the top of the file it's annoying to do things like change
+"highlighting / formatting options
+call pathogen#infect()
+syntax on
+filetype on
+filetype plugin indent on
+colorscheme jellybeans
+syntax enable
+"-----------------------------------------------------------------------------
 "Experimental values
 "-----------------------------------------------------------------------------
 set scrolloff=2
+hi clear Pmenu
+hi Pmenu term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
+hi clear MatchParen
+hi MatchParen ctermbg=Red
+hi SpecialKey term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -13,6 +29,7 @@ let mapleader = ";"
 "saves, w to write, zh/zl/zm to move link to top/bottom/middle, c-\ to
 "highlight/unhighlight search, vv to open vimrc
 nnoremap Q @q
+vnoremap Q @q
 map <C-j> 15j
 map <C-k> 15k
 map <C-h> ^
@@ -82,12 +99,6 @@ set shiftwidth=4
 set backspace=indent,eol,start
 set shiftround
 
-call pathogen#infect()
-syntax on
-filetype on
-filetype plugin indent on
-colorscheme jellybeans
-syntax enable
 
 "absolute line numbers bottom right, relative line numbers on the left.  Love
 "relativenumber so much..
@@ -126,7 +137,7 @@ set nocompatible
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-map <Leader><C-t> m`:TagbarToggle<Cr>``
+map <Leader><C-t> m`:TagbarToggle<Cr><C-w>j``
 let g:tagbar_compact = 1
 "let g:tagbar_autofocus = 1
 
@@ -164,6 +175,4 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
 autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
-
-hi clear MatchParen
-hi MatchParen ctermbg=Red
+"gvyO":set gdefaultgv:s/ /+gvd:r ! curl -s http://stackoverflow.com/search\?q="$omekv`w3j:s/\_.\{-}<div class="summary">\_.\{-}<a href="\([^"]\+\)"[^>]*>\(.\{-}\)<\/a>\_.\{-}<div class="excerpt">\(\_.\{-}\)<\/div>/link: http:\/\/stackoverflow.com\1\rtitle: \2\rsummary: \3\r\r\r?link:0d`eme:%s/<[^>]*>//:%s/\&[^;]*;//:%s/\s*\s*\n/ /:%s/\(\s\s\)\s*/\1/:%s/  \n//`w/link: nnnnd`e`w
