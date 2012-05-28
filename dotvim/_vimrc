@@ -1,11 +1,10 @@
 "-----------------------------------------------------------------------------
 "Values that must be at the top of the file
 "-----------------------------------------------------------------------------
-"Without being at the top of the file it's annoying to do things like change
-"highlighting / formatting options
 call pathogen#infect()
 syntax on
 filetype plugin indent on
+
 colorscheme jellybeans
 syntax enable
 "-----------------------------------------------------------------------------
@@ -91,9 +90,9 @@ cnoremap <C-p> <Up>
 function! GenerateTmpFilename()
     let fname = strftime("%y-%m-%d--%s")."."
     if &filetype == "python"
-	let fname = fname."py"
+        let fname = fname."py"
     elseif &filetype == "vim"
-	let fname = fname."vim"
+        let fname = fname."vim"
     elseif &filetype == "perl"
         let fname = fname."pl"
     elseif &filetype == "sh"
@@ -101,7 +100,7 @@ function! GenerateTmpFilename()
     elseif &filetype == "zsh"
         let fname = fname."zsh"
     else
-	let fname = fname."tmp"
+        let fname = fname."tmp"
     endif
     return fname
 endfunction
@@ -163,27 +162,21 @@ set nocompatible
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-"map <Leader><C-t> :TagbarToggle<Cr><C-w>j
-"map <silent> <Leader><C-t> :TagbarToggle<Cr>:if bufname("%")=="-MiniBufExplorer-"<Cr>wincmd j<Cr>endif<Cr>
 function! ToggleOggleOoo()
     TagbarToggle
     let buf = bufname("%")
     if buf == "-MiniBufExplorer-"
         wincmd j
     elseif buf == "__Tagbar__"
+        wincmd h
+        wincmd j
+        wincmd l
+        wincmd l
         TagbarSetFoldlevel 1
         exe 'norm! 2j'
     endif
-    "else
-        "exe 'norm! 2j'
-        ""wincmd l
-        ""wincmd l
-        ""wincmd l
-    "endif
 endfunction
-"map <silent> <Leader><C-t> :TagbarToggle<Cr>:if bufname("%")=="-MiniBufExplorer-"<Cr>wincmd j<Cr>endif<Cr>
 map <silent> <Leader><C-t> :call ToggleOggleOoo()<Cr>
-"map <Leader>tt :TagbarToggle<Cr><C-w>j<C-w>ljj
 let g:tagbar_compact = 1
 let g:tagbar_autofocus = 1
 
