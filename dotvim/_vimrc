@@ -1,215 +1,115 @@
 "-----------------------------------------------------------------------------
-"Values that must be at the top of the file
+"Settings to run first
 "-----------------------------------------------------------------------------
-call pathogen#infect()
-syntax on
-filetype plugin indent on
-colorscheme jellybeans
-syntax enable
-" way better than backslash...
-let mapleader = ";"
+"start pathogen plugins         filetype based logic/indenting  enable custom syntax    ; is so good        use heavily modified jellybeans
+call pathogen#infect()|         filetype plugin indent on|      syntax enable|          let mapleader = ";"|colorscheme jellybeans
+
 "-----------------------------------------------------------------------------
-"Experimental values
+"Works in progress
 "-----------------------------------------------------------------------------
-imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
-nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
-hi clear Pmenu
-hi Pmenu term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
-hi clear MatchParen
-hi MatchParen ctermbg=Red
-hi SpecialKey term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
-hi Statement ctermfg=31
-"inoremap  <Nop>
-cnoremap f <C-Right>
-cnoremap b <C-Left>
-inoremap a <Home>
-inoremap e <End>
-inoremap f <C-Right>
-inoremap b <C-Left>
-"-----------------------------------------------------------------------------
-"Mappings
-"-----------------------------------------------------------------------------
-
-"General useful mappings.  Q to play macro q, c-j and c-k for quick vertical
-"movement, c-h and c-l for start and end of line, ZZ kills all windows and
-"saves, w to write, zh/zl/zm to move link to top/bottom/middle, c-\ to
-"highlight/unhighlight search, vv to open vimrc
-
-nnoremap Q @q
-vnoremap Q @q
-map <C-j> 15j
-map <C-k> 15k
-map <C-h> ^
-map <C-l> $
-nmap zh z<Cr>
-nmap zl zb
-nmap zm z.
-nmap ZZ :wqa<CR>
-nmap <Leader>w :w<CR>
-noremap <C-\> :set hlsearch! hlsearch?<CR>
-map <Leader>vv :e ~/.vimrc<CR>
-
-"insert mode completion: c-j/c-k for c-n/c-p, c-f for file completion, c-/ to
-"append / and continue file completion, c-s for comnicompletion
-imap <C-f> <C-x><C-f>
-imap <C-_> /<BS><C-x><C-f>
-imap <C-j> <C-n>
-imap <C-k> <C-p>
-
-"Comment-based stuff: j for comment, J for uncomment, c-d to clone and comment
-map <Leader>j <Leader>cc
-map <Leader>J <Leader>cu
-map <Leader><C-d> yypk<Leader>cc
-
-"Buffer based stuff: ` to jump to last edited, D to delete current, b open buffer switching
-"e to open file, h to open home in home dir, W to write as sudo, c-n/p for
-"buffer jump
-map <Leader>` :b#<Cr>
-map <Leader>D <C-w>k<C-w>kd<Cr><C-w>j
-map <Leader>b :b 
-map <Leader>e :e 
-map <Leader>h :e ~/
-map <Leader>W :w !sudo tee %
-nmap <C-n> :bn<Cr>
-nmap <C-p> :bp<Cr>
-
-"make tab work right
-vmap <tab> >gv
-vmap <S-tab> <gv
-nmap <tab> v>><esc>
-nmap <S-tab> v<<<esc>
-
-"Emacs keybindings for command line
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
-cnoremap <C-b> <Left>
-cnoremap <C-f> <Right>
-cnoremap <C-d> <Del>
-cnoremap <C-n> <Down>
-cnoremap <C-p> <Up>
-
 function! GenerateTmpFilename()
-    let fname = strftime("%m-%d-%y--%s")."."
-    if &filetype == "python"
-        let fname = fname."py"
-    elseif &filetype == "vim"
-        let fname = fname."vim"
-    elseif &filetype == "perl"
-        let fname = fname."pl"
-    elseif &filetype == "sh"
-        let fname = fname."sh"
-    elseif &filetype == "zsh"
-        let fname = fname."zsh"
-    else
-        let fname = fname."tmp"
-    endif
-    return fname
+    let ftypedict = {"python": "py", "vim": "vim", "perl": "pl", "sh": "sh", "zsh": "zsh"}
+    return strftime("%m-%d-%y__%H:%M:%S").".".get(ftypedict, &filetype, "tmp")
 endfunction
 
 map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
+
+"c-xc-h search stack ovreflow in insert mode                         ;c-h search stack overflow in normal mode
+imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>|                 nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
+
+"-----------------------------------------------------------------------------
+"Mappings
+"-----------------------------------------------------------------------------
+"c-a start of line               c-e end of line                     c-f right               c-b left            c-n next command    c-p previous command
+cno <C-a> <Home>|                cno <C-e> <End>|                    cno <C-f> <Right>|      cno <C-b> <Left>|   cno <C-n> <Down>|   cno <C-p> <Up>|
+
+"alt-a start of line             alt-e end of line                   alt-f one word          f alt-b one word b  double escape is real escape
+cno a <Home>|                  cno e <End>|                      cno f <C-Right>|      cno b <C-Left>|   cno  <End><C-u>
+ino a <Home>|                  ino e <End>|                      ino f <C-Right>|      ino b <C-Left>|   ino  
+
+"c-j jump down                   c-k jump up                         c-h start of text       c-l end of line
+map <C-j> 15j|                   map <C-k> 15k|                      map <C-h> ^|            map <C-l> $
+
+"tag to indent                   s-tab unindent                      tab indent              s-tab unindent
+nmap <tab> v>><esc>|             nmap <S-tab> v<<<esc>|              vmap <tab> >gv|         vmap <S-tab> <gv
+
+"z[h]igh                         z[l]ow                              z[m]id                  ZZ wqa
+nmap zh z<Cr>|                   nmap zl zb|                         nmap zm z.|             nmap ZZ :wqa<Cr>
+
+"Q to play macro q               same in visual mode                 ;w write file           ;W sudo write file
+nn Q @q|                         vn Q @q|                            nmap <Leader>w :w<Cr>|  map <Leader>W :w !sudo tee %
+
+";b jump to buffer               ;` last buffer                      c-n next buffer         c-p prev buffer
+map <Leader>b :b |               map <Leader>` :b#<Cr>|              nmap <C-n> :bn<Cr>|     nmap <C-p> :bp<Cr>
+
+";j comment line(s)              ;J uncomment line(s)                ;c-d copy and comment out line(to save a copy)
+map <Leader>j <Leader>cc|        map <Leader>J <Leader>cu|           map <Leader><C-d> Ypk<Leader>cc
+
+"c-f file completion             c-/ next file level                 c-\ toggle highlight search
+imap <C-f> <C-x><C-f>|           imap <C-_> /<BS><C-x><C-f>|         nn <C-\> :set hlsearch! hlsearch?<Cr>
+
+"vv to open vimrc                ;rr reload vimrc                    ;e edit new file        ;vc-v edit vimrc in split
+map <Leader>vv :e ~/.vimrc<Cr>|  map <Leader>rr :sourc ~/.vimrc<Cr>| map <Leader>e :e |      map <Leader>v<C-v> :vs ~/.vimrc<Cr>
+
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
-set completeopt=menuone,longest,preview
-set complete-=-i
-set ofu=syntaxcomplete#Complete
-set pumheight=10
-set wildmenu
-set wildmode=longest,list,full
-"whitespace stuff, based on python recommendations for the most part
-"used to have tabstop=4, softtabstop=8
-set tabstop=8
-set expandtab
-set softtabstop=4
-set shiftwidth=4
-set backspace=indent,eol,start
-set shiftround
+"tab=8 spaces                   but pretends to be 4            4 spaces per autoindent tab using spaces    round indents to multiple of shiftwidth
+set tabstop=8|                  set softtabstop=4|              set shiftwidth=4|       set expandtab|      set shiftround
 
-"absolute line numbers bottom right, relative line numbers on the left.  Love
-"relativenumber so much..
-set ruler
-set relativenumber
+"show tabs, trailing spaces     wrap lines so you can see them  wrap lines sanely       show tabs           can backspace indents, line breaks, start of the insert
+set listchars=tab:\ \ ,trail:·| set wrap|                       set linebreak|          set list|           set backspace=indent,eol,start
 
-"Always have 2 lines of 'buffer' between the cursor and the top/bottom of the
-"screen, except at the top/bottom of the document.  Pretty comfy.
-set scrolloff=2
+"try to avoid annoying prompts  show partial commands           show pos bottom right   relativenumbers!!   always have 2 lines of room at top and bottom
+set shortmess=atI|              set showcmd|                    set ruler|              set relativenumber| set scrolloff=2
 
-"word wrapping but only line breaks when enter is pressed
-set wrap
-set linebreak
-set nolist
+"not vi compatible              incremental search              ignore case             (unless using caps) /g search by default, /g to disable
+set nocompatible|               set incsearch|                  set ignorecase|         set smartcase|      set gdefault
 
-" Display tabs and trailing spaces visually
-set list
-set listchars=tab:\ \ ,trail:·
+"enable omnicompletion stuff    max 10 items in i-completion    always use menu, insert longest match and no more, show preview info
+set ofu=syntaxcomplete#Complete|set pumheight=10|               set completeopt=menuone,longest,preview
 
-"incremental search, case insensitive unless you use caps lock, defaults to
-"global
-set incsearch
-set ignorecase
-set smartcase
-set gdefault
-
-"avoid annoying prompts
-set shortmess=atI
-set showcmd
-
-"not compatible with vi
-set nocompatible
+"complete best match first      don't complete all imports      enhanced tab complete
+set wildmode=longest,list,full| set complete-=i|                set wildmenu
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
+"because tagbar and minubufexplorer can be *really* annoying together
 function! ToggleOggleOoo()
     TagbarToggle
     let buf = bufname("%")
     if buf == "-MiniBufExplorer-"
         wincmd j
     elseif buf == "__Tagbar__"
-        wincmd h
-        wincmd j
-        wincmd l
-        wincmd l
+        wincmd h| wincmd j| wincmd l| wincmd l
         TagbarSetFoldlevel 1
         exe 'norm! 2j'
     endif
 endfunction
 map <silent> <Leader><C-t> :call ToggleOggleOoo()<Cr>
-let g:tagbar_compact = 1
-let g:tagbar_autofocus = 1
+let g:tagbar_compact = 1| let g:tagbar_autofocus = 1
 
 "-----------------------------------------------------------------------------
 "Autocommands
 "-----------------------------------------------------------------------------
 "takes care of how autocomplete menus should appear and disappear
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+au CursorMovedI * if pumvisible() == 0|pclose|endif
+au InsertLeave * if pumvisible() == 0|pclose|endif
 
-"For when vim is opened via an alias
-au BufRead vv set syntax=vim
+"au BufNewFile *.pl s-^-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal 
+au BufNewFile *.pl 0r ~/.vim/skeleton/skeleton.pl
 
-"For some reason some of thse settings don't set so I use autocommands
-au FileType html,xhtml set autoindent
-au BufEnter * set relativenumber
-au BufEnter * set wrap
-
-"python stuff
-au FileType python syntax keyword pythonReturn return
-au FileType python hi pythonTodo ctermfg=red
-au FileType python let python_highlight_all = 2
-
-"stop my laziness from getting the best of me with the horrors of no strict/warnings in perl
-autocmd BufNewFile *.pl s-^-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal 
-
-"autocommands for specialized omnicompletion
-au FileType * set formatoptions-=ro
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS
-autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
-autocmd FileType c set omnifunc=ccomplete#Complete
-autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
+"-----------------------------------------------------------------------------
+"Misc
+"-----------------------------------------------------------------------------
+"clear old pmenu                        use cyan on darkkgrey menu for readability
+hi clear Pmenu|                         hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
+"clear old matchparen                   make matchparen actually readable
+hi clear MatchParen|                    hi MatchParen ctermbg=90
+"clear old specialkey                   make specialkey not invisible(things like )
+hi clear SpecialKey|                    hi SpecialKey ctermfg=81 guifg=Cyan
+"highlight statements in a nice color   attempt to make comments look good
+hi Statement ctermfg=31|                hi Comment ctermfg=245
