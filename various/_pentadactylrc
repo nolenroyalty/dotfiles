@@ -7,6 +7,8 @@ hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
 
 nnoremap <F1> <Nop>
+cnoremap <F1> <Nop>
+inoremap <F1> <Nop>
 
 imap <C-f> <Right>
 imap <C-b> <Left>
