@@ -9,7 +9,7 @@ syntax enable
 "-----------------------------------------------------------------------------
 "Experimental values
 "-----------------------------------------------------------------------------
-set scrolloff=2
+"set scrolloff=2
 hi clear Pmenu
 hi Pmenu term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
 hi clear MatchParen
