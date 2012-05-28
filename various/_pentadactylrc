@@ -6,6 +6,10 @@ set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
 
+nnoremap <F1> <Nop>
+cnoremap <F1> <Nop>
+inoremap <F1> <Nop>
+
 imap <C-f> <Right>
 imap <C-b> <Left>
 imap <A-f> <C-Right>
@@ -72,9 +76,6 @@ map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
 
 
 "for quick navigation of next/prev
-"map <C-S-n> fnext<Esc>
-"map <C-S-m> fnext<CR>
-"map <C-S-p> fprev<CR>
 map <C-S-n> ]]
 map <C-S-p> [[
 
