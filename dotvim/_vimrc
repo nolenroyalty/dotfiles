@@ -15,6 +15,7 @@ hi Pmenu term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
 hi clear MatchParen
 hi MatchParen ctermbg=Red
 hi SpecialKey term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
+hi Statement ctermfg=31
 "inoremap  <Nop>
 cnoremap f <C-Right>
 cnoremap b <C-Left>

@@ -323,8 +323,9 @@ call s:X("Cursor","","b0d0f0","","","")
 
 """"CHANGE HERE
 "call s:X("LineNr","605958","151515","none",s:termBlack,"")
+"call s:X("Comment","888888","","italic","Grey","")
 call s:X("LineNr", "A9CEE8","","none","s:termBlack","")
-call s:X("Comment","888888","","italic","Grey","")
+call s:X("Comment","A19D9D","","italic","Grey","")
 "call s:X("String","888888","","italic","Grey","")
 "call s:X("String","8fbfdc","","","","")
 "call s:X("String","6B63C2","","","","")
