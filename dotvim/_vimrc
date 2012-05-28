@@ -1,7 +1,28 @@
 "-----------------------------------------------------------------------------
+"Values that must be at the top of the file
+"-----------------------------------------------------------------------------
+call pathogen#infect()
+syntax on
+filetype plugin indent on
+colorscheme jellybeans
+syntax enable
+"-----------------------------------------------------------------------------
 "Experimental values
 "-----------------------------------------------------------------------------
-set scrolloff=2
+"set scrolloff=2
+hi clear Pmenu
+hi Pmenu term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
+hi clear MatchParen
+hi MatchParen ctermbg=Red
+hi SpecialKey term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
+hi Statement ctermfg=31
+"inoremap  <Nop>
+cnoremap f <C-Right>
+cnoremap b <C-Left>
+inoremap a <Home>
+inoremap e <End>
+inoremap f <C-Right>
+inoremap b <C-Left>
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -12,7 +33,9 @@ let mapleader = ";"
 "movement, c-h and c-l for start and end of line, ZZ kills all windows and
 "saves, w to write, zh/zl/zm to move link to top/bottom/middle, c-\ to
 "highlight/unhighlight search, vv to open vimrc
+
 nnoremap Q @q
+vnoremap Q @q
 map <C-j> 15j
 map <C-k> 15k
 map <C-h> ^
@@ -64,6 +87,25 @@ cnoremap <C-d> <Del>
 cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
+function! GenerateTmpFilename()
+    let fname = strftime("%y-%m-%d--%s")."."
+    if &filetype == "python"
+        let fname = fname."py"
+    elseif &filetype == "vim"
+        let fname = fname."vim"
+    elseif &filetype == "perl"
+        let fname = fname."pl"
+    elseif &filetype == "sh"
+        let fname = fname."sh"
+    elseif &filetype == "zsh"
+        let fname = fname."zsh"
+    else
+        let fname = fname."tmp"
+    endif
+    return fname
+endfunction
+
+map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
@@ -82,12 +124,6 @@ set shiftwidth=4
 set backspace=indent,eol,start
 set shiftround
 
-call pathogen#infect()
-syntax on
-filetype on
-filetype plugin indent on
-colorscheme jellybeans
-syntax enable
 
 "absolute line numbers bottom right, relative line numbers on the left.  Love
 "relativenumber so much..
@@ -126,9 +162,23 @@ set nocompatible
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-map <Leader><C-t> m`:TagbarToggle<Cr>``
+function! ToggleOggleOoo()
+    TagbarToggle
+    let buf = bufname("%")
+    if buf == "-MiniBufExplorer-"
+        wincmd j
+    elseif buf == "__Tagbar__"
+        wincmd h
+        wincmd j
+        wincmd l
+        wincmd l
+        TagbarSetFoldlevel 1
+        exe 'norm! 2j'
+    endif
+endfunction
+map <silent> <Leader><C-t> :call ToggleOggleOoo()<Cr>
 let g:tagbar_compact = 1
-"let g:tagbar_autofocus = 1
+let g:tagbar_autofocus = 1
 
 "-----------------------------------------------------------------------------
 "Autocommands
@@ -151,7 +201,7 @@ au FileType python hi pythonTodo ctermfg=red
 au FileType python let python_highlight_all = 2
 
 "stop my laziness from getting the best of me with the horrors of no strict/warnings in perl
-autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
+autocmd BufNewFile *.pl s-^-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal 
 
 "autocommands for specialized omnicompletion
 au FileType * set formatoptions-=ro
@@ -163,7 +213,5 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
-autocmd BufNewFile *.pl normal i#!/usr/bin/perluse strict;use warnings;
-
-hi clear MatchParen
-hi MatchParen ctermbg=Red
+""gvyO"0mw:set gdefaultgv:s/ /+gvd:r ! curl -s http://stackoverflow.com/search\?q="$omekv`w2j:s/\_.\{-}<div class="summary">\_.\{-}<a href="\([^"]\+\)"[^>]*>\(.\{-}\)<\/a>\_.\{-}<div class="excerpt">\(\_.\{-}\)<\/div>/link: http:\/\/stackoverflow.com\1\rtitle: \2\rsummary: \3\r\r\r?link:0d`emegv:s/<[^>]*>//gv:s/\&[^;]*;//gv:s/\s*\s*\n/ /gv:s/\(\s\s\)\s*/\1/gv:s/  \n//gv:s/^$\n//gv:s/^link:/\rlink:/`w/link: nnnnd`e`w
+    "gvyO"0mw:set gdefaultgv:s/ /+gvd:r ! curl -s http://stackoverflow.com/search\?q="$omekv`w2j:s/\_.\{-}<div class="summary">\_.\{-}<a href="\([^"]\+\)"[^>]*>\(.\{-}\)<\/a>\_.\{-}<div class="excerpt">\(\_.\{-}\)<\/div>/link: http:\/\/stackoverflow.com\1\rtitle: \2\rsummary: \3\r\r\r?link:0d`emegv:s/<[^>]*>//gv:s/\&[^;]*;//gv:s/\s*\s*\n/ /gv:s/\(\s\s\)\s*/\1/gv:s/  \n//gv:s/^$\n//gv:s/^link:/\rlink:/`w/link: nnnnd`e`w
