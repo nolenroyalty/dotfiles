@@ -2,3 +2,4 @@
 *.netrw*
 config
 *.orig
+*.swp

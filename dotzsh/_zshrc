@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="kphoen"
+ZSH_THEME="nolen"
 
 # No more annoying pushd messages...
 setopt PUSHD_SILENT
@@ -25,11 +25,7 @@ alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
 alias rel='source ~/.zshrc'
 alias bp='bpython'
-#alias ...='../..'
-#alias code='cd ~/google_drive/code/'
-#alias etp='cd ~/google_drive/code/etp/'
-#alias code='cd ~/code'
-#alias etp='cd ~/code/etp'
+alias emacs='emacs -nw'
 alias code='cd $CODEDIR'
 alias etp='cd $CODEDIR/etp'
 alias dotf='cd $CODEDIR/dotfiles'

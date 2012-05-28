@@ -6,12 +6,9 @@ set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
 
-imap <C-f> <Right>
-imap <C-b> <Left>
-imap <A-f> <C-Right>
-imap <A-b> <C-Left>
-imap ;j <Esc>
-cmap ;j <Esc>
+nnoremap <F1> <Nop>
+cnoremap <F1> <Nop>
+inoremap <F1> <Nop>
 
 imap <C-f> <Right>
 imap <C-b> <Left>
@@ -25,7 +22,7 @@ imap <A-b> <C-Left>
 imap <C-k> <Up>
 imap <C-j> <Down>
 
-map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
+"map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 
 cmap <C-b> <Left>
 cmap ∫ <A-Left>
@@ -79,15 +76,14 @@ map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
 
 
 "for quick navigation of next/prev
-"map <C-S-n> fnext<Esc>
-"map <C-S-m> fnext<CR>
-"map <C-S-p> fprev<CR>
 map <C-S-n> ]]
 map <C-S-p> [[
 
 "these make life easier
 nmap <C-j> 15j
 nmap <C-k> 15k
+nmap <C-l> 15l
+nmap <C-h> 15h
 nmap J 6j
 nmap K 6k
 
