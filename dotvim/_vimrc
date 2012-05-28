@@ -88,7 +88,7 @@ cnoremap <C-n> <Down>
 cnoremap <C-p> <Up>
 
 function! GenerateTmpFilename()
-    let fname = strftime("%y-%m-%d--%s")."."
+    let fname = strftime("%m-%d-%y--%s")."."
     if &filetype == "python"
         let fname = fname."py"
     elseif &filetype == "vim"
