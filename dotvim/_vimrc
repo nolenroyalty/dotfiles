@@ -6,9 +6,13 @@ syntax on
 filetype plugin indent on
 colorscheme jellybeans
 syntax enable
+" way better than backslash...
+let mapleader = ";"
 "-----------------------------------------------------------------------------
 "Experimental values
 "-----------------------------------------------------------------------------
+imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
+nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
 hi clear Pmenu
 hi Pmenu term=bold ctermfg=81 ctermbg=NONE guifg=Cyan
 hi clear MatchParen
@@ -25,8 +29,6 @@ inoremap b <C-Left>
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
-" way better than backslash...
-let mapleader = ";"
 
 "General useful mappings.  Q to play macro q, c-j and c-k for quick vertical
 "movement, c-h and c-l for start and end of line, ZZ kills all windows and
@@ -108,12 +110,12 @@ map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTm
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
-"need to find a really good tab completion solution
 set completeopt=menuone,longest,preview
 set complete-=-i
 set ofu=syntaxcomplete#Complete
 set pumheight=10
 set wildmenu
+set wildmode=longest,list,full
 "whitespace stuff, based on python recommendations for the most part
 "used to have tabstop=4, softtabstop=8
 set tabstop=8
@@ -122,7 +124,6 @@ set softtabstop=4
 set shiftwidth=4
 set backspace=indent,eol,start
 set shiftround
-
 
 "absolute line numbers bottom right, relative line numbers on the left.  Love
 "relativenumber so much..
@@ -212,5 +213,3 @@ autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType pl set omnifunc=perlcomplete#OmniPerl_Complete
-""gvyO"0mw:set gdefaultgv:s/ /+gvd:r ! curl -s http://stackoverflow.com/search\?q="$omekv`w2j:s/\_.\{-}<div class="summary">\_.\{-}<a href="\([^"]\+\)"[^>]*>\(.\{-}\)<\/a>\_.\{-}<div class="excerpt">\(\_.\{-}\)<\/div>/link: http:\/\/stackoverflow.com\1\rtitle: \2\rsummary: \3\r\r\r?link:0d`emegv:s/<[^>]*>//gv:s/\&[^;]*;//gv:s/\s*\s*\n/ /gv:s/\(\s\s\)\s*/\1/gv:s/  \n//gv:s/^$\n//gv:s/^link:/\rlink:/`w/link: nnnnd`e`w
-    "gvyO"0mw:set gdefaultgv:s/ /+gvd:r ! curl -s http://stackoverflow.com/search\?q="$omekv`w2j:s/\_.\{-}<div class="summary">\_.\{-}<a href="\([^"]\+\)"[^>]*>\(.\{-}\)<\/a>\_.\{-}<div class="excerpt">\(\_.\{-}\)<\/div>/link: http:\/\/stackoverflow.com\1\rtitle: \2\rsummary: \3\r\r\r?link:0d`emegv:s/<[^>]*>//gv:s/\&[^;]*;//gv:s/\s*\s*\n/ /gv:s/\(\s\s\)\s*/\1/gv:s/  \n//gv:s/^$\n//gv:s/^link:/\rlink:/`w/link: nnnnd`e`w
