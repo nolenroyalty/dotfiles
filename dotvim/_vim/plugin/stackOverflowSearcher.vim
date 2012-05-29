@@ -11,7 +11,7 @@ import vim
 import urllib2
 import re
 
-PROMPT = "[n]ext (default), [p]rev, [o]pen link, [q]uit: "
+PROMPT = "[n]ext, [p]rev, [q]uit, [o]pen in firefox"
 URL = "http://stackoverflow.com"
 SEARCH_URL = URL + "/search?q="
 find_pattern = re.compile(r"""<div\ class="summary">\s*?<h3>   # smallest easily capturable div
@@ -45,6 +45,7 @@ def draw_question(value, linenum):
     header_description += " " * (cols - len(header_description) - 4)
     color_footer = "....----.." + " " * (cols - 14)
 
+    #to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
     to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
 
     vim.command("hi PyColorVisible ctermbg=101 ctermfg=white")
@@ -79,13 +80,6 @@ vim.command("normal ")
 vim.command("normal ")
 vim.command("normal ")
 vim.command("normal ")
-#vim.command("normal <C-e>")
-#vim.command("normal <C-e>")
-#vim.command("normal <C-e>")
-#vim.command("normal <C-e>")
-#vim.command("normal <C-e>")
-#vim.command("normal <C-e>")
-#vim.command("normal <C-e>")
 vim.command("command! -nargs=1 Silent | execute ':silent !'.<q-args> | execute ':redraw!'")
 
 while vals:

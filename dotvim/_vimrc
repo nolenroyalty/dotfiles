@@ -1,11 +1,14 @@
 "-----------------------------------------------------------------------------
 "Settings to run first
 "-----------------------------------------------------------------------------
-"start pathogen plugins         filetype based logic/indenting  enable custom syntax
-call pathogen#infect()|         filetype plugin indent on|      syntax enable
-
-"; is so good                   use heavily modified jellybeans
-let mapleader = ";"|            colorscheme jellybeans
+"Run settings that throw a fit if they aren't run first.  That means calling
+"all the plugins I installed via pathogen, turning on filetype stuff + syntax,
+"setting my mapleader, and using my (heavily modified) jellybeans colorscheme
+call pathogen#infect()
+filetype plugin indent on
+syntax enable
+let mapleader = ";"
+colorscheme jellybeans
 
 "-----------------------------------------------------------------------------
 "Works in progress
@@ -17,80 +20,135 @@ endfunction
 
 map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
 
-"c-xc-h search stack ovreflow in insert mode
 imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
-
-";c-h search stack overflow in normal mode
 nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
-"c-a start of line      c-e end of line         c-f right           c-b left
-cno <C-a> <Home>|       cno <C-e> <End>|        cno <C-f> <Right>|  cno <C-b> <Left>
+"emacs-style hotkeys for command line
+cno <C-a> <Home>
+cno <C-e> <End>
+cno <C-b> <Left>
+cno <C-f> <Right>
+cno <C-n> <Down>
+cno <C-p> <Up>
 
-"c-n next command       c-p previous command    a-a start of line   a-e end of line
-cno <C-n> <Down>|       cno <C-p> <Up>|         cno a <Home>|     cno e <End>
+"some weirder alt-based hotkeys for commandline as well
+cno f <C-Right>
+cno b <C-Left>
+cno a <Home>
+cno e <End>
+cno  <End><C-u>
 
-"a-f foward word        a-b backwards word      double esc for esc  double esc for esc
-cno f <C-Right>|      cno b <C-Left>|       ino  |        cno  <End><C-u>
+"I try to use ctrl-c so that I can use escape based hotkeys in insert mode
+ino f <C-Right>
+ino b <C-Left>
+ino a <Home>
+ino e <End>
+ino  
 
-"a-f forward word       a-b backwards word      a-a start of line   a-e end of line
-ino f <C-Right>|      ino b <C-Left>|       ino a <Home>|     ino e <End>
+"c-j/k for up/down, c-h/l for start/end of line
+map <C-j> 15j
+map <C-k> 15k
+map <C-h> ^
+map <C-l> $
 
-"c-j jump down          c-k jump up             c-h start of text   c-l end of line
-map <C-j> 15j|          map <C-k> 15k|          map <C-h> ^|        map <C-l> $
+"make tab work how I would except
+nmap <tab> v>><esc>
+nmap <S-tab> v<<<esc>
+vmap <tab> >gv
+vmap <S-tab> <gv
 
-"tag to indent          s-tab unindent          ab indent           s-tab unindent
-nmap <tab> v>><esc>|    nmap <S-tab> v<<<esc>|  map <tab> >gv|      vmap <S-tab> <gv
+"z[h]igh z[l]ow z[m]id
+nmap zh z<Cr>
+map zm z.
+nmap zl zb
 
-"z[h]igh                z[l]ow                  [m]id               ZZ wqa
-nmap zh z<Cr>|          nmap zl zb|             map zm z.|          nmap ZZ :wqa<Cr>
+"Q to play macro q
+nn Q @q
+vn Q @q
 
-"Q to play macro q      ;w to write file        Q in visual too     ;W to write file with sudo
-nn Q @q|                map <Leader>w :w<Cr>|   vn Q @q|            map <Leader>W :w !sudo tee %
+"ways to write files quickly(or as sudo). ZZ has to be rebound because
+"minibufexplr can be really really dumb sometimes
+map <Leader>w :w<Cr>
+map <Leader>W :w !sudo tee %
+nmap ZZ :wqa<Cr>
 
-";b jump to buffer      ;` last buffer          -n next buffer      c-p prev buffer
-map <Leader>b :b |      map <Leader>` :b#<Cr>|  map <C-n> :bn<Cr>|  nmap <C-p> :bp<Cr>
+"Buffer tricks,c-n/p for navigating, ;` for last buffer, ;b for buffer prompt
+map <Leader>b :b 
+map <Leader>` :b#<Cr>
+map <C-n> :bn<Cr>
+nmap <C-p> :bp<Cr>
 
-";j comment line(s)     ;J uncomment line(s)    ;c-d copy and comment out line(to save a copy)
-map <Leader>j ;cc|      map <Leader>J ;cu|      map <Leader><C-d> Ypk<Leader>cc
+"Comment keys, ;j to comment out line, ;J to uncomment, ;c-d to make a
+"commented copy of a line(so I'm not afraid to break it)
+map <Leader>j ;cc
+map <Leader>J ;cu
+map <Leader><C-d> Ypk<Leader>cc
 
-"c-f file completion    ;e to open file         c-/ next file level
-imap <C-f> <C-x><C-f>|  map <Leader>e :e |      imap <C-_> /<BS><C-x><C-f>
+"c-f for file completion, c-/ to continue completing file, ;e to open a file
+imap <C-f> <C-x><C-f>
+imap <C-_> /<BS><C-x><C-f>
+map <Leader>e :e 
 
-"vv to open vimrc                               vc-v to open vimrc in vertical split
-map <Leader>vv :e ~/.vimrc<Cr>|                 map <Leader>v<C-v> :vs ~/.vimrc<Cr>
+"vv to open vimrc, vc-v to open vimrc in vertical split, rr to reload vimrc
+map <Leader>vv :e ~/.vimrc<Cr>
+map <Leader>v<C-v> :vs ~/.vimrc<Cr>
+map <Leader>rr :sourc ~/.vimrc<Cr>
 
-"rr to reload vimrc                             c-\ to toggle highlight search
-map <Leader>rr :sourc ~/.vimrc<Cr>|             map <C-\> :set hlsearch! hlsearch?<Cr>
-
+"c-\ to toggle highlight search
+map <C-\> :set hlsearch! hlsearch?<Cr>
 
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
-"tab=8 spaces           but pretends to be 4    4 spaces per autoindent
-set tabstop=8|          set softtabstop=4|      set shiftwidth=4
+"Tabs are 8 spaces, but act like they are 4.  Autoindent stuff uses 4 spaces.
+"Tabs are expanded to the correct number of spaces, and are rounded off to
+"multiples of shiftwidth.  Tabs and trailing spaces are shown visually
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set shiftround
+set listchars=tab:\ \ ,trail:·
 
-"tab using spaces       indent for shiftwidth   show tabs, trailing spaces
-set expandtab|          set shiftround|         set listchars=tab:\ \ ,trail:·
+"Lines are wrapped instead of hidden, are wrapped at (decently) good points,
+"and backspace is able to kill indents, line breaks, and things behind where
+"insert mode started
+set wrap
+set linebreak
+set list
+set backspace=indent,eol,start
 
-"don't hide lines       wrap lines sanely       show tabs           can backspace indents, line breaks, start of the insert
- set wrap|              set linebreak|          set list|           set backspace=indent,eol,start
+"attemp to prevent annoying multiline prompts.  Show commands that are
+"partially complete in the statusline.  Show absolute cursor pos in bottom
+"right and relative numbers on the left.  I love relativenumber.
+set shortmess=atI
+set showcmd
+set ruler
+set relativenumber
 
-"kill some prompts      show partial commands   show pos            relativenumbers!!
-set shortmess=atI|      set showcmd|            set ruler|          set relativenumber
-
-"breathing room         no vi compatible        incremental search  ignore case
-set scrolloff=2|        set nocompatible|       set incsearch|      set ignorecase
+"Give cursor a little bit of breathing room at the top and bottom of the
+"screen.  Do not be compatible with vi.  Search incrementally instead of
+"waiting.  Ignore case, unless caps are used.  Default to /g for s/
+set scrolloff=2
+set nocompatible
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
 
 "use case when caps     /g by default           no complete import  enhanced tab complete
-set smartcase|          set gdefault|           set complete-=i|    set wildmenu
-
-"go for longest complete match                  enable omnicompletion
-set wildmode=longest,list,full|                 set ofu=syntaxcomplete#Complete
-
-"max 10 items for insert completion             always use menu, insert longest match and no more, show preview info
-set pumheight=10|                               set completeopt=menuone,longest,preview
+"Don't bother looking at all imports when doing tab completion.  Enable
+"enhanced tab complete.  Only complete to longest match shared by all items.
+"List all matching items, with extra detail.  Enable omnicompletion when
+"available.  No more than 10 items at a time in insert mode completion.
+set complete-=i
+set wildmenu
+set wildmode=longest,list,full
+set ofu=syntaxcomplete#Complete
+set pumheight=10
+set completeopt=menuone,longest,preview
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
@@ -125,11 +183,17 @@ au BufNewFile *.pl 0r ~/.vim/skeleton/skeleton.pl
 "-----------------------------------------------------------------------------
 "Misc
 "-----------------------------------------------------------------------------
-"clear old pmenu                        use cyan on darkkgrey menu for readability
-hi clear Pmenu|                         hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
-"clear old matchparen                   make matchparen actually readable
-hi clear MatchParen|                    hi MatchParen ctermbg=90
-"clear old specialkey                   make specialkey not invisible(things like )
-hi clear SpecialKey|                    hi SpecialKey ctermfg=81 guifg=Cyan
-"highlight statements in a nice color   attempt to make comments look good
-hi Statement ctermfg=31|                hi Comment ctermfg=245
+"Attemp to make a few things look nicer, primarily because I am always using a
+"transparent background.  My jellybeans colorscheme is also heavily
+"customized/pillaged
+hi clear Pmenu
+hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
+
+hi clear MatchParen
+hi MatchParen ctermbg=90
+
+hi clear SpecialKey
+hi SpecialKey ctermfg=81 guifg=Cyan
+
+hi Statement ctermfg=31
+hi Comment ctermfg=245
