@@ -11,6 +11,12 @@ import vim
 import urllib2
 import re
 
+current_os = vim.eval("substitute(system('uname'), '\n', '', '')")
+if current_os == "Darwin":
+    url_command = "open"
+else:
+    url_command = "firefox"
+
 PROMPT = "[n]ext, [p]rev, [q]uit, [o]pen in firefox"
 URL = "http://stackoverflow.com"
 SEARCH_URL = URL + "/search?q="
@@ -45,7 +51,7 @@ def draw_question(value, linenum):
     header_description += " " * (cols - len(header_description) - 4)
     color_footer = "....----.." + " " * (cols - 14)
 
-    #to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
+    to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
     to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
 
     vim.command("hi PyColorVisible ctermbg=101 ctermfg=white")
@@ -95,7 +101,7 @@ while vals:
     elif user_response == "p":
         location = (location - 1) % len(vals)
     elif user_response == "o":
-        vim.command("Silent firefox %s%s" % (URL, val[0]))
+        vim.command("Silent %s %s%s" % (url_command, URL, val[0]))
     vim.command("normal 2k")
     clear_question(question_length, linenum)
 
