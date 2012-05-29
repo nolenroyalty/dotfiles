@@ -1,8 +1,11 @@
 "-----------------------------------------------------------------------------
 "Settings to run first
 "-----------------------------------------------------------------------------
-"start pathogen plugins         filetype based logic/indenting  enable custom syntax    ; is so good        use heavily modified jellybeans
-call pathogen#infect()|         filetype plugin indent on|      syntax enable|          let mapleader = ";"|colorscheme jellybeans
+"start pathogen plugins         filetype based logic/indenting  enable custom syntax
+call pathogen#infect()|         filetype plugin indent on|      syntax enable
+
+"; is so good                   use heavily modified jellybeans
+let mapleader = ";"|            colorscheme jellybeans
 
 "-----------------------------------------------------------------------------
 "Works in progress
@@ -14,63 +17,80 @@ endfunction
 
 map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
 
-"c-xc-h search stack ovreflow in insert mode                         ;c-h search stack overflow in normal mode
-imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>|                 nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
+"c-xc-h search stack ovreflow in insert mode
+imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
 
+";c-h search stack overflow in normal mode
+nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
-"c-a start of line               c-e end of line                     c-f right               c-b left            c-n next command    c-p previous command
-cno <C-a> <Home>|                cno <C-e> <End>|                    cno <C-f> <Right>|      cno <C-b> <Left>|   cno <C-n> <Down>|   cno <C-p> <Up>|
+"c-a start of line      c-e end of line         c-f right           c-b left
+cno <C-a> <Home>|       cno <C-e> <End>|        cno <C-f> <Right>|  cno <C-b> <Left>
 
-"alt-a start of line             alt-e end of line                   alt-f one word          f alt-b one word b  double escape is real escape
-cno a <Home>|                  cno e <End>|                      cno f <C-Right>|      cno b <C-Left>|   cno  <End><C-u>
-ino a <Home>|                  ino e <End>|                      ino f <C-Right>|      ino b <C-Left>|   ino  
+"c-n next command       c-p previous command    a-a start of line   a-e end of line
+cno <C-n> <Down>|       cno <C-p> <Up>|         cno a <Home>|     cno e <End>
 
-"c-j jump down                   c-k jump up                         c-h start of text       c-l end of line
-map <C-j> 15j|                   map <C-k> 15k|                      map <C-h> ^|            map <C-l> $
+"a-f foward word        a-b backwards word      double esc for esc  double esc for esc
+cno f <C-Right>|      cno b <C-Left>|       ino  |        cno  <End><C-u>
 
-"tag to indent                   s-tab unindent                      tab indent              s-tab unindent
-nmap <tab> v>><esc>|             nmap <S-tab> v<<<esc>|              vmap <tab> >gv|         vmap <S-tab> <gv
+"a-f forward word       a-b backwards word      a-a start of line   a-e end of line
+ino f <C-Right>|      ino b <C-Left>|       ino a <Home>|     ino e <End>
 
-"z[h]igh                         z[l]ow                              z[m]id                  ZZ wqa
-nmap zh z<Cr>|                   nmap zl zb|                         nmap zm z.|             nmap ZZ :wqa<Cr>
+"c-j jump down          c-k jump up             c-h start of text   c-l end of line
+map <C-j> 15j|          map <C-k> 15k|          map <C-h> ^|        map <C-l> $
 
-"Q to play macro q               same in visual mode                 ;w write file           ;W sudo write file
-nn Q @q|                         vn Q @q|                            nmap <Leader>w :w<Cr>|  map <Leader>W :w !sudo tee %
+"tag to indent          s-tab unindent          ab indent           s-tab unindent
+nmap <tab> v>><esc>|    nmap <S-tab> v<<<esc>|  map <tab> >gv|      vmap <S-tab> <gv
 
-";b jump to buffer               ;` last buffer                      c-n next buffer         c-p prev buffer
-map <Leader>b :b |               map <Leader>` :b#<Cr>|              nmap <C-n> :bn<Cr>|     nmap <C-p> :bp<Cr>
+"z[h]igh                z[l]ow                  [m]id               ZZ wqa
+nmap zh z<Cr>|          nmap zl zb|             map zm z.|          nmap ZZ :wqa<Cr>
 
-";j comment line(s)              ;J uncomment line(s)                ;c-d copy and comment out line(to save a copy)
-map <Leader>j <Leader>cc|        map <Leader>J <Leader>cu|           map <Leader><C-d> Ypk<Leader>cc
+"Q to play macro q      ;w to write file        Q in visual too     ;W to write file with sudo
+nn Q @q|                map <Leader>w :w<Cr>|   vn Q @q|            map <Leader>W :w !sudo tee %
 
-"c-f file completion             c-/ next file level                 c-\ toggle highlight search
-imap <C-f> <C-x><C-f>|           imap <C-_> /<BS><C-x><C-f>|         nn <C-\> :set hlsearch! hlsearch?<Cr>
+";b jump to buffer      ;` last buffer          -n next buffer      c-p prev buffer
+map <Leader>b :b |      map <Leader>` :b#<Cr>|  map <C-n> :bn<Cr>|  nmap <C-p> :bp<Cr>
 
-"vv to open vimrc                ;rr reload vimrc                    ;e edit new file        ;vc-v edit vimrc in split
-map <Leader>vv :e ~/.vimrc<Cr>|  map <Leader>rr :sourc ~/.vimrc<Cr>| map <Leader>e :e |      map <Leader>v<C-v> :vs ~/.vimrc<Cr>
+";j comment line(s)     ;J uncomment line(s)    ;c-d copy and comment out line(to save a copy)
+map <Leader>j ;cc|      map <Leader>J ;cu|      map <Leader><C-d> Ypk<Leader>cc
+
+"c-f file completion    ;e to open file         c-/ next file level
+imap <C-f> <C-x><C-f>|  map <Leader>e :e |      imap <C-_> /<BS><C-x><C-f>
+
+"vv to open vimrc                               vc-v to open vimrc in vertical split
+map <Leader>vv :e ~/.vimrc<Cr>|                 map <Leader>v<C-v> :vs ~/.vimrc<Cr>
+
+"rr to reload vimrc                             c-\ to toggle highlight search
+map <Leader>rr :sourc ~/.vimrc<Cr>|             map <C-\> :set hlsearch! hlsearch?<Cr>
+
 
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
-"tab=8 spaces                   but pretends to be 4            4 spaces per autoindent tab using spaces    round indents to multiple of shiftwidth
-set tabstop=8|                  set softtabstop=4|              set shiftwidth=4|       set expandtab|      set shiftround
+"tab=8 spaces           but pretends to be 4    4 spaces per autoindent
+set tabstop=8|          set softtabstop=4|      set shiftwidth=4
 
-"show tabs, trailing spaces     wrap lines so you can see them  wrap lines sanely       show tabs           can backspace indents, line breaks, start of the insert
-set listchars=tab:\ \ ,trail:·| set wrap|                       set linebreak|          set list|           set backspace=indent,eol,start
+"tab using spaces       indent for shiftwidth   show tabs, trailing spaces
+set expandtab|          set shiftround|         set listchars=tab:\ \ ,trail:·
 
-"try to avoid annoying prompts  show partial commands           show pos bottom right   relativenumbers!!   always have 2 lines of room at top and bottom
-set shortmess=atI|              set showcmd|                    set ruler|              set relativenumber| set scrolloff=2
+"don't hide lines       wrap lines sanely       show tabs           can backspace indents, line breaks, start of the insert
+ set wrap|              set linebreak|          set list|           set backspace=indent,eol,start
 
-"not vi compatible              incremental search              ignore case             (unless using caps) /g search by default, /g to disable
-set nocompatible|               set incsearch|                  set ignorecase|         set smartcase|      set gdefault
+"kill some prompts      show partial commands   show pos            relativenumbers!!
+set shortmess=atI|      set showcmd|            set ruler|          set relativenumber
 
-"enable omnicompletion stuff    max 10 items in i-completion    always use menu, insert longest match and no more, show preview info
-set ofu=syntaxcomplete#Complete|set pumheight=10|               set completeopt=menuone,longest,preview
+"breathing room         no vi compatible        incremental search  ignore case
+set scrolloff=2|        set nocompatible|       set incsearch|      set ignorecase
 
-"complete best match first      don't complete all imports      enhanced tab complete
-set wildmode=longest,list,full| set complete-=i|                set wildmenu
+"use case when caps     /g by default           no complete import  enhanced tab complete
+set smartcase|          set gdefault|           set complete-=i|    set wildmenu
+
+"go for longest complete match                  enable omnicompletion
+set wildmode=longest,list,full|                 set ofu=syntaxcomplete#Complete
+
+"max 10 items for insert completion             always use menu, insert longest match and no more, show preview info
+set pumheight=10|                               set completeopt=menuone,longest,preview
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
