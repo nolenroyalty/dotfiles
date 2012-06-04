@@ -5,6 +5,7 @@
 "all the plugins I installed via pathogen, turning on filetype stuff + syntax,
 "setting my mapleader, and using my (heavily modified) jellybeans colorscheme
 call pathogen#infect()
+filetype on
 filetype plugin indent on
 syntax enable
 let mapleader = ";"
@@ -13,15 +14,6 @@ colorscheme jellybeans
 "-----------------------------------------------------------------------------
 "Works in progress
 "-----------------------------------------------------------------------------
-function! GenerateTmpFilename()
-    let ftypedict = {"python": "py", "vim": "vim", "perl": "pl", "sh": "sh", "zsh": "zsh"}
-    return strftime("%m-%d-%y__%H:%M:%S").".".get(ftypedict, &filetype, "tmp")
-endfunction
-
-map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
-
-imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
-nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -70,7 +62,7 @@ vn Q @q
 
 "ways to write files quickly(or as sudo). ZZ has to be rebound because
 "minibufexplr can be really really dumb sometimes
-map <Leader>w :w<Cr>
+map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee %
 nmap ZZ :wqa<Cr>
 
@@ -78,26 +70,39 @@ nmap ZZ :wqa<Cr>
 map <Leader>b :b 
 map <Leader>` :b#<Cr>
 map <C-n> :bn<Cr>
-nmap <C-p> :bp<Cr>
+map <C-p> :bp<Cr>
 
 "Comment keys, ;j to comment out line, ;J to uncomment, ;c-d to make a
 "commented copy of a line(so I'm not afraid to break it)
 map <Leader>j ;cc
 map <Leader>J ;cu
 map <Leader><C-d> Ypk<Leader>cc
+vmap <Leader><C-d> ygvA<Esc>pgv;jgvA<Esc>j
 
-"c-f for file completion, c-/ to continue completing file, ;e to open a file
-imap <C-f> <C-x><C-f>
-imap <C-_> /<BS><C-x><C-f>
+"leader e to open a new file(has trailing space so you can start typing the
+"filename right away)
 map <Leader>e :e 
 
 "vv to open vimrc, vc-v to open vimrc in vertical split, rr to reload vimrc
 map <Leader>vv :e ~/.vimrc<Cr>
-map <Leader>v<C-v> :vs ~/.vimrc<Cr>
+map <Leader>v<C-v> <C-w>v<C-w>l:e ~/.vimrc<Cr>
 map <Leader>rr :sourc ~/.vimrc<Cr>
 
 "c-\ to toggle highlight search
 map <C-\> :set hlsearch! hlsearch?<Cr>
+
+"Generate filename for datetime, add extension if possible, write to
+"codedir/tmp if it exists
+function! GenerateTmpFilename()
+    let ftypedict = {"python": "py", "vim": "vim", "perl": "pl", "sh": "sh", "zsh": "zsh"}
+    return strftime("%m-%d-%y__%H:%M:%S").".".get(ftypedict, &filetype, "tmp")
+endfunction
+
+map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
+
+"allows you to search stack overflow from vim
+imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
+nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
 
 "-----------------------------------------------------------------------------
 "Settings
@@ -189,11 +194,18 @@ au BufNewFile *.pl 0r ~/.vim/skeleton/skeleton.pl
 hi clear Pmenu
 hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
 
+"Matchparen always confused me because I couldn't tell where my cursor was and
+"which paren was highlighted.  I try to fix this by using a ridiculous purple color
 hi clear MatchParen
 hi MatchParen ctermbg=90
 
+"This marks special characters like the  one for escape in cyan instead of
+"using a nearly invisible color
 hi clear SpecialKey
 hi SpecialKey ctermfg=81 guifg=Cyan
 
 hi Statement ctermfg=31
 hi Comment ctermfg=245
+
+"TODO
+hi Todo ctermfg=red
