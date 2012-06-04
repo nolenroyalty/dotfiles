@@ -68,7 +68,10 @@ endif
 " If someone know better way - let me know :) 
 "CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ %)
 """CHANGE HERE
-CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ --output-format=parseable\ %)
+CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ --output-format=parseable\ --rcfile=~/.pylintrc\ %)
+"CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ --output-format=parseable\ --dummy-variables-rgx=(i$|j$|k$|f$|x$|r$|s$)\ --disable=C0103,C0111\ %)
+"CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ --output-format=parseable\ --rcfile=\"~/.vim/pylintrc\"\ %)
+"CompilerSet makeprg=(echo\ '[%]';\ pylint\ -r\ y\ --output-format=parseable\ --dummy-variables-rgx=\"(_$||i$|f$)\"\ %)
 
 " We could omit end of file-entry, there is only one file
 " %+I... - include code rating information
