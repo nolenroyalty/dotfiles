@@ -70,8 +70,7 @@ map Q @q
 map <Leader>h :he 
 map <Leader>H :he<Cr><C-w>c
 
-"ways to write files quickly(or as sudo). ZZ has to be rebound because
-"minibufexplr can be really really dumb sometimes
+"ways to write files quickly(or as sudo). ZZ has to be rebound because minibufexplr can be really really dumb sometimes
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee % >/dev/null
 map ZZ :wqa<Cr>
@@ -81,8 +80,7 @@ map <Leader>` :b#<Cr>
 map <C-n> :bn<Cr>
 map <C-p> :bp<Cr>
 
-"Comment keys, ;j to comment out line, ;J to uncomment, ;c-d to make a
-"commented copy of a line(so I'm not afraid to break it)
+"Comment keys, ;j to comment out line, ;J to uncomment, ;c-d to make a commented copy of a line(so I'm not afraid to break it)
 map <Leader>j ;cc
 map <Leader>J ;cu
 nmap <Leader><C-d> Ypk<Leader>cc
@@ -178,9 +176,8 @@ au WinLeave * setlocal nocursorcolumn
 "-----------------------------------------------------------------------------
 "Misc
 "-----------------------------------------------------------------------------
-"Attemp to make a few things look nicer, primarily because I am always using a
-"transparent background.  My jellybeans colorscheme is also heavily
-"customized/pillaged
+"Attemp to make a few things look nicer, primarily because I am always using a transparent background.
+"My jellybeans colorscheme is also heavily customized/pillaged
 hi clear Pmenu
 hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
 
@@ -189,8 +186,7 @@ hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
 hi clear MatchParen
 hi MatchParen ctermfg=126
 
-"This marks special characters like the  one for escape in cyan instead of
-"using a nearly invisible color
+"This marks special characters like the  one for escape in cyan instead of using a nearly invisible color
 hi clear SpecialKey
 hi SpecialKey ctermfg=81 guifg=Cyan
 
