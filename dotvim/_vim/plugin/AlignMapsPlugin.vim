@@ -65,27 +65,27 @@ nmap <silent> <script> <Plug>AlignMapsWrapperEnd	:call AlignMaps#WrapperEnd()<CR
 
 " ---------------------------------------------------------------------
 " Complex C-code alignment maps: {{{2
-if !hasmapto('<Plug>AM_a?')   |map <unique> <Leader>a?		<Plug>AM_a?|endif
-if !hasmapto('<Plug>AM_a,')   |map <unique> <Leader>a,		<Plug>AM_a,|endif
-if !hasmapto('<Plug>AM_a<')   |map <unique> <Leader>a<		<Plug>AM_a<|endif
-if !hasmapto('<Plug>AM_a=')   |map <unique> <Leader>a=		<Plug>AM_a=|endif
-if !hasmapto('<Plug>AM_a(')   |map <unique> <Leader>a(		<Plug>AM_a(|endif
-if !hasmapto('<Plug>AM_abox') |map <unique> <Leader>abox	<Plug>AM_abox|endif
-if !hasmapto('<Plug>AM_acom') |map <unique> <Leader>acom	<Plug>AM_acom|endif
-if !hasmapto('<Plug>AM_adcom')|map <unique> <Leader>adcom	<Plug>AM_adcom|endif
-if !hasmapto('<Plug>AM_aocom')|map <unique> <Leader>aocom	<Plug>AM_aocom|endif
-if !hasmapto('<Plug>AM_ascom')|map <unique> <Leader>ascom	<Plug>AM_ascom|endif
-if !hasmapto('<Plug>AM_adec') |map <unique> <Leader>adec	<Plug>AM_adec|endif
-if !hasmapto('<Plug>AM_adef') |map <unique> <Leader>adef	<Plug>AM_adef|endif
-if !hasmapto('<Plug>AM_afnc') |map <unique> <Leader>afnc	<Plug>AM_afnc|endif
-if !hasmapto('<Plug>AM_afnc') |map <unique> <Leader>afnc	<Plug>AM_afnc|endif
-if !hasmapto('<Plug>AM_aunum')|map <unique> <Leader>aunum	<Plug>AM_aenum|endif
-if !hasmapto('<Plug>AM_aenum')|map <unique> <Leader>aenum	<Plug>AM_aunum|endif
-if exists("g:alignmaps_euronumber") && !exists("g:alignmaps_usanumber")
- if !hasmapto('<Plug>AM_anum')|map <unique> <Leader>anum	<Plug>AM_aenum|endif
-else
- if !hasmapto('<Plug>AM_anum')|map <unique> <Leader>anum	<Plug>AM_aunum|endif
-endif
+"if !hasmapto('<Plug>AM_a?')   |map <unique> <Leader>a?		<Plug>AM_a?|endif
+"if !hasmapto('<Plug>AM_a,')   |map <unique> <Leader>a,		<Plug>AM_a,|endif
+"if !hasmapto('<Plug>AM_a<')   |map <unique> <Leader>a<		<Plug>AM_a<|endif
+"if !hasmapto('<Plug>AM_a=')   |map <unique> <Leader>a=		<Plug>AM_a=|endif
+"if !hasmapto('<Plug>AM_a(')   |map <unique> <Leader>a(		<Plug>AM_a(|endif
+"if !hasmapto('<Plug>AM_abox') |map <unique> <Leader>abox	<Plug>AM_abox|endif
+"if !hasmapto('<Plug>AM_acom') |map <unique> <Leader>acom	<Plug>AM_acom|endif
+"if !hasmapto('<Plug>AM_adcom')|map <unique> <Leader>adcom	<Plug>AM_adcom|endif
+"if !hasmapto('<Plug>AM_aocom')|map <unique> <Leader>aocom	<Plug>AM_aocom|endif
+"if !hasmapto('<Plug>AM_ascom')|map <unique> <Leader>ascom	<Plug>AM_ascom|endif
+"if !hasmapto('<Plug>AM_adec') |map <unique> <Leader>adec	<Plug>AM_adec|endif
+"if !hasmapto('<Plug>AM_adef') |map <unique> <Leader>adef	<Plug>AM_adef|endif
+"if !hasmapto('<Plug>AM_afnc') |map <unique> <Leader>afnc	<Plug>AM_afnc|endif
+"if !hasmapto('<Plug>AM_afnc') |map <unique> <Leader>afnc	<Plug>AM_afnc|endif
+"if !hasmapto('<Plug>AM_aunum')|map <unique> <Leader>aunum	<Plug>AM_aenum|endif
+"if !hasmapto('<Plug>AM_aenum')|map <unique> <Leader>aenum	<Plug>AM_aunum|endif
+"if exists("g:alignmaps_euronumber") && !exists("g:alignmaps_usanumber")
+ "if !hasmapto('<Plug>AM_anum')|map <unique> <Leader>anum	<Plug>AM_aenum|endif
+"else
+ "if !hasmapto('<Plug>AM_anum')|map <unique> <Leader>anum	<Plug>AM_aunum|endif
+"endif
 
 map <silent> <script> <Plug>AM_a?		<SID>WS:AlignCtrl mIp1P1lC ? : : : : <CR>:'a,.Align<CR>:'a,'z-1s/\(\s\+\)? /?\1/e<CR><SID>WE
 map <silent> <script> <Plug>AM_a,		<SID>WS:'y,'zs/\(\S\)\s\+/\1 /ge<CR>'yjma'zk:call AlignMaps#CharJoiner(",")<cr>:silent 'y,'zg/,/call AlignMaps#FixMultiDec()<CR>'z:exe "norm \<Plug>AM_adec"<cr><SID>WE
@@ -112,19 +112,19 @@ map <silent> <script> <Plug>AM_Htd <SID>WS:'y,'zs%<[tT][rR]><[tT][dD][^>]\{-}>\<
 
 " ---------------------------------------------------------------------
 " character-based right-justified alignment maps {{{2
-if !hasmapto('<Plug>AM_T|')|map <unique> <Leader>T|		<Plug>AM_T||endif
-if !hasmapto('<Plug>AM_T#')	 |map <unique> <Leader>T#		<Plug>AM_T#|endif
-if !hasmapto('<Plug>AM_T,')	 |map <unique> <Leader>T,		<Plug>AM_T,o|endif
-if !hasmapto('<Plug>AM_Ts,') |map <unique> <Leader>Ts,		<Plug>AM_Ts,|endif
-if !hasmapto('<Plug>AM_T:')	 |map <unique> <Leader>T:		<Plug>AM_T:|endif
-if !hasmapto('<Plug>AM_T;')	 |map <unique> <Leader>T;		<Plug>AM_T;|endif
-if !hasmapto('<Plug>AM_T<')	 |map <unique> <Leader>T<		<Plug>AM_T<|endif
-if !hasmapto('<Plug>AM_T=')	 |map <unique> <Leader>T=		<Plug>AM_T=|endif
-if !hasmapto('<Plug>AM_T?')	 |map <unique> <Leader>T?		<Plug>AM_T?|endif
-if !hasmapto('<Plug>AM_T@')	 |map <unique> <Leader>T@		<Plug>AM_T@|endif
-if !hasmapto('<Plug>AM_Tab') |map <unique> <Leader>Tab		<Plug>AM_Tab|endif
-if !hasmapto('<Plug>AM_Tsp') |map <unique> <Leader>Tsp		<Plug>AM_Tsp|endif
-if !hasmapto('<Plug>AM_T~')	 |map <unique> <Leader>T~		<Plug>AM_T~|endif
+"if !hasmapto('<Plug>AM_T|')|map <unique> <Leader>T|		<Plug>AM_T||endif
+"if !hasmapto('<Plug>AM_T#')	 |map <unique> <Leader>T#		<Plug>AM_T#|endif
+"if !hasmapto('<Plug>AM_T,')	 |map <unique> <Leader>T,		<Plug>AM_T,o|endif
+"if !hasmapto('<Plug>AM_Ts,') |map <unique> <Leader>Ts,		<Plug>AM_Ts,|endif
+"if !hasmapto('<Plug>AM_T:')	 |map <unique> <Leader>T:		<Plug>AM_T:|endif
+"if !hasmapto('<Plug>AM_T;')	 |map <unique> <Leader>T;		<Plug>AM_T;|endif
+"if !hasmapto('<Plug>AM_T<')	 |map <unique> <Leader>T<		<Plug>AM_T<|endif
+"if !hasmapto('<Plug>AM_T=')	 |map <unique> <Leader>T=		<Plug>AM_T=|endif
+"if !hasmapto('<Plug>AM_T?')	 |map <unique> <Leader>T?		<Plug>AM_T?|endif
+"if !hasmapto('<Plug>AM_T@')	 |map <unique> <Leader>T@		<Plug>AM_T@|endif
+"if !hasmapto('<Plug>AM_Tab') |map <unique> <Leader>Tab		<Plug>AM_Tab|endif
+"if !hasmapto('<Plug>AM_Tsp') |map <unique> <Leader>Tsp		<Plug>AM_Tsp|endif
+"if !hasmapto('<Plug>AM_T~')	 |map <unique> <Leader>T~		<Plug>AM_T~|endif
 
 map <silent> <script> <Plug>AM_T| <SID>WS:AlignCtrl mIp0P0=r <Bar><CR>:'a,.Align<CR><SID>WE
 map <silent> <script> <Plug>AM_T#   <SID>WS:AlignCtrl mIp0P0=r #<CR>:'a,.Align<CR><SID>WE
@@ -142,30 +142,30 @@ map <silent> <script> <Plug>AM_T~   <SID>WS:AlignCtrl mIp0P0=r ~<CR>:'a,.Align<C
 
 " ---------------------------------------------------------------------
 " character-based left-justified alignment maps {{{2
-if !hasmapto('<Plug>AM_t|')	|map <unique> <Leader>t|	<Plug>AM_t||endif
-if !hasmapto('<Plug>AM_t#')		|map <unique> <Leader>t#	<Plug>AM_t#|endif
-if !hasmapto('<Plug>AM_t,')		|map <unique> <Leader>t,	<Plug>AM_t,|endif
-if !hasmapto('<Plug>AM_t:')		|map <unique> <Leader>t:	<Plug>AM_t:|endif
-if !hasmapto('<Plug>AM_t;')		|map <unique> <Leader>t;	<Plug>AM_t;|endif
-if !hasmapto('<Plug>AM_t<')		|map <unique> <Leader>t<	<Plug>AM_t<|endif
-if !hasmapto('<Plug>AM_t=')		|map <unique> <Leader>t=	<Plug>AM_t=|endif
-if !hasmapto('<Plug>AM_ts,')	|map <unique> <Leader>ts,	<Plug>AM_ts,|endif
-if !hasmapto('<Plug>AM_ts:')	|map <unique> <Leader>ts:	<Plug>AM_ts:|endif
-if !hasmapto('<Plug>AM_ts;')	|map <unique> <Leader>ts;	<Plug>AM_ts;|endif
-if !hasmapto('<Plug>AM_ts<')	|map <unique> <Leader>ts<	<Plug>AM_ts<|endif
-if !hasmapto('<Plug>AM_ts=')	|map <unique> <Leader>ts=	<Plug>AM_ts=|endif
-"CHANGE HERE
-"if !hasmapto('<Plug>AM_w=')		|map <unique> <Leader>w=	<Plug>AM_w=|endif
-if !hasmapto('<Plug>AM_w=')		|map <unique> <Leader><Leader>w=	<Plug>AM_w=|endif
-if !hasmapto('<Plug>AM_t?')		|map <unique> <Leader>t?	<Plug>AM_t?|endif
-if !hasmapto('<Plug>AM_t~')		|map <unique> <Leader>t~	<Plug>AM_t~|endif
-if !hasmapto('<Plug>AM_t@')		|map <unique> <Leader>t@	<Plug>AM_t@|endif
-if !hasmapto('<Plug>AM_m=')		|map <unique> <Leader>m=	<Plug>AM_m=|endif
-if !hasmapto('<Plug>AM_tab')	|map <unique> <Leader>tab	<Plug>AM_tab|endif
-if !hasmapto('<Plug>AM_tml')	|map <unique> <Leader>tml	<Plug>AM_tml|endif
-if !hasmapto('<Plug>AM_tsp')	|map <unique> <Leader>tsp	<Plug>AM_tsp|endif
-if !hasmapto('<Plug>AM_tsq')	|map <unique> <Leader>tsq	<Plug>AM_tsq|endif
-if !hasmapto('<Plug>AM_tt')		|map <unique> <Leader>tt	<Plug>AM_tt|endif
+"if !hasmapto('<Plug>AM_t|')	|map <unique> <Leader>t|	<Plug>AM_t||endif
+"if !hasmapto('<Plug>AM_t#')		|map <unique> <Leader>t#	<Plug>AM_t#|endif
+"if !hasmapto('<Plug>AM_t,')		|map <unique> <Leader>t,	<Plug>AM_t,|endif
+"if !hasmapto('<Plug>AM_t:')		|map <unique> <Leader>t:	<Plug>AM_t:|endif
+"if !hasmapto('<Plug>AM_t;')		|map <unique> <Leader>t;	<Plug>AM_t;|endif
+"if !hasmapto('<Plug>AM_t<')		|map <unique> <Leader>t<	<Plug>AM_t<|endif
+"if !hasmapto('<Plug>AM_t=')		|map <unique> <Leader>t=	<Plug>AM_t=|endif
+"if !hasmapto('<Plug>AM_ts,')	|map <unique> <Leader>ts,	<Plug>AM_ts,|endif
+"if !hasmapto('<Plug>AM_ts:')	|map <unique> <Leader>ts:	<Plug>AM_ts:|endif
+"if !hasmapto('<Plug>AM_ts;')	|map <unique> <Leader>ts;	<Plug>AM_ts;|endif
+"if !hasmapto('<Plug>AM_ts<')	|map <unique> <Leader>ts<	<Plug>AM_ts<|endif
+"if !hasmapto('<Plug>AM_ts=')	|map <unique> <Leader>ts=	<Plug>AM_ts=|endif
+""CHANGE HERE
+""if !hasmapto('<Plug>AM_w=')		|map <unique> <Leader>w=	<Plug>AM_w=|endif
+"if !hasmapto('<Plug>AM_w=')		|map <unique> <Leader><Leader>w=	<Plug>AM_w=|endif
+"if !hasmapto('<Plug>AM_t?')		|map <unique> <Leader>t?	<Plug>AM_t?|endif
+"if !hasmapto('<Plug>AM_t~')		|map <unique> <Leader>t~	<Plug>AM_t~|endif
+"if !hasmapto('<Plug>AM_t@')		|map <unique> <Leader>t@	<Plug>AM_t@|endif
+"if !hasmapto('<Plug>AM_m=')		|map <unique> <Leader>m=	<Plug>AM_m=|endif
+"if !hasmapto('<Plug>AM_tab')	|map <unique> <Leader>tab	<Plug>AM_tab|endif
+"if !hasmapto('<Plug>AM_tml')	|map <unique> <Leader>tml	<Plug>AM_tml|endif
+"if !hasmapto('<Plug>AM_tsp')	|map <unique> <Leader>tsp	<Plug>AM_tsp|endif
+"if !hasmapto('<Plug>AM_tsq')	|map <unique> <Leader>tsq	<Plug>AM_tsq|endif
+"if !hasmapto('<Plug>AM_tt')		|map <unique> <Leader>tt	<Plug>AM_tt|endif
 
 map <silent> <script> <Plug>AM_t|		<SID>WS:AlignCtrl mIp0P0=l <Bar><CR>:'a,.Align<CR><SID>WE
 map <silent> <script> <Plug>AM_t#		<SID>WS:AlignCtrl mIp0P0=l #<CR>:'a,.Align<CR><SID>WE
@@ -184,7 +184,7 @@ map <silent> <script> <Plug>AM_w=		<SID>WS:'a,'zg/=/s/\s\+\([*/+\-%<Bar>&\~^]\==
 map <silent> <script> <Plug>AM_t?		<SID>WS:AlignCtrl mIp0P0=l ?<CR>:'a,.Align<CR>:.,'zs/ \( *\);/;\1/ge<CR><SID>WE
 map <silent> <script> <Plug>AM_t~		<SID>WS:AlignCtrl mIp0P0=l ~<CR>:'a,.Align<CR>:'y,'zs/ \( *\);/;\1/ge<CR><SID>WE
 map <silent> <script> <Plug>AM_t@		<SID>WS::call AlignMaps#StdAlign(1)<cr>:<SID>WE
-map <silent> <script> <Plug>AM_m=		<SID>WS:'a,'zs/\s\+\([*/+\-%<Bar>&\~^]\==\)/ \1/e<CR>:'a,'zs@ \+\([*/+\-%<Bar>&\~^]\)=@\1=@ge<CR>:'a,'zs/==/\="\<Char-0x0f>\<Char-0x0f>"/ge<CR>:'a,'zs/!=/\="!\<Char-0x0f>"/ge<CR>'zk:AlignCtrl mIp1P1=l =<CR>:AlignCtrl g =<CR>:'a,'z-1Align<CR>:'a,'z-1s@\([*/+\-%<Bar>&\~^!=]\)\( \+\)=@\2\1=@ge<CR>:'a,'z-1s/\( \+\);/;\1/ge<CR>:'a,'z-s/%\ze[^=]/ @%@ /e<CR>'zk:call AlignMaps#StdAlign(1)<cr>:'y,'zs/^\(\s*\) @/\1/e<CR>:'a,'z-1s/\xff/=/ge<CR>:'y,'zs/ @//eg<CR><SID>WE
+map <silent> <script> <Plug>AM_m=		<SID>WS:'a,'zs/\s\+\([*/+\-%<Bar>&\~^]\==\)/ \1/e<CR>:'a,'zs@ \+\([*/+\-%<Bar>&\~^]\)=@\1=@ge<CR>:'a,'zs/==/\="\<Char-0x0f>\<Char-0x0f>"/ge<CR>:'a,'zs/!=/\="!\<Char-0x0f>"/ge<CR>'zk:AlignCtrl mIp1P1=l =<CR>:AlignCtrl g =<CR>:'a,'z-1Align<CR>:'a,'z-1s@\([*/+\-%<Bar>&\~^!=]\)\( \+\)=@\2\1=@ge<CR>:'a,'z-1s/\( \+\);/;\1/ge<CR>:'a,'z-s/%\ze[^=]/ @%@ /e<CR>'zk:call AlignMaps # StdAlign(1)<cr>:'y,'zs/^\(\s*\) @/\1/e<CR>:'a,'z-1s/\xff/=/ge<CR>:'y,'zs/ @//eg<CR><SID>WE
 map <silent> <script> <Plug>AM_tab		<SID>WS:'a,.s/^\(\t*\)\(.*\)$/\=submatch(1).escape(substitute(submatch(2),'\t',"\<Char-0x0f>",'g'),'\')/<CR>:if &ts == 1<bar>exe "AlignCtrl mI=lp0P0 \<Char-0x0f>"<bar>else<bar>exe "AlignCtrl mI=l \<Char-0x0f>"<bar>endif<CR>:'a,.Align<CR>:exe "'y+1,'z-1s/\<Char-0x0f>/".((&ts == 1)? '\t' : ' ')."/g"<CR><SID>WE
 map <silent> <script> <Plug>AM_tml		<SID>WS:AlignCtrl mWp1P0=l \\\@<!\\\s*$<CR>:'a,.Align<CR><SID>WE
 map <silent> <script> <Plug>AM_tsp		<SID>WS:'a,.s/^\(\s*\)\(.*\)/\=submatch(1).escape(substitute(submatch(2),'\s\+','@','g'),'\')/<CR>:AlignCtrl mI=lp0P0 @<CR>:'a,.Align<CR>:'y+1,'z-1s/@/ /g<CR><SID>WE

@@ -14,9 +14,14 @@ colorscheme jellybeans
 "-----------------------------------------------------------------------------
 "Works in progress
 "-----------------------------------------------------------------------------
-map <Leader><Leader>m :call CheckMapping()<Cr>
 
-nnoremap <Leader><C-l> <C-l>:set nohlsearch<Cr>
+"Some toggle maps
+map <F7>      :set spell! spell?<Cr>
+map <Leader>s :set hlsearch! hlsearch?<Cr>
+map <Leader>f :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
+map <Leader><C-f> :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
+
+map <Leader><Leader>m :call CheckMapping()<Cr>
 
 map <Leader>h :he 
 map <Leader>H :he<Cr><C-w>c
@@ -24,28 +29,6 @@ map <Leader>H :he<Cr><C-w>c
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
-"emacs-style hotkeys for command line
-cno <C-a> <Home>
-cno <C-e> <End>
-cno <C-b> <Left>
-cno <C-f> <Right>
-cno <C-n> <Down>
-cno <C-p> <Up>
-
-"some weirder alt-based hotkeys for commandline as well
-cno f <C-Right>
-cno b <C-Left>
-cno a <Home>
-cno e <End>
-cno  <End><C-u>
-
-"I try to use ctrl-c so that I can use escape based hotkeys in insert mode
-ino f <C-Right>
-ino b <C-Left>
-ino a <Home>
-ino e <End>
-ino  
-
 "c-j/k for up/down, c-h/l for start/end of line
 map <C-j> 15j
 map <C-k> 15k
@@ -60,17 +43,17 @@ vmap <S-tab> <gv
 
 "z[h]igh z[l]ow z[m]id
 nmap zh z<Cr>
-map zm z.
+nmap zm z.
 nmap zl zb
 
 "Q to play macro q
-map Q @q
+noremap Q @q
 
 "ways to write files quickly(or as sudo). ZZ has to be rebound because
 "minibufexplr can be really really dumb sometimes
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee %
-nmap ZZ :wqa<Cr>
+map ZZ :wqa<Cr>
 
 "Buffer tricks,c-n/p for navigating, ;` for last buffer
 map <Leader>` :b#<Cr>
@@ -90,21 +73,8 @@ map <Leader>e :e
 
 "vv to open vimrc, vc-v to open vimrc in vertical split, rr to reload vimrc
 map <Leader>vv :e ~/.vimrc<Cr>
-map <Leader>v<C-v> <C-w>v<C-w>l:e ~/.vimrc<Cr>
-map <Leader>rr :source ~/.vimrc<Cr>
-map <Leader><Leader>r :source ~/.vimrc<Cr>
-
-"c-\ to toggle highlight search
-map <C-\> :set hlsearch! hlsearch?<Cr>
-
-"Generate filename for datetime, add extension if possible, write to
-"codedir/tmp if it exists
-function! GenerateTmpFilename()
-    let ftypedict = {"python": "py", "vim": "vim", "perl": "pl", "sh": "sh", "zsh": "zsh"}
-    return strftime("%m-%d-%y__%H:%M:%S").".".get(ftypedict, &filetype, "tmp")
-endfunction
-
-map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTmpFilename()<Cr><Cr>
+map <Leader>vs <C-w>v<C-w>l:e ~/.vimrc<Cr>
+map <Leader>r :source ~/.vimrc<Cr>
 
 "allows you to search stack overflow from vim
 imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
@@ -127,7 +97,7 @@ set shortmess=atI                       " Attempt to prevent annoying multiline 
 set showcmd                             " show commands as they are typed
 set ruler                               " show absolute position in bottom right
 set relativenumber                      " linenumbers relative to current position
-set numberwidth=3                       " don't allocate too much space for numbers
+set numberwidth=2                       " don't allocate too much space for numbers(don't need much since I use relativenumber)
 set timeoutlen=2000                     " 2 seconds to complete commands
 set scrolloff=2                         " give cursor breathing room at top and bottom of screen
 set nocompatible                        " not compatible with vi
@@ -141,6 +111,7 @@ set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview
 set virtualedit=onemore                 " allow cursor to move 1 character past end of line
+"set virtualedit=all                    " allow cursor to move where it wants
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
@@ -194,4 +165,9 @@ hi SpecialKey ctermfg=81 guifg=Cyan
 hi Statement ctermfg=31
 hi Comment ctermfg=245
 
-hi Todo ctermfg=red
+hi Todo ctermfg=yellow
+au WinLeave * setlocal nocursorline
+au WinLeave * setlocal nocursorcolumn
+hi clear CursorLine
+hi clear CursorColumn
+hi CursorLine cterm=NONE,reverse
