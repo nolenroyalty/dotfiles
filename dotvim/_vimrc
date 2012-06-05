@@ -208,5 +208,4 @@ hi SpecialKey ctermfg=81 guifg=Cyan
 hi Statement ctermfg=31
 hi Comment ctermfg=245
 
-"TODO
 hi Todo ctermfg=red
