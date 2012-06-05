@@ -47,7 +47,8 @@ def get_questions(query):
 
 def draw_question(value, linenum):
     url, title, summary = URL + value[0], value[1], [x.strip() for x in value[2].splitlines() if x.strip()]
-    cols = int(vim.eval("&columns"))
+    #cols = int(vim.eval("&columns"))
+    cols = vim.current.window.width
     header_description = "Searching for '%s'     On Question %s of %s....----.." % (plain_query, location + 1, len(vals))
     header_description += " " * (cols - len(header_description) - 4)
     color_footer = "....----.." + " " * (cols - 14)

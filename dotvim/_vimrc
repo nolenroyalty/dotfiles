@@ -14,6 +14,15 @@ colorscheme jellybeans
 "-----------------------------------------------------------------------------
 "Works in progress
 "-----------------------------------------------------------------------------
+map <Leader><Leader>m :call CheckMapping()
+
+nnoremap <Leader><C-l> <C-l>:set nohlsearch<Cr>
+
+map <Leader>h :he 
+map <Leader>H :he<Cr><C-w>c
+
+set virtualedit=onemore
+
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -86,7 +95,8 @@ map <Leader>e :e
 "vv to open vimrc, vc-v to open vimrc in vertical split, rr to reload vimrc
 map <Leader>vv :e ~/.vimrc<Cr>
 map <Leader>v<C-v> <C-w>v<C-w>l:e ~/.vimrc<Cr>
-map <Leader>rr :sourc ~/.vimrc<Cr>
+map <Leader>rr :source ~/.vimrc<Cr>
+map <Leader><Leader>r :source ~/.vimrc<Cr>
 
 "c-\ to toggle highlight search
 map <C-\> :set hlsearch! hlsearch?<Cr>
@@ -135,6 +145,8 @@ set relativenumber
 
 "don't allocate too much space for numbers
 set numberwidth=3
+"2 seconds to complete commands
+set timeoutlen=2000
 
 "Give cursor a little bit of breathing room at the top and bottom of the
 "screen.  Do not be compatible with vi.  Search incrementally instead of
