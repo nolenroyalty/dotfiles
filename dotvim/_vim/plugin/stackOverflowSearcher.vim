@@ -17,11 +17,12 @@ if current_os == "Darwin":
 else:
     url_command = "firefox"
 
-PROMPT = "[n]ext, [p]rev, [q]uit, [o]pen in firefox"
+PROMPT = "[n]ext, [p]rev, [q]uit, [o]pen"
 URL = "http://stackoverflow.com"
 SEARCH_URL = URL + "/search?q="
+#find_pattern = re.compile(r'<div class="summary">\s*?<h3><a href="([^"]+)"[^>]*>(.*?)\s+?<div class="excerpt">\s+(.*?)</div>', re.X|re.DOTALL)
 find_pattern = re.compile(r"""<div\ class="summary">\s*?<h3>   # smallest easily capturable div
-                              <a\ href="([^"]+)"[^>]*?>        # capture the link, and eat the chars until the href ends
+                              <a\ href="([^"]+)"[^>]*>         # capture the link, and eat the chars until the href ends
                               (.*?)\s+?                        # everything after that until excerpt is the title
                               <div\ class="excerpt">\s+(.*?)   # everything after the excerpt is the..excerpt
                               </div>""", re.X|re.DOTALL)
@@ -51,7 +52,6 @@ def draw_question(value, linenum):
     header_description += " " * (cols - len(header_description) - 4)
     color_footer = "....----.." + " " * (cols - 14)
 
-    to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
     to_append = ["", header_description] + ["URL: %s" % url, "", "Question title: %s" % title, ""] + summary + ["", color_footer]
 
     vim.command("hi PyColorVisible ctermbg=101 ctermfg=white")
@@ -106,12 +106,10 @@ while vals:
     clear_question(question_length, linenum)
 
 
-vim.command("set nocursorline")
 if vals:
     vim.command("normal 2k")
     vim.command("hi clear PyColorVisible")
     vim.command("hi clear PyColorInvisible")
-    #    vim.command("hi clear PyColorHeaderInvisible")
     clear_question(question_length, linenum)
     buf[linenum-1] = old_line
 EOF
