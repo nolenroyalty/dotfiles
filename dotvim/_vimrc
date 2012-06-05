@@ -14,9 +14,6 @@ colorscheme jellybeans
 "-----------------------------------------------------------------------------
 "Works in progress
 "-----------------------------------------------------------------------------
-"don't allocate too much space for numbers
-set numberwidth=3
-
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -135,6 +132,9 @@ set shortmess=atI
 set showcmd
 set ruler
 set relativenumber
+
+"don't allocate too much space for numbers
+set numberwidth=3
 
 "Give cursor a little bit of breathing room at the top and bottom of the
 "screen.  Do not be compatible with vi.  Search incrementally instead of
