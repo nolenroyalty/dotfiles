@@ -22,6 +22,9 @@ map <Leader><C-w> :r ~/.dotfiles_config<Cr>0df=v$d:w <C-r>"/tmp/<C-r>=GenerateTm
 
 imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
 nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
+
+"don't allocate too much space for numbers
+set numberwidth=3
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
@@ -65,8 +68,8 @@ map zm z.
 nmap zl zb
 
 "Q to play macro q
-nn Q @q
-vn Q @q
+map Q @q
+vmap Q @q
 
 "ways to write files quickly(or as sudo). ZZ has to be rebound because
 "minibufexplr can be really really dumb sometimes
@@ -78,7 +81,7 @@ nmap ZZ :wqa<Cr>
 map <Leader>b :b 
 map <Leader>` :b#<Cr>
 map <C-n> :bn<Cr>
-nmap <C-p> :bp<Cr>
+map <C-p> :bp<Cr>
 
 "Comment keys, ;j to comment out line, ;J to uncomment, ;c-d to make a
 "commented copy of a line(so I'm not afraid to break it)
@@ -145,7 +148,7 @@ set gdefault
 "available.  No more than 10 items at a time in insert mode completion.
 set complete-=i
 set wildmenu
-set wildmode=longest,list,full
+"set wildmode=longest,list,full
 set ofu=syntaxcomplete#Complete
 set pumheight=10
 set completeopt=menuone,longest,preview
