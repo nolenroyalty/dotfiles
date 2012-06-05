@@ -117,57 +117,32 @@ nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
-"Tabs are 8 spaces, but act like they are 4.  Autoindent stuff uses 4 spaces.
-"Tabs are expanded to the correct number of spaces, and are rounded off to
-"multiples of shiftwidth.  Tabs and trailing spaces are shown visually
-set tabstop=8
+set tabstop=8                           " Tabs are 8 spaces but act like they're 4
 set softtabstop=4
-set shiftwidth=4
-set expandtab
-set shiftround
-set listchars=tab:\ \ ,trail:·
-
-"Lines are wrapped instead of hidden, are wrapped at (decently) good points,
-"and backspace is able to kill indents, line breaks, and things behind where
-"insert mode started
-set wrap
-set linebreak
-set list
-set backspace=indent,eol,start
-
-"attemp to prevent annoying multiline prompts.  Show commands that are
-"partially complete in the statusline.  Show absolute cursor pos in bottom
-"right and relative numbers on the left.  I love relativenumber.
-set shortmess=atI
-set showcmd
-set ruler
-set relativenumber
-
-"don't allocate too much space for numbers
-set numberwidth=3
-"2 seconds to complete commands
-set timeoutlen=2000
-
-"Give cursor a little bit of breathing room at the top and bottom of the
-"screen.  Do not be compatible with vi.  Search incrementally instead of
-"waiting.  Ignore case, unless caps are used.  Default to /g for s/
-set scrolloff=2
-set nocompatible
-set incsearch
-set ignorecase
-set smartcase
-set gdefault
-
-"use case when caps     /g by default           no complete import  enhanced tab complete
-"Don't bother looking at all imports when doing tab completion.  Enable
-"enhanced tab complete.  Only complete to longest match shared by all items.
-"List all matching items, with extra detail.  Enable omnicompletion when
-"available.  No more than 10 items at a time in insert mode completion.
-set complete-=i
-set wildmenu
-"set wildmode=longest,list,full
-set ofu=syntaxcomplete#Complete
-set pumheight=10
+set shiftwidth=4                        " autoindent uses 4 spaces
+set expandtab                           " expand tabs to proper number of spaces
+set shiftround                          " round expanded tabs to multiples of shiftwidth
+set listchars=tab:\ \ ,trail:·          " show tabs and trailing spaces visually
+set wrap                                " Lines are wrapped instead of hidden
+set linebreak                           " lines are wrapped at (decently) good points
+set list                                " show tabs
+set backspace=indent,eol,start          " backspace is able to kill indents, line breaks, and pre-insert
+set shortmess=atI                       " Attempt to prevent annoying multiline prompts
+set showcmd                             " show commands as they are typed
+set ruler                               " show absolute position in bottom right
+set relativenumber                      " linenumbers relative to current position
+set numberwidth=3                       " don't allocate too much space for numbers
+set timeoutlen=2000                     " 2 seconds to complete commands
+set scrolloff=2                         " give cursor breathing room at top and bottom of screen
+set nocompatible                        " not compatible with vi
+set incsearch                           " find searches as you type
+set ignorecase                          " ignore case for searches...
+set smartcase                           " unless capital letters are used
+set gdefault                            " default to global search and replace, /g to disable
+set complete-=i                         " don't bother with imports when doing tab completion
+set wildmenu                            " enable enhanced tab complete
+set ofu=syntaxcomplete#Complete         " enable omnifunc completion
+set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview
 
 "-----------------------------------------------------------------------------
