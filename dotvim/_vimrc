@@ -14,14 +14,12 @@ colorscheme jellybeans
 "-----------------------------------------------------------------------------
 "Works in progress
 "-----------------------------------------------------------------------------
-map <Leader><Leader>m :call CheckMapping()
+map <Leader><Leader>m :call CheckMapping()<Cr>
 
 nnoremap <Leader><C-l> <C-l>:set nohlsearch<Cr>
 
 map <Leader>h :he 
 map <Leader>H :he<Cr><C-w>c
-
-set virtualedit=onemore
 
 "-----------------------------------------------------------------------------
 "Mappings
@@ -75,8 +73,7 @@ map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee %
 nmap ZZ :wqa<Cr>
 
-"Buffer tricks,c-n/p for navigating, ;` for last buffer, ;b for buffer prompt
-map <Leader>b :b 
+"Buffer tricks,c-n/p for navigating, ;` for last buffer
 map <Leader>` :b#<Cr>
 map <C-n> :bn<Cr>
 map <C-p> :bp<Cr>
@@ -144,6 +141,7 @@ set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview
+set virtualedit=onemore                 " allow cursor to move 1 character past end of line
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
