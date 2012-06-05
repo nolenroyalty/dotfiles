@@ -10,17 +10,21 @@ cno <C-b> <Left>
 cno <C-f> <Right>
 cno <C-n> <Down>
 cno <C-p> <Up>
+cno <C-d> <Del>
+
+"and a few for insert mode too
+ino <C-a> <C-o>I
+ino <C-e> <C-o>A
+ino <C-f> <Right>
+ino <C-b> <Left>
+ino <C-d> <Del>
 
 "some weirder alt-based hotkeys for commandline as well
 cno f <C-Right>
 cno b <C-Left>
-cno a <Home>
-cno e <End>
 cno  <End><C-u>
 
 "I try to use ctrl-c so that I can use escape based hotkeys in insert mode
 ino f <C-Right>
 ino b <C-Left>
-ino a <Home>
-ino e <End>
 ino  

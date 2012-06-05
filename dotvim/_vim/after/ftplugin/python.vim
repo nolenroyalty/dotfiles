@@ -5,6 +5,8 @@ function! SetPythonOptions()
     setlocal formatoptions-=o formatoptions-=r
     setlocal omnifunc=pythoncomplete#Complete
 
+    let g:pylint_onwrite = 0
+
     "let python_highlight_all=2
     "syntax keyword pythonReturn return
     hi link pythonOperator Statement

@@ -3,3 +3,4 @@
 config
 *.orig
 *.swp
+*undodir*
