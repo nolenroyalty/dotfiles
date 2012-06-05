@@ -10,6 +10,16 @@ nnoremap <F1> <Nop>
 cnoremap <F1> <Nop>
 inoremap <F1> <Nop>
 
+map <A-}> <C-Tab>
+map <A-{> <S-C-Tab>
+imap <A-}> <C-Tab>
+imap <A-{> <S-C-Tab>
+map <A-t> t
+imap <A-t> t
+cmap <A-t> t
+map <C-A-w> d
+cmap <C-A-w> <C-a><C-k><Bs>d
+imap <C-A-w> <Esc>d
 imap <C-f> <Right>
 imap <C-b> <Left>
 imap <A-f> <C-Right>
@@ -21,6 +31,8 @@ imap <A-b> <C-Left>
 "au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
 imap <C-k> <Up>
 imap <C-j> <Down>
+imap <C-p> <Up>
+imap <C-n> <Down>
 
 "map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 

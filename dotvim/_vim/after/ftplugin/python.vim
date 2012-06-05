@@ -4,10 +4,12 @@
 function! SetPythonOptions()
     setlocal formatoptions-=o formatoptions-=r
     setlocal omnifunc=pythoncomplete#Complete
-    syntax keyword pythonReturn return
-    hi pythonTodo ctermfg=red
-    let python_highlight_all=2
+
+    "let python_highlight_all=2
+    "syntax keyword pythonReturn return
+    hi link pythonOperator Statement
+
+    compiler pylint
 endfunction
 
 call SetPythonOptions()
-"au Filetype python call SetPythonOptions()
