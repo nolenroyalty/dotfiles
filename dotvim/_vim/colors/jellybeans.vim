@@ -400,7 +400,12 @@ call s:X("Type","ffb964","","","Yellow","")
 
 call s:X("SpecialKey","444444","1c1c1c","",s:termBlack,"")
 
-call s:X("Search","f0a0c0","302028","underline","Magenta","")
+""""CHANGE HERE
+"call s:X("Search","f0a0c0","302028","underline","Magenta","")
+"call s:X("Search", "", "", "", "lightblue", "lightblue")
+"hi Search ctermbg=229
+hi clear Search
+hi Search cterm=NONE,reverse
 
 call s:X("Directory","dad085","","","Yellow","")
 call s:X("ErrorMsg","","902020","","","DarkRed")
