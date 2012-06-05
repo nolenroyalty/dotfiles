@@ -65,7 +65,6 @@ nmap zl zb
 
 "Q to play macro q
 map Q @q
-vmap Q @q
 
 "ways to write files quickly(or as sudo). ZZ has to be rebound because
 "minibufexplr can be really really dumb sometimes
