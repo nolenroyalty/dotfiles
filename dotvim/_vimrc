@@ -184,6 +184,7 @@ au InsertLeave * if pumvisible() == 0|pclose|endif
 
 "au BufNewFile *.pl s-^-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal 
 au BufNewFile *.pl 0r ~/.vim/skeleton/skeleton.pl
+au BufNewFile *.py 0r ~/.vim/skeleton/skeleton.py
 
 "-----------------------------------------------------------------------------
 "Misc

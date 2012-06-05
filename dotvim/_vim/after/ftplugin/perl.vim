@@ -3,4 +3,3 @@
 
 setlocal formatoptions-=o formatoptions-=r
 setlocal omnifunc=perlcomplete#OmniPerl_Complete
-"au BufNewFile *.pl s-^-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal 
