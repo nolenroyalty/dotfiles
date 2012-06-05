@@ -14,17 +14,7 @@ colorscheme jellybeans
 "-----------------------------------------------------------------------------
 "Works in progress
 "-----------------------------------------------------------------------------
-
-"Some toggle maps
-map <F7>      :set spell! spell?<Cr>
-map <Leader>s :set hlsearch! hlsearch?<Cr>
-map <Leader>f :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
-map <Leader><C-f> :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
-
 map <Leader><Leader>m :call CheckMapping()<Cr>
-
-map <Leader>h :he 
-map <Leader>H :he<Cr><C-w>c
 
 "-----------------------------------------------------------------------------
 "Mappings
@@ -41,13 +31,23 @@ nmap <S-tab> v<<<esc>
 vmap <tab> >gv
 vmap <S-tab> <gv
 
+"Some toggle maps
+map <F7>      :set spell! spell?<Cr>
+map <Leader>s :set hlsearch! hlsearch?<Cr>
+map <Leader>f :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
+map <Leader><C-f> :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
+
 "z[h]igh z[l]ow z[m]id
 nmap zh z<Cr>
 nmap zm z.
 nmap zl zb
 
 "Q to play macro q
-noremap Q @q
+map Q @q
+
+"Get help/close help
+map <Leader>h :he 
+map <Leader>H :he<Cr><C-w>c
 
 "ways to write files quickly(or as sudo). ZZ has to be rebound because
 "minibufexplr can be really really dumb sometimes
@@ -64,7 +64,7 @@ map <C-p> :bp<Cr>
 "commented copy of a line(so I'm not afraid to break it)
 map <Leader>j ;cc
 map <Leader>J ;cu
-map <Leader><C-d> Ypk<Leader>cc
+nmap <Leader><C-d> Ypk<Leader>cc
 vmap <Leader><C-d> ygvA<Esc>pgv;jgvA<Esc>j
 
 "leader e to open a new file(has trailing space so you can start typing the
