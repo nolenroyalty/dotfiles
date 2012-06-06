@@ -1,109 +1,73 @@
 "-----------------------------------------------------------------------------
-"Settings to run first
+"Settings that cause problems if they aren't run first
 "-----------------------------------------------------------------------------
-"Run settings that throw a fit if they aren't run first.  That means calling all the plugins I installed via pathogen,
-"turning on filetype stuff + syntax, setting my mapleader, and using my (heavily modified) jellybeans colorscheme
-set nocompatible
-call pathogen#infect()
-filetype on
-filetype plugin indent on
-syntax enable
-let mapleader = ";"
-colorscheme jellybeans
-
-"-----------------------------------------------------------------------------
-"Works in progress
-"-----------------------------------------------------------------------------
-map <Leader><Leader>m :call CheckMapping()<Cr>
-
-"Delete line without yanking it into " register
-nnoremap <silent> <Leader>d "_d
-vnoremap <silent> <Leader>d "_d
-
-"Return to last edit position when opening files
-"autocmd BufReadPost *
-            "\ if line("'\"") > 0 && line("'\"") <= line("$") |
-            "\    exe "normal! g`\"" |
-            "\ endif
-"Remember info about open buffers on close
-"set viminfo^=%
-
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name (currently '.expand('%').'): ')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-map <leader>N :call RenameFile()<cr>
+set nocompatible          " Don't try to be compatible with vi
+call pathogen#infect()    " Tell pathogen to enable bundle plugins
+filetype plugin indent on " Enable filetype detection, as well as ftplugins and filetype indenting
+syntax enable             " Yes please syntax highlighting
+let mapleader = ";"       " Set mapleader to ; and use \ for ;'s functionality
+nnoremap \ ;
+colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans colorscheme
 
 "-----------------------------------------------------------------------------
 "Mappings
 "-----------------------------------------------------------------------------
-"c-j/k for quick movement
+"c-j/k for vertical movement, c-h/l for start/end of line
 map <C-j> 15j
 map <C-k> 15k
+map <C-h> ^
+map <C-l> $
 
-"make tab work how I would except
-nmap <tab> v>><esc>
-nmap <S-tab> v<<<esc>
-vmap <tab> >gv
-vmap <S-tab> <gv
+"use tab in normal and visual mode to indent text
+nmap <Tab> v>><Esc>
+nmap <S-Tab> v<<<Esc>
+vmap <Tab> >gv
+vmap <S-Tab> <gv
 
-"toggles: <F7> spell check, <F8> pylint, ;[s]earch, ;[f]ind cursor
-map <F7>      :set spell! spell?<Cr>
-map <F8> :Pylint<Cr><C-l>
-map <Leader>s :set hlsearch! hlsearch?<Cr>
-map <Leader>f :set cursorline! cursorline?<Cr>:set cursorcolumn! cursorcolumn?<Cr>
+"toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
+map <F7>          :set spell! spell?<Cr>
+map <F8>          :Pylint<Cr>:redraw!<Cr>
+map <Leader>s     :set hlsearch! hlsearch?<Cr>
+map <Leader><C-f> :set cursorline<Cr>:sleep 250m<Cr>:set nocursorline<Cr>
 
-"z[h]igh z[l]ow z[m]id
-nmap zh z<Cr>
-nmap zm z.
-nmap zl zb
-
-"Q to play macro q
+"General purpose mappings. ;d black hole deletes, ZZ writes all and exits, Q plays macro q
+nnoremap <silent> <Leader>d "_d
+vnoremap <silent> <Leader>d "_d
+map ZZ :wqa<Cr>
 map Q @q
 
-"Get help/close help
-map <Leader>h :he 
-map <Leader>H :he<Cr><C-w>c
-
-"ways to write files quickly(or as sudo). ZZ has to be rebound because minibufexplr can be really really dumb sometimes
+";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee % >/dev/null
-map ZZ :wqa<Cr>
-
-"Buffer tricks,c-n/p for navigating, ;` for last buffer
-map <Leader>` :b#<Cr>
-map <C-n> :bn<Cr>
-map <C-p> :bp<Cr>
-
-"Comment keys, ;j to comment out line, ;J to uncomment, ;c-d to make a commented copy of a line(so I'm not afraid to break it)
-map <Leader>j ;cc
-map <Leader>J ;cu
-nmap <Leader><C-d> Ypk<Leader>cc
-vmap <Leader><C-d> ygvA<Esc>pgv;jgvA<Esc>j
-
-"Easily edit files, E to edit file in current dir
 map <Leader>e :e 
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
-"vv to open vimrc, vc-v to open vimrc in vertical split, rr to reload vimrc
-map <Leader>vv :e ~/.vimrc<Cr>
-map <Leader>vs <C-w>v<C-w>l:e ~/.vimrc<Cr>
-map <Leader>r :source ~/.vimrc<Cr>
+"Switch buffers with c-n/p
+map <C-n> :bn<Cr>
+map <C-p> :bp<Cr>
 
-"allows you to search stack overflow from vim
-imap <C-x><C-h> <C-o>:call StackoverflowQuery()<Cr>
-nnoremap <Leader><C-h> :call StackoverflowQuery()<Cr>
+"Comment keys, ;j to comment out line, ;J to uncomment, ;c-d copy current line(s) and comment them out(for use as a backup)
+map <Leader>j <Leader>cc
+map <Leader>J <Leader>cu
+nmap <Leader><C-d> Ypk<Leader>cc
+vmap <Leader><C-d> ygvA<Esc>pgv<Leader>ccgvA<Esc>j
+
+"vv to open vimrc, R to reload vimrc
+map <Leader>vv :e ~/.vimrc<Cr>
+map <Leader>R  :source ~/.vimrc<Cr>:echo "Refreshed"<Cr>
+
+"Mapings for functions in plugin/generalFunctions.vim and other personal plugins
+map <Leader><Leader>m :call CheckMapping()<Cr>
+map <leader>N         :call RenameFile()<Cr>
+map <Leader><C-t>     :call ToggleOggleOoo()<Cr>
+imap <C-x><C-h>       <C-o>:call StackoverflowQuery()<Cr>
+nmap <Leader><C-h>    :call StackoverflowQuery()<Cr>
 
 "-----------------------------------------------------------------------------
 "Settings
 "-----------------------------------------------------------------------------
-set tabstop=8                           " Tabs are 8 spaces but act like they're 4
-set softtabstop=4
+set tabstop=8                           " Tabs are 8 spaces
+set softtabstop=4                       " Tabs act like they are 4 spaces
 set shiftwidth=4                        " autoindent uses 4 spaces
 set expandtab                           " expand tabs to proper number of spaces
 set shiftround                          " round expanded tabs to multiples of shiftwidth
@@ -118,71 +82,45 @@ set showcmd                             " show commands as they are typed
 set ruler                               " show absolute position in bottom right
 set relativenumber                      " linenumbers relative to current position
 set numberwidth=2                       " don't allocate too much space for numbers(don't need much since I use relativenumber)
-set timeoutlen=1000                     " 2 seconds to complete commands
 set scrolloff=2                         " give cursor breathing room at top and bottom of screen
 set incsearch                           " find searches as you type
-set ignorecase                          " ignore case for searches...
-set smartcase                           " unless capital letters are used
+set ignorecase                          " ignore case for searches
+set smartcase                           " stop ignoring case for searches if capital letters are used
 set gdefault                            " default to global search and replace, /g to disable
 set complete-=i                         " don't bother with imports when doing tab completion
 set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
-set completeopt=menuone,longest,preview
+set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
 set virtualedit=onemore                 " allow cursor to move 1 character past end of line
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
 set undodir=~/.vim/undodir              " For persistent undo
-set undofile
+set undofile                            " Also enables persistent undo(undo between sessions)
 
 "-----------------------------------------------------------------------------
 "Minor extension stuff
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
-let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-"because tagbar and minubufexplorer can be *really* annoying together
-function! ToggleOggleOoo()
-    TagbarToggle
-    let buf = bufname("%")
-    if buf == "-MiniBufExplorer-"
-        wincmd j
-    elseif buf == "__Tagbar__"
-        wincmd h| wincmd j| wincmd l| wincmd l
-        TagbarSetFoldlevel 1
-        exe 'norm! 2j'
-    endif
-endfunction
-
-map <silent> <Leader><C-t> :call ToggleOggleOoo()<Cr>
-let g:tagbar_compact = 1
-let g:tagbar_autofocus = 1
+let g:pydiction_location         = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
+let g:tagbar_compact             = 1
+let g:tagbar_autofocus           = 1
 
 "-----------------------------------------------------------------------------
 "Autocommands
 "-----------------------------------------------------------------------------
 "takes care of how autocomplete menus should appear and disappear
 au CursorMovedI * if pumvisible() == 0|pclose|endif
-au InsertLeave * if pumvisible() == 0|pclose|endif
+au InsertLeave  * if pumvisible() == 0|pclose|endif
 
 au BufNewFile *.pl silent 0r ~/.vim/skeleton/skeleton.pl
-au BufNewFile *.py silent 0r ~/.vim/skeleton/skeleton.py
-
-"This is great: prevent cursorline from sticking around in other windows
-au WinLeave * setlocal nocursorline
-au WinLeave * setlocal nocursorcolumn
 
 "-----------------------------------------------------------------------------
 "Misc
 "-----------------------------------------------------------------------------
-"Attemp to make a few things look nicer, primarily because I am always using a transparent background.
-"My jellybeans colorscheme is also heavily customized/pillaged
-hi clear Pmenu
-hi Pmenu term=bold ctermfg=81 ctermbg=darkgrey guifg=Cyan
-
-"Matchparen always confused me because I couldn't tell where my cursor was and
-"which paren was highlighted.  I try to fix this by using a ridiculous pinkish color
+"Matchparen tends to confuse me because I can't tell where my cursor is.  This looks ridiculous but seems to work pretty well
 hi clear MatchParen
 hi MatchParen ctermfg=126
 
@@ -192,8 +130,7 @@ hi SpecialKey ctermfg=81 guifg=Cyan
 
 hi Statement ctermfg=31
 hi Comment ctermfg=245
-
 hi Todo ctermfg=yellow
+
 hi clear CursorLine
-hi clear CursorColumn
 hi CursorLine cterm=NONE,reverse
