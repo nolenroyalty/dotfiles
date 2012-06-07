@@ -11,6 +11,7 @@ cno <C-f> <Right>
 cno <C-n> <Down>
 cno <C-p> <Up>
 cno <C-d> <Del>
+cno <C-k> <C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<Cr>
 
 "and a few for insert mode too
 ino <C-a> <C-o>I
