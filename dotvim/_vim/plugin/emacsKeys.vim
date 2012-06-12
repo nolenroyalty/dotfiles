@@ -19,6 +19,7 @@ ino <C-e> <C-o>A
 ino <C-f> <Right>
 ino <C-b> <Left>
 ino <C-d> <Del>
+ino <C-k> <C-o>D
 
 "some weirder alt-based hotkeys for commandline as well
 cno f <C-Right>
