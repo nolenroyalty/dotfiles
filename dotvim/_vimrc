@@ -128,6 +128,3 @@ hi clear SpecialKey                 " Clear specialkey (escape characters like 
 hi SpecialKey ctermfg=81 guifg=Cyan " Set them to a nice light blue
 hi clear CursorLine                 " Cursorline has strange strange highlighting by default
 hi CursorLine cterm=NONE,reverse    " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
-hi Statement ctermfg=31
-hi Comment ctermfg=245
-hi Todo ctermfg=yellow

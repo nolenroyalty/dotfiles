@@ -325,11 +325,16 @@ call s:X("Cursor","","b0d0f0","","","")
 "call s:X("LineNr","605958","151515","none",s:termBlack,"")
 "call s:X("Comment","888888","","italic","Grey","")
 call s:X("LineNr", "A9CEE8","","none","s:termBlack","")
-call s:X("Comment","A19D9D","","italic","Grey","")
+"call s:X("Comment","A19D9D","","italic","Grey","")
+hi clear Comment
+hi Comment ctermfg=245
 "call s:X("String","888888","","italic","Grey","")
 "call s:X("String","8fbfdc","","","","")
 "call s:X("String","6B63C2","","","","")
-call s:X("Todo","808080","","bold","White",s:termBlack)
+"""CHANGE HERE
+"call s:X("Todo","808080","","bold","White",s:termBlack)
+hi clear Todo
+hi Todo ctermfg=yellow
 
 call s:X("StatusLine","000000","dddddd","italic","","White")
 call s:X("StatusLineNC","ffffff","403c41","italic","White","Black")
@@ -389,7 +394,10 @@ call s:X("pythonReturn", "7BB3D4","","","","")
 
 "call s:X("Statement","2b5b77","","","","")
 "call s:X("Statement","295873","","","","")
-call s:X("Statement","476EA8","","","","")
+"CHANGE HERE
+"call s:X("Statement","476EA8","","","","")
+hi clear Statement
+hi Statement ctermfg=31
 call s:X("PreProc","8fbfdc","","","LightBlue","")
 
 hi! link Operator Normal
