@@ -96,7 +96,7 @@ set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
-set virtualedit=onemore                 " allow cursor to move 1 character past end of line
+"set virtualedit=onemore                 " allow cursor to move 1 character past end of line
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
@@ -109,22 +109,22 @@ set matchpairs+=<:>                     " allow match highlighting and % jumping
 "-----------------------------------------------------------------------------
 " Minor extension stuff
 "-----------------------------------------------------------------------------
-let g:Tb_MoreThanOne     = 1  " It's nice to always have the buffer tab bar open
+let g:Tb_MoreThanOne     = 1            " It's nice to always have the buffer tab bar open
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
 
 "-----------------------------------------------------------------------------
 " Tagbar stuff
 "-----------------------------------------------------------------------------
-let g:tagbar_compact     = 1  " no need to waste tagbar space, compact mode is better
-let g:tagbar_autofocus   = 1  " autofocus tagbar upon opening it
-let g:tagbar_width       = 32 " slightly reduce tagbar width for more screen real estate
+let g:tagbar_compact     = 1            " no need to waste tagbar space, compact mode is better
+let g:tagbar_autofocus   = 1            " autofocus tagbar upon opening it
+let g:tagbar_width       = 32           " slightly reduce tagbar width for more screen real estate
 
 "-----------------------------------------------------------------------------
 "Misc
 "-----------------------------------------------------------------------------
-hi clear MatchParen                 " Clear matchparen so that I can set it
-hi MatchParen ctermfg=200           " Set matchparen to a ridiculous color so I can see it.  Other good colors are 416,128,185,269
-hi clear SpecialKey                 " Clear specialkey (escape characters like  because they are invisible to me on default settings
-hi SpecialKey ctermfg=81 guifg=Cyan " Set them to a nice light blue
-hi clear CursorLine                 " Cursorline has strange strange highlighting by default
-hi CursorLine cterm=NONE,reverse    " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
+hi clear MatchParen                     " Clear matchparen so that I can set it
+hi MatchParen ctermfg=200               " Set matchparen to a ridiculous color so I can see it.  Other good colors are 416,128,185,269
+hi clear SpecialKey                     " Clear specialkey (escape characters like  because they are invisible to me on default settings
+hi SpecialKey ctermfg=81 guifg=Cyan     " Set them to a nice light blue
+hi clear CursorLine                     " Cursorline has strange strange highlighting by default
+hi CursorLine cterm=NONE,reverse        " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
