@@ -46,3 +46,9 @@ function! ToggleOggleOoo()
         exe 'norm! 2j'
     endif
 endfunction
+
+"function! TempFile()
+    "let tempname = strftime("%Y_%M_%D_%%")."-tmpfile".expand("%:e")
+    "let code_dir = readfile("/home/
+    "write 
+    
