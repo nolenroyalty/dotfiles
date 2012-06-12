@@ -6,9 +6,11 @@ set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
 
-nnoremap <F1> <Nop>
-cnoremap <F1> <Nop>
-inoremap <F1> <Nop>
+nmap -builtin <F1> <Nop>
+cmap -builtin <F1> <Nop>
+imap -builtin <F1> <Nop>
+
+map <A-r> <Esc><r>
 
 map <A-}> <C-Tab>
 map <A-{> <S-C-Tab>
@@ -68,8 +70,8 @@ map <C-7> <C-0>3<C-p>
 map <C-S-M-a> tabout:addons<Cr>
 
 "flip d and D
-noremap d D
-noremap D d
+nmap -builtin d D
+nmap -builtin D d
 
 "tab shit
 map <M-t> :tabopen! 
