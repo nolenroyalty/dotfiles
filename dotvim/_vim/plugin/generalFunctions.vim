@@ -4,26 +4,6 @@
 " Version:     1.0
 "=============================================================================
 
-function! CheckMapping()
-    let keysequence = substitute(input("Key sequence: "), ';', '<Leader>', 'g')
-    if empty(mapcheck(keysequence))
-        let mapstring = "Map ".keysequence." to: "
-        let targetmapping = substitute(input(mapstring), ';', '<Leader>', 'g')
-        normal omap =keysequence 
-        normal A=targetmapping
-    else
-        TagbarClose
-        TagbarOpen
-        10 wincmd h
-        10 wincmd j
-        TagbarClose
-        TagbarOpen
-        normal zR
-        let searchstring = '^\s\+\C'.keysequence
-        silent call search(searchstring, 'wc')
-    endif
-endfunction
-
 function! RenameFile()
     let old_name = expand('%')
     let new_name = input('New file name ('.old_name.'): ')
@@ -49,20 +29,6 @@ function! ToggleOggleOoo()
         wincmd j
         10 wincmd l
         TagbarSetFoldlevel(10)
-    endif
-endfunction
-
-function! UnfuckMinibufexplrWincmdh()
-    wincmd h
-    if bufname("%") == "-MiniBufExplorer-"
-        wincmd j
-    endif
-endfunction
-
-function! UnfuckMinibufexplrWinclose()
-    wincmd q
-    if bufname("%") == "-MiniBufExplorer-"
-        wincmd j
     endif
 endfunction
 

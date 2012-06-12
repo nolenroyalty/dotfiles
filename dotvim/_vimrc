@@ -44,8 +44,8 @@ map <Leader>e :e
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
 "Switch buffers with c-n/p, kill buffer with <Leader>D
-map <C-n> :bn<Cr>
-map <C-p> :bp<Cr>
+map <C-n>     :bn<Cr>
+map <C-p>     :bp<Cr>
 map <Leader>D :TagbarClose<Cr>:bd<Cr>
 
 "Comment keys, ;j to comment out line, ;J to uncomment, ;c-d copy current line(s) and comment them out(for use as a backup)
@@ -108,7 +108,7 @@ set pastetoggle=<C-F7>                  " toggle pastemode with ctrl-F7
 "-----------------------------------------------------------------------------
 " Minor extension stuff
 "-----------------------------------------------------------------------------
-let g:Tb_MoreThanOne = 1
+let g:Tb_MoreThanOne     = 1  " It's nice to always have the buffer tab bar open
 let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
 
 "-----------------------------------------------------------------------------
