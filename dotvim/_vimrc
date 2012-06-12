@@ -1,5 +1,5 @@
 "-----------------------------------------------------------------------------
-"Settings that cause problems if they aren't run first
+" Settings that cause problems if they aren't run first
 "-----------------------------------------------------------------------------
 set nocompatible          " Don't try to be compatible with vi
 call pathogen#infect()    " Tell pathogen to enable bundle plugins
@@ -10,7 +10,20 @@ nnoremap \ ;
 colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans colorscheme
 
 "-----------------------------------------------------------------------------
-"Mappings
+" Works in progress
+"-----------------------------------------------------------------------------
+"ctrl c sends an escape, instead of messing up things like visual column insert
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+"stop gQ, q:, etc from being annoying and opening a worthless piece of shit window
+map gQ <Nop>
+"for filetype extension writing and stuff
+let b:ftype_extension="tmp"
+set laststatus=2
+let g:Tb_MoreThanOne = 1
+
+"-----------------------------------------------------------------------------
+" Mappings
 "-----------------------------------------------------------------------------
 "c-j/k for vertical movement, c-h/l for start/end of line
 map <C-j> 15j
@@ -45,6 +58,11 @@ map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 "Switch buffers with c-n/p
 map <C-n> :bn<Cr>
 map <C-p> :bp<Cr>
+map <C-w>n :bn<Cr>
+map <C-w><C-n> :bn<Cr>
+map <C-w>p :bp<Cr>
+map <C-w><C-p> :bp<Cr>
+map <Leader>D :TagbarClose<Cr>:bd<Cr>
 
 "Comment keys, ;j to comment out line, ;J to uncomment, ;c-d copy current line(s) and comment them out(for use as a backup)
 map <Leader>j <Leader>cc
@@ -57,8 +75,8 @@ map <Leader>vv :e ~/.vimrc<Cr>
 map <Leader>R  :source ~/.vimrc<Cr>:echo "Refreshed"<Cr>
 
 "Mapings for functions in plugin/generalFunctions.vim and other personal plugins
-map <Leader><Leader>m :call CheckMapping()<Cr>
-map <leader>N         :call RenameFile()<Cr>
+map <Leader>N         :call RenameFile()<Cr>
+map <Leader>nt        :call TempFile()<Cr>
 map <Leader><C-t>     :call ToggleOggleOoo()<Cr>
 imap <C-x><C-h>       <C-o>:call StackoverflowQuery()<Cr>
 nmap <Leader><C-h>    :call StackoverflowQuery()<Cr>
@@ -99,23 +117,22 @@ set undolevels=1000                     " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
 set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions)
+set pastetoggle=<C-F7>                  " toggle pastemode with ctrl-F7
 
 "-----------------------------------------------------------------------------
-"Minor extension stuff
+" Minor extension stuff
 "-----------------------------------------------------------------------------
 let g:miniBufExplorerMoreThanOne = 1
 let g:pydiction_location         = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-let g:tagbar_compact             = 1
-let g:tagbar_autofocus           = 1
 
 "-----------------------------------------------------------------------------
-"Autocommands
+" Tagbar stuff
 "-----------------------------------------------------------------------------
-"takes care of how autocomplete menus should appear and disappear
-au CursorMovedI * if pumvisible() == 0|pclose|endif
-au InsertLeave  * if pumvisible() == 0|pclose|endif
-
-au BufNewFile *.pl silent 0r ~/.vim/skeleton/skeleton.pl
+let g:tagbar_compact             = 1  " no need to waste tagbar space, compact mode is better
+"let g:tagbar_autofocus           = 0  " autofocus tagbar upon opening it
+let g:tagbar_autofocus           = 1  " autofocus tagbar upon opening it
+let g:tagbar_width               = 32 " slightly reduce tagbar width for more screen real estate
+"let g:tagbar_autoshowtag         = 1  " auto open folds as needed
 
 "-----------------------------------------------------------------------------
 "Misc
@@ -134,3 +151,4 @@ hi Todo ctermfg=yellow
 
 hi clear CursorLine
 hi CursorLine cterm=NONE,reverse
+let b:filetype_extension=b:ftype_extension

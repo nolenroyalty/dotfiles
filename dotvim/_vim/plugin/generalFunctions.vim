@@ -41,14 +41,44 @@ function! ToggleOggleOoo()
     if buf == "-MiniBufExplorer-"
         wincmd j
     elseif buf == "__Tagbar__"
-        wincmd h| wincmd j| wincmd l| wincmd l
-        TagbarSetFoldlevel 1
-        exe 'norm! 2j'
+        TagbarToggle
+        TagbarToggle
+        normal gg
+        wincmd h
+        wincmd K
+        wincmd j
+        10 wincmd l
+        TagbarSetFoldlevel(10)
     endif
 endfunction
 
-"function! TempFile()
-    "let tempname = strftime("%Y_%M_%D_%%")."-tmpfile".expand("%:e")
-    "let code_dir = readfile("/home/
-    "write 
-    
+function! UnfuckMinibufexplrWincmdh()
+    wincmd h
+    if bufname("%") == "-MiniBufExplorer-"
+        wincmd j
+    endif
+endfunction
+
+function! UnfuckMinibufexplrWinclose()
+    wincmd q
+    if bufname("%") == "-MiniBufExplorer-"
+        wincmd j
+    endif
+endfunction
+
+function! TempFile()
+    let tempname = strftime("%m-%d-%Y.%T")."-tmpfile.".b:filetype_extension
+
+    "dotfiles config's first line contains the location of CODEDIR, so we cut
+    "off the CODEDIR= part to just get the location of the dir
+    let code_dir = readfile(expand("$HOME")."/.dotfiles_config", '', 1)[0][8:]."/tmp/"
+    let path = code_dir.tempname
+    let path_input = input("Enter filename or write to '".path."': ")
+    if empty(path_input)
+        let path = path
+    else
+        let path = code_dir.path_input
+    endif
+    exe "write ".path
+    echo "Wrote file to ".path
+endfunction

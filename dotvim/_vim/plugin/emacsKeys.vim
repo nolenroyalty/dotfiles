@@ -21,12 +21,8 @@ ino <C-b> <Left>
 ino <C-d> <Del>
 ino <C-k> <C-o>D
 
-"some weirder alt-based hotkeys for commandline as well
+"use alt-f/b to jump between words in commandline/insert mode
 cno f <C-Right>
 cno b <C-Left>
-cno  <End><C-u>
-
-"I try to use ctrl-c so that I can use escape based hotkeys in insert mode
 ino f <C-Right>
 ino b <C-Left>
-ino  
