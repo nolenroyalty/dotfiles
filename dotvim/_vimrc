@@ -104,6 +104,7 @@ set undoreload=10000                    " Reload a bunch of undolevels
 set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions)
 set pastetoggle=<C-F7>                  " toggle pastemode with ctrl-F7
+set matchpairs+=<:>                     " allow match highlighting and % jumping for pairs of <angle brackets>
 
 "-----------------------------------------------------------------------------
 " Minor extension stuff
