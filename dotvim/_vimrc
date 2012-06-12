@@ -96,7 +96,7 @@ set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
-"set virtualedit=onemore                 " allow cursor to move 1 character past end of line
+"set virtualedit=onemore                " allow cursor to move 1 character past end of line
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
