@@ -30,6 +30,7 @@ alias emacs='emacs -nw'
 alias code='cd $CODEDIR'
 alias etp='cd $CODEDIR/etp'
 alias dotf='cd $CODEDIR/dotfiles'
+alias down='cd ~/Downloads/'
 # So I can use ctrl-s in vim maybe
 alias vim="stty stop '' -ixoff ; vim"
 # `Frozing' tty, so after any command terminal settings will be restored

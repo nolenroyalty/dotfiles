@@ -3,3 +3,5 @@
 
 setlocal formatoptions-=o formatoptions-=r
 setlocal omnifunc=perlcomplete#OmniPerl_Complete
+let b:filetype_extension="pl"
+"au BufNewFile *.pl ~/.vim/skeleton/skeleton.pl
