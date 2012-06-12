@@ -10,19 +10,6 @@ nnoremap \ ;
 colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans colorscheme
 
 "-----------------------------------------------------------------------------
-" Works in progress
-"-----------------------------------------------------------------------------
-"ctrl c sends an escape, instead of messing up things like visual column insert
-inoremap <C-c> <Esc>
-vnoremap <C-c> <Esc>
-"stop gQ, q:, etc from being annoying and opening a worthless piece of shit window
-map gQ <Nop>
-"for filetype extension writing and stuff
-let b:ftype_extension="tmp"
-set laststatus=2
-let g:Tb_MoreThanOne = 1
-
-"-----------------------------------------------------------------------------
 " Mappings
 "-----------------------------------------------------------------------------
 "c-j/k for vertical movement, c-h/l for start/end of line
@@ -43,11 +30,12 @@ map <F8>          :Pylint<Cr>:redraw!<Cr>
 map <Leader>s     :set hlsearch! hlsearch?<Cr>
 map <Leader><C-f> :set cursorline<Cr>:sleep 250m<Cr>:set nocursorline<Cr>
 
-"General purpose mappings. ;d black hole deletes, ZZ writes all and exits, Q plays macro q
+"General purpose mappings. ;d black hole deletes, ZZ writes all and exits, Q plays macro q, gQ is annoying so don't use it
 nnoremap <silent> <Leader>d "_d
 vnoremap <silent> <Leader>d "_d
 map ZZ :wqa<Cr>
 map Q @q
+map gQ <Nop>
 
 ";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir
 map <Leader>w :w<Cr>:echo "Written"<Cr>
@@ -55,13 +43,9 @@ map <Leader>W :w !sudo tee % >/dev/null
 map <Leader>e :e 
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
-"Switch buffers with c-n/p
+"Switch buffers with c-n/p, kill buffer with <Leader>D
 map <C-n> :bn<Cr>
 map <C-p> :bp<Cr>
-map <C-w>n :bn<Cr>
-map <C-w><C-n> :bn<Cr>
-map <C-w>p :bp<Cr>
-map <C-w><C-p> :bp<Cr>
 map <Leader>D :TagbarClose<Cr>:bd<Cr>
 
 "Comment keys, ;j to comment out line, ;J to uncomment, ;c-d copy current line(s) and comment them out(for use as a backup)
@@ -74,12 +58,14 @@ vmap <Leader><C-d> ygvA<Esc>pgv<Leader>ccgvA<Esc>j
 map <Leader>vv :e ~/.vimrc<Cr>
 map <Leader>R  :source ~/.vimrc<Cr>:echo "Refreshed"<Cr>
 
+"ctrl c sends an escape, instead of messing up things like visual column insert
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+
 "Mapings for functions in plugin/generalFunctions.vim and other personal plugins
-map <Leader>N         :call RenameFile()<Cr>
-map <Leader>nt        :call TempFile()<Cr>
-map <Leader><C-t>     :call ToggleOggleOoo()<Cr>
-imap <C-x><C-h>       <C-o>:call StackoverflowQuery()<Cr>
-nmap <Leader><C-h>    :call StackoverflowQuery()<Cr>
+map <Leader>N     :call RenameFile()<Cr>
+map <Leader>nt    :call TempFile()<Cr>
+map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
 "-----------------------------------------------------------------------------
 "Settings
@@ -122,17 +108,15 @@ set pastetoggle=<C-F7>                  " toggle pastemode with ctrl-F7
 "-----------------------------------------------------------------------------
 " Minor extension stuff
 "-----------------------------------------------------------------------------
-let g:miniBufExplorerMoreThanOne = 1
-let g:pydiction_location         = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
+let g:Tb_MoreThanOne = 1
+let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
 
 "-----------------------------------------------------------------------------
 " Tagbar stuff
 "-----------------------------------------------------------------------------
-let g:tagbar_compact             = 1  " no need to waste tagbar space, compact mode is better
-"let g:tagbar_autofocus           = 0  " autofocus tagbar upon opening it
-let g:tagbar_autofocus           = 1  " autofocus tagbar upon opening it
-let g:tagbar_width               = 32 " slightly reduce tagbar width for more screen real estate
-"let g:tagbar_autoshowtag         = 1  " auto open folds as needed
+let g:tagbar_compact     = 1  " no need to waste tagbar space, compact mode is better
+let g:tagbar_autofocus   = 1  " autofocus tagbar upon opening it
+let g:tagbar_width       = 32 " slightly reduce tagbar width for more screen real estate
 
 "-----------------------------------------------------------------------------
 "Misc
@@ -151,4 +135,3 @@ hi Todo ctermfg=yellow
 
 hi clear CursorLine
 hi CursorLine cterm=NONE,reverse
-let b:filetype_extension=b:ftype_extension
