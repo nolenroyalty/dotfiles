@@ -121,17 +121,12 @@ let g:tagbar_width       = 32 " slightly reduce tagbar width for more screen rea
 "-----------------------------------------------------------------------------
 "Misc
 "-----------------------------------------------------------------------------
-"Matchparen tends to confuse me because I can't tell where my cursor is.  This looks ridiculous but seems to work pretty well
-hi clear MatchParen
-hi MatchParen ctermfg=126
-
-"This marks special characters like the  one for escape in cyan instead of using a nearly invisible color
-hi clear SpecialKey
-hi SpecialKey ctermfg=81 guifg=Cyan
-
+hi clear MatchParen                 " Clear matchparen so that I can set it
+hi MatchParen ctermfg=200           " Set matchparen to a ridiculous color so I can see it.  Other good colors are 416,128,185,269
+hi clear SpecialKey                 " Clear specialkey (escape characters like  because they are invisible to me on default settings
+hi SpecialKey ctermfg=81 guifg=Cyan " Set them to a nice light blue
+hi clear CursorLine                 " Cursorline has strange strange highlighting by default
+hi CursorLine cterm=NONE,reverse    " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
 hi Statement ctermfg=31
 hi Comment ctermfg=245
 hi Todo ctermfg=yellow
-
-hi clear CursorLine
-hi CursorLine cterm=NONE,reverse
