@@ -67,7 +67,12 @@ function! UnfuckMinibufexplrWinclose()
 endfunction
 
 function! TempFile()
-    let tempname = strftime("%m-%d-%Y.%T")."-tmpfile.".b:filetype_extension
+    let tempname = strftime("%m-%d-%Y.%T")."-tmpfile."
+    if exists("b:filetype_extension")
+        let tempname = tempname.b:filetype_extension
+    else
+        let tempname = tempname."tmp"
+    endif
 
     "dotfiles config's first line contains the location of CODEDIR, so we cut
     "off the CODEDIR= part to just get the location of the dir
