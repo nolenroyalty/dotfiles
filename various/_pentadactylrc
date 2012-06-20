@@ -6,6 +6,10 @@ set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
 
+map <C-S-l> O<C-e>&currentpage=last<Cr>
+map <C-S-m> O<C-e>&currentpage=all<Cr>
+cmap <A-o> <S-Insert>
+
 nmap -builtin <F1> <Nop>
 cmap -builtin <F1> <Nop>
 imap -builtin <F1> <Nop>
