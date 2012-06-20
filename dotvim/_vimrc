@@ -10,6 +10,19 @@ nnoremap \ ;
 colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans colorscheme
 
 "-----------------------------------------------------------------------------
+" Works in progress
+"-----------------------------------------------------------------------------
+au BufNewFile *.pl execute ":silent! s-^$-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal "
+map <Leader>hb I#!/usr/bin/env python<Cr><Cr><C-c>
+"Center the screen when jumping to a search.  Awesome!
+nnoremap n nzz
+nnoremap N Nzz
+
+inoremap o <C-r>*
+nnoremap o o<C-c>
+nnoremap O O<C-c>
+
+"-----------------------------------------------------------------------------
 " Mappings
 "-----------------------------------------------------------------------------
 "c-j/k for vertical movement, c-h/l for start/end of line
@@ -64,7 +77,7 @@ vnoremap <C-c> <Esc>
 
 "Mapings for functions in plugin/generalFunctions.vim and other personal plugins
 map <Leader>N     :call RenameFile()<Cr>
-map <Leader>nt    :call TempFile()<Cr>
+map <Leader>tf    :call TempFile()<Cr>
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
 "-----------------------------------------------------------------------------
