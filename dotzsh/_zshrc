@@ -1,11 +1,33 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+export TERM=xterm-256color
+#if [[ ${TERM} == "screen-bce" || ${TERM} == "screen" ]]; then
+    #export TERM=screen-256color-bce
+  #function preexec()
+  #{
+                ##echo -ne "\ek${1%% *}\e\\"
+  #}
+#else
+    #echo -n `clear`
+#fi
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="nolen"
+
+foreground-vi() {
+    fg %vi
+}
+zle -N foreground-vi
+bindkey '' foreground-vi
+
+temp_pythonpath_change() {
+    oldpath=$PYTHONPATH      
+    export PYTHONPATH=/home/nolen/code/repos/bpython:${PYTHONPATH}
+    bpython
+    export PYTHONPATH=$oldpath
+}
+alias bpp='temp_pythonpath_change'
 
 # No more annoying pushd messages...
 #setopt PUSHD_SILENT
@@ -16,11 +38,8 @@ setopt PUSHD_TO_HOME
 # protect against crazy rm...
 setopt RM_STAR_WAIT
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 source $HOME/.dotfiles_config
-alias vim='vim.gnome'
+#alias vim='vim.gnome'
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
 alias rel='source ~/.zshrc'
@@ -31,17 +50,14 @@ alias code='cd $CODEDIR'
 alias etp='cd $CODEDIR/etp'
 alias dotf='cd $CODEDIR/dotfiles'
 alias down='cd ~/Downloads/'
-# So I can use ctrl-s in vim maybe
-alias vim="stty stop '' -ixoff ; vim"
-# `Frozing' tty, so after any command terminal settings will be restored
-ttyctl -f
-alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
-#alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
-alias sshef='ssh -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
+#alias 
+#alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
+alias sshe='ssh -Y nroyalty@sandnet.emergingthreats.net'
+#alias sshef='ssh -Y -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
+alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
+#alias sshef='ssh -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
-# Set to this to use case-sensitive completion
-# CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
@@ -58,7 +74,8 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git, brew, github, osx, perl, pip, python)
+#plugins=(git, github, brew, github, osx, perl, pip, python, ssh-agent)
+plugins=(git, github, brew, github, osx, perl, pip, python)
 
 source $HOME/.profile
 source $ZSH/oh-my-zsh.sh

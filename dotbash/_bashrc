@@ -1,4 +1,5 @@
 #~/.bashrc
+export TERM=xterm-256color
 if [[ $- != *i* ]] ; then
     return
 fi
