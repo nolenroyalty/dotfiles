@@ -17,10 +17,21 @@ map <Leader>hb I#!/usr/bin/env python<Cr><Cr><C-c>
 "Center the screen when jumping to a search.  Awesome!
 nnoremap n nzz
 nnoremap N Nzz
+set hlsearch
+set mouse=a
+
+au FileType * set formatoptions=lq
+
+map r<C-c> <Nop>
+nnoremap <Space> i_<Esc>r
+nmap <C-@> i<Cr><Esc>
 
 inoremap o <C-r>*
 nnoremap o o<C-c>
 nnoremap O O<C-c>
+"use + and * easily
+map <Leader><Leader> "*
+map <Leader>:        "+
 
 "-----------------------------------------------------------------------------
 " Mappings
@@ -57,9 +68,9 @@ map <Leader>e :e
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
 "Switch buffers with c-n/p, kill buffer with <Leader>D
-map <C-n>     :bn<Cr>
-map <C-p>     :bp<Cr>
-map <Leader>D :TagbarClose<Cr>:bd<Cr>
+map <C-n>         :bn<Cr>
+map <C-p>         :bp<Cr>
+map <Leader><C-k> :TagbarClose<Cr>:bd<Cr>
 
 "Comment keys, ;j to comment out line, ;J to uncomment, ;c-d copy current line(s) and comment them out(for use as a backup)
 map <Leader>j <Leader>cc
@@ -140,3 +151,17 @@ hi clear SpecialKey                     " Clear specialkey (escape characters li
 hi SpecialKey ctermfg=81 guifg=Cyan     " Set them to a nice light blue
 hi clear CursorLine                     " Cursorline has strange strange highlighting by default
 hi CursorLine cterm=NONE,reverse        " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
+"XTerm*saveLines: 0
+"XTerm*vt100.translations: #override \n\
+  "Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  "Lock Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  "Lock @Num_Lock Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  "@Num_Lock Ctrl <Btn4Down>: string(0x1b) string("[25S") \n\
+  "<Btn4Down>: string(0x1b) string("[5S") \n\
+  "Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  "Lock Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  "Lock @Num_Lock Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  "@Num_Lock Ctrl <Btn5Down>: string(0x1b) string("[25T") \n\
+  "<Btn5Down>: string(0x1b) string("[5T") \n\
+  "Shift <KeyPress> Prior: string(0x1b) string("[25S") \n\
+  "Shift <KeyPress> Next: string(0x1b) string("[25T") \n

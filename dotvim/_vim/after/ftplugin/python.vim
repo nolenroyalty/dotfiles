@@ -2,7 +2,7 @@
 "commands to be executed after vim's filetype stuff
 
 function! SetPythonOptions()
-    setlocal formatoptions-=o formatoptions-=r
+    "setlocal formatoptions-=o formatoptions-=r
     setlocal omnifunc=pythoncomplete#Complete
     let b:filetype_extension="py"
 

@@ -35,8 +35,6 @@ imap <A-b> <C-Left>
 "au LocationChange google.com/search* imap <S-Tab> <Up>
 "au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
 "au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
-imap <C-k> <Up>
-imap <C-j> <Down>
 imap <C-p> <Up>
 imap <C-n> <Down>
 
@@ -54,7 +52,6 @@ cmap <M-d> <A-Del>
 
 imap <C-q> <C-t>
 imap <Esc> <C-[><C-[>
-imap <C-space> <Esc>
 
 "c-b to bounce between two tabs
 map <C-b> <C-6>
@@ -117,7 +114,7 @@ map <C-r> ggr
 
 cmap <C-c> <Esc>
 
-autocmd LocationChange 'https://music.google.com/music/*' :normal! <C-z>
+"autocmd LocationChange 'https://music.google.com/music/*' :normal! <C-z>
 
 
 set hinttags=:-moz-any-link,area,button,iframe,input:not([type=hidden]),select,textarea,[onclick],[onmouseover],[onmousedown],[onmouseup],[oncommand],[tabindex],[role=link],[role=button],[contenteditable=true],a
