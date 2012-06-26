@@ -1,3 +1,5 @@
+map <S-A-t> tabout:newtab<Cr>o
+
 set scrollsteps=1
 set scrolltime=1
 set scroll=0
