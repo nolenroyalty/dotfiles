@@ -1,0 +1,10 @@
+#
+escape ^^^^^
+## do not trash BackSpace, usually DEL
+bindkey -k kb
+bindkey -d -k kb
+#
+## do not trash Delete, usually ESC [ 3 ~
+bindkey -k kD
+bindkey -d -k kD
+escape ^Oo
