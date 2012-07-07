@@ -33,26 +33,15 @@ function! ToggleOggleOoo()
 endfunction
 
 function! GetTempName(...)
-    let extension = "tmp"
-    if a:0 >= 1
-        let extension = a:1
-    endif
-    return strftime("%m-%d-%Y.%T")."-tmpfile.".extension
+    let extension = a:0 >= 1 ? a:1 : "tmp" 
+    let code_dir = readfile(expand("$HOME")."/.dotfiles_config", '', 1)[0][8:]."/tmp/"
+    return code_dir.strftime("%m-%d-%Y.%T")."-tmpfile.".extension
 endfunction
 
 function! TempFile()
     let tempname = GetTempName(b:filetype_extension)
-
-    "dotfiles config's first line contains the location of CODEDIR, so we cut
-    "off the CODEDIR= part to just get the location of the dir
-    let code_dir = readfile(expand("$HOME")."/.dotfiles_config", '', 1)[0][8:]."/tmp/"
-    let path = code_dir.tempname
-    let path_input = input("Enter filename or write to '".path."': ")
-    if empty(path_input)
-        let path = path
-    else
-        let path = code_dir.path_input
-    endif
+    let path_input = input("Enter filename or write to '".tempname."': ")
+    let path = empty(path_input) ? tempname : path_input
     exe "write ".path
     echo "Wrote file to ".path
 endfunction
