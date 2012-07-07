@@ -1,6 +1,6 @@
 *.pyc
 *.netrw*
-config
 *.orig
 *.swp
 *undodir*
+*various_/dotfiles_config*
