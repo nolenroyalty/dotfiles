@@ -32,13 +32,16 @@ function! ToggleOggleOoo()
     endif
 endfunction
 
-function! TempFile()
-    let tempname = strftime("%m-%d-%Y.%T")."-tmpfile."
-    if exists("b:filetype_extension")
-        let tempname = tempname.b:filetype_extension
-    else
-        let tempname = tempname."tmp"
+function! GetTempName(...)
+    let extension = "tmp"
+    if a:0 >= 1
+        let extension = a:1
     endif
+    return strftime("%m-%d-%Y.%T")."-tmpfile.".extension
+endfunction
+
+function! TempFile()
+    let tempname = GetTempName(b:filetype_extension)
 
     "dotfiles config's first line contains the location of CODEDIR, so we cut
     "off the CODEDIR= part to just get the location of the dir
@@ -53,3 +56,8 @@ function! TempFile()
     exe "write ".path
     echo "Wrote file to ".path
 endfunction
+
+function! OpenTempFile()
+    exe "edit ".GetTempName()
+endfunction
+
