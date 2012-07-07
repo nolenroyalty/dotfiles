@@ -46,9 +46,12 @@ alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
 alias emacs='emacs -nw'
-alias code='cd $CODEDIR'
-alias etp='cd $CODEDIR/etp'
-alias dotf='cd $CODEDIR/dotfiles'
+#alias code='cd $CODEDIR'
+alias code='cd ~/code'
+#alias etp='cd $CODEDIR/etp'
+alias etp='cd ~/code/etp'
+#alias dotf='cd $CODEDIR/dotfiles'
+alias dotf='cd ~/code/dotfiles'
 alias down='cd ~/Downloads/'
 #alias 
 #alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
@@ -74,8 +77,9 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-#plugins=(git, github, brew, github, osx, perl, pip, python, ssh-agent)
-plugins=(git, github, brew, github, osx, perl, pip, python)
+#plugins=(git, github, brew, osx, perl, pip, python, ssh-agent)
+#plugins=(git, github, brew, osx, perl, pip, python)
+plugins=(git, osx, pip, python)
 
 source $HOME/.profile
 source $ZSH/oh-my-zsh.sh
