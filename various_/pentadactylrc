@@ -121,20 +121,20 @@ cmap <C-c> <Esc>
 
 set hinttags=:-moz-any-link,area,button,iframe,input:not([type=hidden]),select,textarea,[onclick],[onmouseover],[onmousedown],[onmouseup],[oncommand],[tabindex],[role=link],[role=button],[contenteditable=true],a
 javascript <<EOF 
-function moveTabForward(count){
+function MoveTabForward(count){
 	let movecount = "+1";
 	if (count != null)
 		movecount = "+"+count;
 	tabs.move(tabs.getTab(), movecount,true);
 }
-function moveTabBackward(count){
+function MoveTabBackward(count){
 	let movecount = "-1";
 	if (count != null)
 		movecount = "-"+count;
 	tabs.move(tabs.getTab(), movecount,true);
 }
 EOF
-com -count moveTabForward :javascript moveTabForward(<count>);
-com -count moveTabBackward :javascript moveTabBackward(<count>);
-map <C-q> -count :<count>moveTabBackward<CR>
-map <C-w> -count :<count>moveTabForward<CR>
+com -count MoveTabForward :javascript MoveTabForward(<count>);
+com -count MoveTabBackward :javascript MoveTabBackward(<count>);
+map <C-q> -count :<count>MoveTabBackward<CR>
+map <C-w> -count :<count>MoveTabForward<CR>
