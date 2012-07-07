@@ -89,7 +89,8 @@ vnoremap <C-c> <Esc>
 
 "Mapings for functions in plugin/generalFunctions.vim and other personal plugins
 map <Leader>N     :call RenameFile()<Cr>
-map <Leader>tf    :call TempFile()<Cr>
+map <Leader>T     :call TempFile()<Cr>
+map <Leader>O     :call OpenTempFile()<Cr>
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
 "-----------------------------------------------------------------------------
