@@ -14,7 +14,7 @@ CWD = os.getcwd()
 OLD_DIR_PATH = path.join(HOME, ".old_dotfiles")
 
 def kill_old_backupdir():
-    subprocess.call(['rm', '-r', OLD_DIR_PATH])
+    subprocess.call(['sudo', 'rm', '-r', OLD_DIR_PATH])
 
 def make_new_backupdir():
     os.mkdir(OLD_DIR_PATH)
