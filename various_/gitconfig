@@ -1,3 +1,8 @@
 [user]
 	name = Nolen Royalty
 	email = nolen.royalty@gmail.com
+[github]
+        user = nolenroyalty
+        token = 1da334b986cce2fa7d00e71398fe2256
+[core]
+        editor = vim
