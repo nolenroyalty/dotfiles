@@ -42,6 +42,7 @@ source $HOME/.dotfiles_config
 #alias vim='vim.gnome'
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
+alias pp='vim ~/.pentadactylrc'
 alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
