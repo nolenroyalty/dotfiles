@@ -6,6 +6,7 @@ export TERM=xterm-256color
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="nolen"
 
+# For messing with bpython...mostly for fun
 temp_pythonpath_change() {
     oldpath=$PYTHONPATH
     export PYTHONPATH=/home/nolen/code/repos/bpython:${PYTHONPATH}
@@ -24,7 +25,6 @@ setopt PUSHD_TO_HOME
 setopt RM_STAR_WAIT
 
 source $HOME/.dotfiles_config
-#alias vim='vim.gnome'
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
 alias pp='vim ~/.pentadactylrc'
@@ -32,15 +32,10 @@ alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
 alias emacs='emacs -nw'
-#alias code='cd $CODEDIR'
 alias code='cd ~/code'
-#alias etp='cd $CODEDIR/etp'
 alias etp='cd ~/code/etp'
-#alias dotf='cd $CODEDIR/dotfiles'
 alias dotf='cd ~/code/dotfiles'
 alias down='cd ~/Downloads/'
-#alias 
-#alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
 alias sshe='ssh -Y nroyalty@sandnet.emergingthreats.net'
 #alias sshef='ssh -Y -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
 alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
