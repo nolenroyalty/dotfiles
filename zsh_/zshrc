@@ -60,7 +60,8 @@ DISABLE_AUTO_UPDATE="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(git, github, brew, osx, perl, pip, python, ssh-agent)
 #plugins=(git, github, brew, osx, perl, pip, python)
-plugins=(git, osx, pip, python)
+#plugins=(git, osx, pip, python)
+plugins=(git, osx, pip, python, brew)
 
 source $HOME/.profile
 source $ZSH/oh-my-zsh.sh
