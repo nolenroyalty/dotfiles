@@ -1,9 +1,20 @@
-PATH=/usr/local/bin/ctags:/usr/local/share/python:/usr/local/share:/usr/local/bin:/usr/local/sbin:/usr/local/lib:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-export PATH
-export PATH=/usr/local/byobu/bin:$PATH
-if [ -f /usr/local/bin/brew ]; then
-    export BYOBU_PREFIX=`brew --prefix`
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/git/bin
+export PATH=/usr/local/bin:/usr/local/share/python:/usr/local/share:/usr/local/sbin:/usr/local/lib:${PATH}
+#export PATH=/usr/local/bin/ctags:${PATH}
+#export PATH=${PATH}:/usr/local/share/python:/usr/local/share
+#export PATH=${PATH}:/usr/local/bin:/usr/local/sbin:/usr/local/lib
+#export PATH=${PATH}:/usr/bin:/bin:/usr/sbin:/sbin
+#export PATH=${PATH}:/usr/X11/bin
+#export PATH=/usr/local/byobu/bin:${PATH}
+
+#if [ -f /usr/local/bin/brew ]; then
+    #export BYOBU_PREFIX=`brew --prefix`
+#fi
+
+if [ -e /usr/local/nolen_bin ]; then
+    export PATH=${PATH}:/usr/local/nolen_bin
 fi
+
 export PYTHONPATH=${CODEDIR}:${CODEDIR}/etp:${CODEDIR}/etp/repmanhattan
 #PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}" export PATH
 #
