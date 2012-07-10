@@ -63,13 +63,14 @@ DISABLE_AUTO_UPDATE="true"
 #plugins=(git, osx, pip, python)
 plugins=(git, osx, pip, python, brew)
 
+#for paths
 source $HOME/.profile
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 
-export PERL_LOCAL_LIB_ROOT="/home/nolen/perl5";
-export PERL_MB_OPT="--install_base /home/nolen/perl5";
-export PERL_MM_OPT="INSTALL_BASE=/home/nolen/perl5";
-export PERL5LIB="/home/nolen/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int:/home/nolen/perl5/lib/perl5";
-export PATH="/home/nolen/perl5/bin:$PATH";
+#export PERL_LOCAL_LIB_ROOT="$HOME/perl5";
+#export PERL_MB_OPT="--install_base /home/nolen/perl5";
+#export PERL_MM_OPT="INSTALL_BASE=/home/nolen/perl5";
+#export PERL5LIB="/home/nolen/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int:/home/nolen/perl5/lib/perl5";
+#export PATH="/home/nolen/perl5/bin:$PATH";
