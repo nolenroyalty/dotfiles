@@ -40,6 +40,7 @@ alias sshe='ssh -Y nroyalty@sandnet.emergingthreats.net'
 #alias sshef='ssh -Y -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
 alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
 #alias sshef='ssh -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
+alias so='cd ~/code/stackoverflow/'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
 
