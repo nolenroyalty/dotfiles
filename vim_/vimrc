@@ -27,9 +27,6 @@ map r<C-c> <Nop>
 nnoremap <Space> i_<Esc>r
 nmap <C-@> i<Cr><Esc>
 
-inoremap o <C-r>*
-nnoremap o o<C-c>
-nnoremap O O<C-c>
 "use + and * easily
 map <Leader><Leader> "*
 map <Leader>:        "+
