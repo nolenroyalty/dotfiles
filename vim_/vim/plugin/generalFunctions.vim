@@ -39,7 +39,7 @@ function! GetTempName(...)
 endfunction
 
 function! TempFile()
-    let tempname = GetTempName(b:filetype_extension)
+    let tempname = exists('&b:filetype_extension') ? GetTempName(b:filetype_extension) : GetTempName()
     let path_input = input("Enter filename or write to '".tempname."': ")
     let path = empty(path_input) ? tempname : path_input
     exe "write ".path
