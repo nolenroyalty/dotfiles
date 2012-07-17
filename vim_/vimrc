@@ -12,6 +12,12 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
+"Leader ctrl-c to clear statusline
+map <Leader><C-c> :<Cr>
+
+"Leader bd to kill buffer
+map <Leader>bd :bd<Cr>
+
 "Space to insert a char, ctrl-space to insert a newline
 nnoremap <Space> i_<Esc>r
 nmap <C-@> i<Cr><C-c>
@@ -19,6 +25,18 @@ nmap <C-@> i<Cr><C-c>
 "use + and * easily
 map <Leader><Leader> "*
 map <Leader>:        "+
+
+"How cool is this!
+function! ReorderParams(params)
+  let oldz = @z
+  normal "zdi(
+  let params = split(a:params, ',\s')
+  let order = input(string(map(copy(params), 'v:key + 1 . ": " . v:val')))
+  let @z = join(map(split(order, '[0-9]\zs'), 'params[str2nr(v:val) - 1]'), ', ')
+  normal "zP
+  let @z = oldz
+endfunction
+nnoremap <leader>x "zdi(:call ReorderParams(@z)<CR>
 
 "yeah..
 inoremap o <C-r>*
@@ -85,10 +103,15 @@ inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 
 "Mapings for functions in plugin/generalFunctions.vim and other personal plugins
-map <Leader>N     :call RenameFile()<Cr>
-map <Leader>T     :call TempFile()<Cr>
-map <Leader>O     :call OpenTempFile()<Cr>
+"Leader f for file-functions.  f[r]ename, f[e]dit temp file, reopen as f[t]emp file
+map <Leader>fr :call RenameFile()<Cr>
+map <Leader>fe :call OpenTempFile()<Cr>
+map <Leader>ft :call TempFile()<Cr>
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
+
+"map <Leader>N     :call RenameFile()<Cr>
+"map <Leader>T     :call TempFile()<Cr>
+"map <Leader>O     :call OpenTempFile()<Cr>
 
 "-----------------------------------------------------------------------------
 " Settings
