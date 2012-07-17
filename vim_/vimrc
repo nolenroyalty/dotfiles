@@ -23,6 +23,10 @@ set mouse=a
 
 au FileType * set formatoptions=lq
 
+"jump to next underscore, good for python
+noremap _ f_
+noremap <C-_> F_
+
 map r<C-c> <Nop>
 nnoremap <Space> i_<Esc>r
 nmap <C-@> i<Cr><Esc>
