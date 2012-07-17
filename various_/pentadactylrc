@@ -1,6 +1,3 @@
-"au PageLoad * zoom 90
-"au PageLoadPre * zoom 90
-"au LocationChange * zoom 90
 map <S-A-t> tabout:newtab<Cr>o
 
 set scrollsteps=1
