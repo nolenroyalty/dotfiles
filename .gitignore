@@ -2,5 +2,6 @@
 *.netrw*
 *.orig
 *.swp
+*.swo
 *undodir*
 *various_/dotfiles_config*

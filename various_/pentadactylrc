@@ -31,6 +31,8 @@ imap <C-A-w> <Esc>d
 imap <C-f> <Right>
 imap <C-b> <Left>
 imap <A-f> <C-Right>
+imap <M-f> <A-Right>
+imap <M-b> <A-Left>
 imap <A-b> <C-Left>
 
 "au LocationChange google.com/search* imap <Tab> <Down>
