@@ -27,17 +27,25 @@ map <Leader><Leader> "*
 map <Leader>:        "+
 
 "How cool is this!
-function! ReorderParams(params)
+function! ReorderParams(args)
   let oldz = @z
   normal "zdi(
-  let params = split(a:params, ',\s')
+  let params = split(a:args, ',\s')
   let order = input(string(map(copy(params), 'v:key + 1 . ": " . v:val')))
   let @z = join(map(split(order, '[0-9]\zs'), 'params[str2nr(v:val) - 1]'), ', ')
   normal "zP
   let @z = oldz
+  echo ''
 endfunction
-nnoremap <leader>x "zdi(:call ReorderParams(@z)<CR>
-
+function! NolenReorderParams(args)
+  let params = split(a:args, ',\s')
+  let order = input(string(map(copy(params), 'v:key + 1 . ": " . v:val')))
+  let @z = join(map(split(order, '[0-9]\zs'), 'params[str2nr(v:val) - 1]'), ', ')
+  normal "zP
+endfunction
+nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
+nnoremap <Leader>X /\%<C-r>=line(".")<Cr>l[[({]\zs\(\w\+,\s\?\)\+\w\+[\])}]<Cr>v/<C-p>\zs<Cr>2h"zd:call NolenReorderParams(@z)<Cr>
+xnoremap <Leader>X "zd:call NolenReorderParams(@z)<Cr>
 "yeah..
 inoremap o <C-r>*
 nnoremap o o<C-c>
