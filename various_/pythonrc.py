@@ -16,5 +16,6 @@ def timer(fn, *args):
     start = time.clock()
     return fn(*args), time.clock() - start
 
-def mult(vals):
-    return functools.reduce(operator.mul, vals)
+def mult(sequence):
+    "Multiply together all values in sequence"
+    return functools.reduce(operator.mul, sequence)
