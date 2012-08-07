@@ -15,3 +15,6 @@ def timer(fn, *args):
     import time
     start = time.clock()
     return fn(*args), time.clock() - start
+
+def mult(vals):
+    return functools.reduce(operator.mul, vals)
