@@ -1,6 +1,7 @@
 import os
 import sys
 import itertools
+import functools
 import collections
 import datetime
 import re
