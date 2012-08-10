@@ -19,3 +19,8 @@ def timer(fn, *args):
 def mult(sequence):
     "Multiply together all values in sequence"
     return functools.reduce(operator.mul, sequence)
+
+def iter_print(iterator):
+    "Print each value in iterator on its own line."
+    for item in iterator:
+        print item
