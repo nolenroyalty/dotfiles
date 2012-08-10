@@ -46,6 +46,20 @@ alias so='cd ~/code/stackoverflow/'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
 
+#git aliases
+alias ga='git add'
+alias gp='git push'
+alias gl='git log'
+alias gs='git status'
+alias gd='git diff'
+alias gdc='git diff --cached'
+alias gm='git commit -m'
+alias gma='git commit -am'
+alias gb='git branch'
+alias gc='git checkout'
+alias gpu='git pull'
+alias gcl='git clone'
+
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
 
