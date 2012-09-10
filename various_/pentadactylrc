@@ -1,5 +1,8 @@
 map <S-A-t> tabout:newtab<Cr>o
 
+set previouspattern='[<«] Prev$','« Prev$','\bprev(ious)\b',^<$,'^(<<|«)$','^(<|«)','(<|«)$','Newer'
+set nextpattern='^Next [>»]','^Next »','\bnext\b',^>$,'^(>>|»)$','^(>|»)','(>|»)$','\bmore\b','Older'
+
 set scrollsteps=1
 set scrolltime=1
 set scroll=0
@@ -75,11 +78,11 @@ map <C-7> <C-0>3<C-p>
 map <C-S-M-a> tabout:addons<Cr>
 
 "flip d and D
-nmap -builtin d D
-nmap -builtin D d
+"nmap -builtin d D
+"nmap -builtin D d
 
 "tab shit
-map <M-t> :tabopen! 
+"map <M-t> :tabopen! 
 
 "C-f for open in background tab
 map <C-f> ;b
