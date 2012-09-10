@@ -24,6 +24,9 @@ setopt PUSHD_TO_HOME
 # protect against crazy rm...
 setopt RM_STAR_WAIT
 
+#try to stop those really annoying corrections...
+alias sudo='nocorrect sudo'
+
 source $HOME/.dotfiles_config
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
