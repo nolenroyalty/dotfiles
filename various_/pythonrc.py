@@ -1,6 +1,7 @@
 import os
 import sys
 import itertools
+import functools
 import collections
 import datetime
 import re
@@ -14,3 +15,12 @@ def timer(fn, *args):
     import time
     start = time.clock()
     return fn(*args), time.clock() - start
+
+def mult(sequence):
+    "Multiply together all values in sequence"
+    return functools.reduce(operator.mul, sequence)
+
+def iter_print(iterator):
+    "Print each value in iterator on its own line."
+    for item in iterator:
+        print item
