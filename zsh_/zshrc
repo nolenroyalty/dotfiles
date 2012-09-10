@@ -28,6 +28,8 @@ source $HOME/.dotfiles_config
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
 alias pp='vim ~/.pentadactylrc'
+alias au='ps au'
+alias aux='ps aux'
 alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
