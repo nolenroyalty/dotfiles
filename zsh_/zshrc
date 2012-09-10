@@ -31,7 +31,7 @@ alias pp='vim ~/.pentadactylrc'
 alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
-alias emacs='emacs -nw'
+#alias emacs='emacs -nw'
 alias code='cd ~/code'
 alias etp='cd ~/code/etp'
 alias dotf='cd ~/code/dotfiles'
@@ -60,6 +60,7 @@ alias gc='git checkout'
 alias gpu='git pull'
 alias gcl='git clone'
 alias gr='git rm'
+alias gmv='git mv'
 
 # Comment this out to disable weekly auto-update checks
 DISABLE_AUTO_UPDATE="true"
