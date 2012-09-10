@@ -6,25 +6,24 @@ just for organization.
 """
 
 import os
-import os.path as path
 import subprocess
 
 HOME = os.getenv("HOME")
-CWD = os.getcwd()
-OLD_DIR_PATH = path.join(HOME, ".old_dotfiles")
+CWD  = os.getcwd()
+OLD_DIR_PATH = os.path.join(HOME, ".old_dotfiles")
 
 def remake_backupdir():
-    if path.exists(OLD_DIR_PATH):
+    if os.path.exists(OLD_DIR_PATH):
         subprocess.call(['sudo', 'rm', '-r', OLD_DIR_PATH])
         print "Removed dir at %s, making new dir" % OLD_DIR_PATH
     os.mkdir(OLD_DIR_PATH)
     print "Created new dir %s" % OLD_DIR_PATH
 
 def backup_and_link_dotfile(dotfile_dir, dotfile_name):
-    home_dotfile_path   = path.join(HOME, "." + dotfile_name)
-    backup_dotfile_path = path.join(OLD_DIR_PATH, dotfile_name)
-    real_dotfile_path   = path.join(CWD, dotfile_dir, dotfile_name)
-    if path.exists(home_dotfile_path):
+    home_dotfile_path   = os.path.join(HOME, "." + dotfile_name)
+    backup_dotfile_path = os.path.join(OLD_DIR_PATH, dotfile_name)
+    real_dotfile_path   = os.path.join(CWD, dotfile_dir, dotfile_name)
+    if os.path.exists(home_dotfile_path):
         os.rename(home_dotfile_path, backup_dotfile_path)
     os.symlink(real_dotfile_path, home_dotfile_path)
     print "\t%s -> %s" % (home_dotfile_path, real_dotfile_path)

@@ -12,6 +12,8 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
+"Leader b to begin buffer switch
+map <Leader>b :b 
 "Leader ctrl-c to clear statusline
 map <Leader><C-c> :<Cr>
 
