@@ -75,8 +75,8 @@ map <C-7> <C-0>3<C-p>
 map <C-S-M-a> tabout:addons<Cr>
 
 "flip d and D
-nmap -builtin d D
-nmap -builtin D d
+"nmap -builtin d D
+"nmap -builtin D d
 
 "tab shit
 map <M-t> :tabopen! 
