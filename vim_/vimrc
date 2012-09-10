@@ -20,6 +20,11 @@ map <Leader><C-c> :<Cr>
 "Leader bd to kill buffer
 map <Leader>bd :bd<Cr>
 
+"jump to next underscore, good for python
+noremap _ f_
+noremap <C-_> F_
+
+map r<C-c> <Nop>
 "Space to insert a char, ctrl-space to insert a newline
 nnoremap <Space> i_<Esc>r
 nmap <C-@> i<Cr><C-c>
