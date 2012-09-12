@@ -190,7 +190,8 @@ au BufEnter *.pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
 au FileType * set formatoptions=lq
 "Scheme formatting
-au BufEnter *.scm setl tabstop=4
+au BufEnter *.scm setl tabstop=2
+au BufEnter *.scm setl softtabstop=2
 au BufEnter *.scm setl shiftwidth=2
 
 "-----------------------------------------------------------------------------
