@@ -28,6 +28,9 @@ nmap <C-@> i<Cr><C-c>
 map <Leader><Leader> "*
 map <Leader>:        "+
 
+"Should probably be able to get to ex mode somehow, even if I normally rage when it shows up
+nnoremap <Leader>Q  Q
+
 "How cool is this!
 function! ReorderParams(args)
   let oldz = @z
