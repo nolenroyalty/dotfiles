@@ -1,5 +1,6 @@
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/git/bin
 export PATH=/usr/local/bin:/usr/local/share/python:/usr/local/share:/usr/local/sbin:/usr/local/lib:${PATH}
+export PATH="$HOME/bin:$PATH"
 #export PATH=/usr/local/bin/ctags:${PATH}
 #export PATH=${PATH}:/usr/local/share/python:/usr/local/share
 #export PATH=${PATH}:/usr/local/bin:/usr/local/sbin:/usr/local/lib
