@@ -50,6 +50,9 @@ alias so='cd ~/code/stackoverflow/'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
 
+#sometimes, you just gotta use ed
+alias ed='ed -p:'
+
 #git aliases
 alias ga='git add'
 alias gp='git push'
