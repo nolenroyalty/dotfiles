@@ -14,17 +14,12 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 "Leader b to begin buffer switch
 map <Leader>b :b 
-"Leader ctrl-c to clear statusline
-map <Leader><C-c> :<Cr>
-
 "Leader bd to kill buffer
 map <Leader>bd :bd<Cr>
 
-"jump to next underscore, good for python
-noremap _ f_
-noremap <C-_> F_
-
+"because it's annoying when you want to cancel a replace and you end up with <C-c> instead
 map r<C-c> <Nop>
+
 "Space to insert a char, ctrl-space to insert a newline
 nnoremap <Space> i_<Esc>r
 nmap <C-@> i<Cr><C-c>
@@ -44,15 +39,8 @@ function! ReorderParams(args)
   let @z = oldz
   echo ''
 endfunction
-function! NolenReorderParams(args)
-  let params = split(a:args, ',\s')
-  let order = input(string(map(copy(params), 'v:key + 1 . ": " . v:val')))
-  let @z = join(map(split(order, '[0-9]\zs'), 'params[str2nr(v:val) - 1]'), ', ')
-  normal "zP
-endfunction
 nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
-nnoremap <Leader>X /\%<C-r>=line(".")<Cr>l[[({]\zs\(\w\+,\s\?\)\+\w\+[\])}]<Cr>v/<C-p>\zs<Cr>2h"zd:call NolenReorderParams(@z)<Cr>
-xnoremap <Leader>X "zd:call NolenReorderParams(@z)<Cr>
+
 "yeah..
 inoremap o <C-r>*
 nnoremap o o<C-c>
@@ -124,10 +112,6 @@ map <Leader>fe :call OpenTempFile()<Cr>
 map <Leader>ft :call TempFile()<Cr>
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
-"map <Leader>N     :call RenameFile()<Cr>
-"map <Leader>T     :call TempFile()<Cr>
-"map <Leader>O     :call OpenTempFile()<Cr>
-
 "-----------------------------------------------------------------------------
 " Settings
 "-----------------------------------------------------------------------------
@@ -189,7 +173,7 @@ au BufNewFile *.pl execute ":silent! s-^$-#!/usr/bin/perl\r\ruse strict;\ruse wa
 au BufEnter *.pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
 au FileType * set formatoptions=lq
-"Scheme formatting
+"Scheme formatting.  Also I really wish you could set multiple values in one autocommand statement, that drives me crazy
 au BufEnter *.scm setl tabstop=2
 au BufEnter *.scm setl softtabstop=2
 au BufEnter *.scm setl shiftwidth=2

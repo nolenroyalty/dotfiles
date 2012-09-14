@@ -24,6 +24,9 @@ setopt PUSHD_TO_HOME
 # protect against crazy rm...
 setopt RM_STAR_WAIT
 
+#try to stop those really annoying corrections...
+alias sudo='nocorrect sudo'
+
 source $HOME/.dotfiles_config
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
@@ -41,9 +44,8 @@ alias down='cd ~/Downloads/'
 alias jj='cd ~/code/assorted'
 alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
 alias sshec='ssh -Y nroyalty@sandnet.emergingthreats.net'
-#alias sshef='ssh -Y -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
 alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
-#alias sshef='ssh -L 3306:localhost:3306 nroyalty@sandnet.emergingthreats.net'
+alias sshi='ssh nroyalty@burrow.cs.indiana.edu'
 alias so='cd ~/code/stackoverflow/'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
