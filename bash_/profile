@@ -20,7 +20,7 @@ if [ -e /usr/local/bin/brew ]; then
     export BYOBU_PREFIX=$(brew --prefix)
 fi
 
-export PYTHONPATH=${CODEDIR}:${CODEDIR}/etp:${CODEDIR}/etp/repmanhattan
+#export PYTHONPATH=${CODEDIR}
 #PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}" export PATH
 #
 export PYTHONSTARTUP=~/.pythonrc.py
