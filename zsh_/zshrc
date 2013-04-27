@@ -6,15 +6,6 @@ export TERM=xterm-256color
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="nolen"
 
-# For messing with bpython...mostly for fun
-temp_pythonpath_change() {
-    oldpath=$PYTHONPATH
-    export PYTHONPATH=/home/nolen/code/repos/bpython:${PYTHONPATH}
-    bpython
-    export PYTHONPATH=$oldpath
-}
-alias bpp='temp_pythonpath_change'
-
 # No more annoying pushd messages...
 #setopt PUSHD_SILENT
 
