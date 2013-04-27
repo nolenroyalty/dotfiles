@@ -1,5 +1,8 @@
 map <S-A-t> tabout:newtab<Cr>o
 
+"get rid of the #postnumber after making a post on the TL forums
+map <C-S-w> O<C-w><BS><CR>G
+
 set previouspattern='[<«] Prev$','« Prev$','\bprev(ious)\b',^<$,'^(<<|«)$','^(<|«)','(<|«)$','Newer'
 set nextpattern='^Next [>»]','^Next »','\bnext\b',^>$,'^(>>|»)$','^(>|»)','(>|»)$','\bmore\b','Older'
 
@@ -66,8 +69,11 @@ map `` <C-^>
 "map <C-.> <C-^>
 
 "searching
-nmap s :open l 
-nmap S :tabopen l 
+"nmap s :open l 
+"nmap S :tabopen l 
+"changed to search wikipedia 1/27/13
+map s ow 
+map S tw 
 
 "tricks for selecting rightmost tabs
 map <C-9> <C-0><C-p>
@@ -95,6 +101,7 @@ map <C-s><C-o> :(╯°□°）╯︵ /(.O.)\<M-a><M-c><Esc>
 map <C-s><C-b> :┻━┻ ︵╰(°□°)╯︵ ┻━┻<M-a><M-c><Esc>
 map <C-s><C-u> :┬──┬ ノ( °□°ノ)<M-a><M-c><Esc>
 map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
+map <C-s><C-f> :( ͡° ͜ʖ ͡°)<M-a><M-c><Esc>
 
 
 "for quick navigation of next/prev
