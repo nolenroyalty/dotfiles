@@ -24,7 +24,7 @@ map r<C-c> <Nop>
 nnoremap <Space> i_<Esc>r
 nmap <C-@> i<Cr><C-c>
 
-"use + and * easily
+"Easily access the + and * buffers, meaning I can hit ;;p to paste from the system clipboard.
 map <Leader><Leader> "*
 map <Leader>:        "+
 
@@ -41,8 +41,9 @@ function! ReorderParams(args)
 endfunction
 nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
 
-"yeah..
+"Apple-o in insert mode pastes from *
 inoremap o <C-r>*
+"Apple-o to insert a blank line below the current line, Apple-O to insert a blank line above the current line
 nnoremap o o<C-c>
 nnoremap O O<C-c>
 
