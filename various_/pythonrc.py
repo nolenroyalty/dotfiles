@@ -13,8 +13,8 @@ import operator
 def timer(fn, *args):
     "Time the application of fn to args. Return (result, seconds)."
     import time
-    start = time.clock()
-    return fn(*args), time.clock() - start
+    start = time.time()
+    return fn(*args), time.time() - start
 
 def mult(sequence):
     "Multiply together all values in sequence"
