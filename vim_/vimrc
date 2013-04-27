@@ -106,6 +106,8 @@ vnoremap <C-c> <Esc>
 map <Leader>fr :call RenameFile()<Cr>
 map <Leader>fe :call OpenTempFile()<Cr>
 map <Leader>ft :call TempFile()<Cr>
+
+"Forgive the silly name, this is a bit of a hack that makes Tagbar's split play nice with my buffer list split.
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
 "-----------------------------------------------------------------------------
