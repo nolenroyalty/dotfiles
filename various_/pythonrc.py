@@ -20,7 +20,7 @@ def mult(sequence):
     "Multiply together all values in sequence"
     return functools.reduce(operator.mul, sequence)
 
-def iter_print(iterator):
+def iter_print(iterable):
     "Print each value in iterator on its own line."
     for item in iterator:
         print item
