@@ -9,10 +9,10 @@ import random
 import MySQLdb
 import subprocess
 import operator
+import time
 
 def timer(fn, *args):
     "Time the application of fn to args. Return (result, seconds)."
-    import time
     start = time.time()
     return fn(*args), time.time() - start
 
