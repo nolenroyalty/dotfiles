@@ -22,5 +22,5 @@ def mult(sequence):
 
 def iter_print(iterable):
     "Print each value in iterator on its own line."
-    for item in iterator:
+    for item in iterable:
         print item
