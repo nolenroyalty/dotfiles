@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import sys
 import itertools
@@ -6,7 +7,10 @@ import collections
 import datetime
 import re
 import random
-import MySQLdb
+try:
+    import MySQLdb
+except ImportError:
+    pass
 import subprocess
 import operator
 import time
@@ -23,4 +27,4 @@ def mult(sequence):
 def iter_print(iterable):
     "Print each value in iterator on its own line."
     for item in iterable:
-        print item
+        print(item)
