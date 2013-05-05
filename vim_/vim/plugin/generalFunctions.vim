@@ -50,3 +50,8 @@ function! OpenTempFile()
     exe "edit ".GetTempName()
 endfunction
 
+function! SaveWorkoutLog()
+    let date = strftime("%b-%d-%Y")
+    exe "write ".date
+    echo "Wrote file to ".date
+endfunction
