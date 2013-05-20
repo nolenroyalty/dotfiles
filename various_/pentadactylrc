@@ -1,7 +1,7 @@
 "Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
 set hlfind
 ";s to flip hlfind.  Just like my vimrc :)
-map ;s :set hlfind!
+map ;s :set hlfind!<Cr>
 
 map <S-A-t> tabout:newtab<Cr>o
 
