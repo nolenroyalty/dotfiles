@@ -28,6 +28,14 @@ def backup_and_link_dotfile(dotfile_dir, dotfile_name):
     os.symlink(real_dotfile_path, home_dotfile_path)
     print "\t%s -> %s" % (home_dotfile_path, real_dotfile_path)
 
+def check_for_dotfile_cofig():
+    config_path = os.path.join(HOME, ".dotfiles_config")
+
+    if os.path.exists(config_path):
+        pass
+    else:
+        print "%s does not exist.  Create it to set machine-specific settings" % config_path
+
 
 def main():
     remake_backupdir()
@@ -35,6 +43,8 @@ def main():
         print "Linking files in %s" % dotfile_dir
         for dotfile_name in (name for name in os.listdir(dotfile_dir) if not name.startswith(".")):
             backup_and_link_dotfile(dotfile_dir, dotfile_name)
+
+    check_for_dotfile_cofig()
 
 if __name__ == "__main__":
     main()
