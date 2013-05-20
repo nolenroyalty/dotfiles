@@ -1,3 +1,6 @@
+"Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
+set hlfind
+
 map <S-A-t> tabout:newtab<Cr>o
 
 "get rid of the #postnumber after making a post on the TL forums
