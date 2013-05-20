@@ -1,9 +1,8 @@
-*.pyc
+*.py[cod]
 *.netrw*
 *.orig
 *.swp
 *.swo
 *undodir*
-*various_/dotfiles_config*
 various_/gitconfig
 vim_/vim/scraps/perl/*
