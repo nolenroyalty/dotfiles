@@ -32,9 +32,6 @@ nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
 "-----------------------------------------------------------------------------
 " Mappings
 "-----------------------------------------------------------------------------
-"because it's annoying when you want to cancel a replace and you end up with <C-c> instead
-map r<C-c> <Nop>
-
 "Space to insert a char
 nnoremap <Space> i_<Esc>r
 
@@ -150,13 +147,13 @@ set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
-"set virtualedit=onemore                " allow cursor to move 1 character past end of line
+"set virtualedit=onemore                " allow cursor to move 1 character past end of line.  Mostly here to remind me that this option exists.
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
 set undodir=~/.vim/undodir              " For persistent undo
-set undofile                            " Also enables persistent undo(undo between sessions)
+set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 set mouse=a                             " Enable mouse
 
