@@ -12,6 +12,8 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
+
+noremap <Leader>D :setfiletype htmldjango<Cr>
 "Neat function to reorder parameters, found it browsing a vim wiki a while back.
 function! ReorderParams(args)
   let oldz = @z
@@ -169,7 +171,7 @@ let g:tagbar_width       = 32           " slightly reduce tagbar width for more 
 " Autocommands
 "-----------------------------------------------------------------------------
 "Insure I'm always using strict and warnings and stuff in perl
-au BufNewFile *.pl execute ":silent! s-^$-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal "
+"au BufNewFile *.pl execute ":silent! s-^$-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal "
 "Closest filetype for pentadactylrc is vimrc
 au BufEnter *.pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
