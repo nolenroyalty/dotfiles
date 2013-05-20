@@ -28,12 +28,10 @@ alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
 #alias emacs='emacs -nw'
-alias code='cd ~/code'
-alias etp='cd ~/code/etp'
-alias dotf='cd ~/code/dotfiles'
+alias code='cd $CODEDIR'
+alias etp='cd $CODEDIR/etp'
+alias dotf='cd $CODEDIR/dotfiles'
 alias down='cd ~/Downloads/'
-alias jj='cd ~/code/assorted'
-alias so='cd ~/code/stackoverflow/'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
 
