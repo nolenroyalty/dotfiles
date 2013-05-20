@@ -178,8 +178,6 @@ let g:tagbar_width       = 32           " slightly reduce tagbar width for more 
 "-----------------------------------------------------------------------------
 " Autocommands
 "-----------------------------------------------------------------------------
-"Insure I'm always using strict and warnings and stuff in perl
-"au BufNewFile *.pl execute ":silent! s-^$-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal "
 "Closest filetype for pentadactylrc is vimrc
 au BufEnter *.pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
