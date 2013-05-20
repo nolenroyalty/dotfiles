@@ -11,4 +11,8 @@ if [ -e /usr/local/bin/brew ]; then
     export BYOBU_PREFIX=$(brew --prefix)
 fi
 
+if [ -e $HOME/.dotfiles_config ]; then
+    source $HOME/.dotfiles_config
+fi
+
 export PYTHONSTARTUP=~/.pythonrc.py
