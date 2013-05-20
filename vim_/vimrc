@@ -90,10 +90,9 @@ map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 nnoremap n nzz
 nnoremap N Nzz
 
-"Switch buffers with c-n/p, kill buffer with <Leader><C-k>
+"Switch buffers with c-n/p
 map <C-n>         :bn<Cr>
 map <C-p>         :bp<Cr>
-map <Leader><C-k> :TagbarClose<Cr>:bd<Cr>
 
 "nerdcommenter mappings.  Use ;j and ;J to comment / uncomment lines(much faster than ;cc/;cu)
 map <Leader>j <Leader>cc
