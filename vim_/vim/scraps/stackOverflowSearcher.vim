@@ -112,6 +112,6 @@ if vals:
     vim.command("hi clear PyColorVisible")
     vim.command("hi clear PyColorInvisible")
     clear_question(question_length, linenum)
-    buf[linenum-1] = old_line
+buf[linenum-1] = old_line
 EOF
 endfunction

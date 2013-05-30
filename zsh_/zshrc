@@ -6,15 +6,6 @@ export TERM=xterm-256color
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="nolen"
 
-# For messing with bpython...mostly for fun
-temp_pythonpath_change() {
-    oldpath=$PYTHONPATH
-    export PYTHONPATH=/home/nolen/code/repos/bpython:${PYTHONPATH}
-    bpython
-    export PYTHONPATH=$oldpath
-}
-alias bpp='temp_pythonpath_change'
-
 # No more annoying pushd messages...
 #setopt PUSHD_SILENT
 
@@ -37,15 +28,10 @@ alias rel='source ~/.zshrc'
 alias a='cd'
 alias bp='bpython'
 #alias emacs='emacs -nw'
-alias code='cd ~/code'
-alias etp='cd ~/code/etp'
-alias dotf='cd ~/code/dotfiles'
+alias code='cd $CODEDIR'
+alias etp='cd $CODEDIR/etp'
+alias dotf='cd $CODEDIR/dotfiles'
 alias down='cd ~/Downloads/'
-alias jj='cd ~/code/assorted'
-alias sshe='ssh nroyalty@sandnet.emergingthreats.net'
-alias sshec='ssh -Y nroyalty@sandnet.emergingthreats.net'
-alias sshef='ssh -L 127.0.0.1:3306:172.30.130.124:3306 nroyalty@sandnet.emergingthreats.net'
-alias sshi='ssh nroyalty@burrow.cs.indiana.edu'
 #ctrl-delete to forward kill word
 bindkey "[3;5~" kill-word
 
@@ -71,7 +57,7 @@ alias gr='git rm'
 alias gmv='git mv'
 
 # Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+#DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want to disable colors in ls
 # DISABLE_LS_COLORS="true"

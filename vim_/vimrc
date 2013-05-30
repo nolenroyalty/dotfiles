@@ -12,26 +12,11 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
-"Leader b to begin buffer switch
-map <Leader>b :b 
-"Leader bd to kill buffer
-map <Leader>bd :bd<Cr>
 
-"because it's annoying when you want to cancel a replace and you end up with <C-c> instead
-map r<C-c> <Nop>
+"Easy way to enable django + html highlighting
+noremap <Leader>D :setfiletype htmldjango<Cr>
 
-"Space to insert a char, ctrl-space to insert a newline
-nnoremap <Space> i_<Esc>r
-nmap <C-@> i<Cr><C-c>
-
-"use + and * easily
-map <Leader><Leader> "*
-map <Leader>:        "+
-
-"Should probably be able to get to ex mode somehow, even if I normally rage when it shows up
-nnoremap <Leader>Q  Q
-
-"How cool is this!
+"Neat function to reorder parameters, found it browsing a vim wiki a while back.
 function! ReorderParams(args)
   let oldz = @z
   normal "zdi(
@@ -44,14 +29,22 @@ function! ReorderParams(args)
 endfunction
 nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
 
-"yeah..
-inoremap o <C-r>*
-nnoremap o o<C-c>
-nnoremap O O<C-c>
-
 "-----------------------------------------------------------------------------
 " Mappings
 "-----------------------------------------------------------------------------
+"Space to insert a char
+nnoremap <Space> i_<Esc>r
+
+"Easily access the + and * buffers, meaning I can hit ;;p to paste from the system clipboard.
+map <Leader><Leader> "*
+map <Leader>:        "+
+
+"Apple-o in insert mode pastes from *
+inoremap o <C-r>*
+"Apple-o to insert a blank line below the current line, Apple-O to insert a blank line above the current line
+nnoremap o o<C-c>
+nnoremap O O<C-c>
+
 "c-j/k for vertical movement, c-h/l for start/end of line
 map <C-j> 15j
 map <C-k> 15k
@@ -70,12 +63,17 @@ map <F8>          :Pylint<Cr>:redraw!<Cr>
 map <Leader>s     :set hlsearch! hlsearch?<Cr>
 map <Leader><C-f> :set cursorline<Cr>:sleep 250m<Cr>:set nocursorline<Cr>
 
-"General purpose mappings. ;d black hole deletes, ZZ writes all and exits, Q plays macro q, gQ is annoying so don't use it.  Allow ctrl-c to cancel a replace
+"Use ;d to black hole delete
 nnoremap <silent> <Leader>d "_d
 vnoremap <silent> <Leader>d "_d
+
+"Make ZZ work the way I expect it too with lots of buffers and stuff
 map ZZ :wqa<Cr>
+"The greatest mapping ever.  Not only do I hate ex mode, but using Q to run macro q makes recording macro q and playing it back super easy.
 map Q @q
+"Like I said, I hate ex mode.  So let's avoid ever using it ever ever ever.
 map gQ <Nop>
+"I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
 map r<C-c> <Nop>
 
 ";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir
@@ -87,16 +85,15 @@ map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 "Center the screen when jumping to a search.  Awesome!  Also enable highlighted searches by default
 nnoremap n nzz
 nnoremap N Nzz
-set hlsearch
 
-"Switch buffers with c-n/p, kill buffer with <Leader><C-k>
+"Switch buffers with c-n/p
 map <C-n>         :bn<Cr>
 map <C-p>         :bp<Cr>
-map <Leader><C-k> :TagbarClose<Cr>:bd<Cr>
 
-"Comment keys, ;j to comment out line, ;J to uncomment, ;c-d copy current line(s) and comment them out(for use as a backup)
+"nerdcommenter mappings.  Use ;j and ;J to comment / uncomment lines(much faster than ;cc/;cu)
 map <Leader>j <Leader>cc
 map <Leader>J <Leader>cu
+"use ;<C-d> to create a copy of a line + comment out the original line.  Useful when you want to change a function but want to view a copy of the original at the same time.
 nmap <Leader><C-d> Ypk<Leader>cc
 vmap <Leader><C-d> ygvA<Esc>pgv<Leader>ccgvA<Esc>j
 
@@ -104,7 +101,7 @@ vmap <Leader><C-d> ygvA<Esc>pgv<Leader>ccgvA<Esc>j
 map <Leader>vv :e ~/.vimrc<Cr>
 map <Leader>R  :source ~/.vimrc<Cr>:echo "Refreshed"<Cr>
 
-"ctrl c sends an escape, instead of messing up things like visual column insert
+"ctrl c sends an escape while in insert and visual mode.  Otherwise things like visual column insert won't work using C-c.
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 
@@ -113,6 +110,11 @@ vnoremap <C-c> <Esc>
 map <Leader>fr :call RenameFile()<Cr>
 map <Leader>fe :call OpenTempFile()<Cr>
 map <Leader>ft :call TempFile()<Cr>
+
+"Save file with specific format used for my workout logs
+map <Leader>r :call SaveWorkoutLog()<Cr>
+
+"Forgive the silly name, this is a bit of a hack that makes Tagbar's split play nice with my buffer tab display split.
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
 "-----------------------------------------------------------------------------
@@ -137,6 +139,7 @@ set numberwidth=2                       " don't allocate too much space for numb
 set scrolloff=2                         " give cursor breathing room at top and bottom of screen
 set incsearch                           " find searches as you type
 set ignorecase                          " ignore case for searches
+set hlsearch                            " highlight searches by default
 set smartcase                           " stop ignoring case for searches if capital letters are used
 set gdefault                            " default to global search and replace, /g to disable
 set complete-=i                         " don't bother with imports when doing tab completion
@@ -144,13 +147,13 @@ set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
-"set virtualedit=onemore                " allow cursor to move 1 character past end of line
+"set virtualedit=onemore                " allow cursor to move 1 character past end of line.  Mostly here to remind me that this option exists.
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
 set undodir=~/.vim/undodir              " For persistent undo
-set undofile                            " Also enables persistent undo(undo between sessions)
+set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 set mouse=a                             " Enable mouse
 
@@ -170,8 +173,6 @@ let g:tagbar_width       = 32           " slightly reduce tagbar width for more 
 "-----------------------------------------------------------------------------
 " Autocommands
 "-----------------------------------------------------------------------------
-"Insure I'm always using strict and warnings and stuff in perl
-au BufNewFile *.pl execute ":silent! s-^$-#!/usr/bin/perl\r\ruse strict;\ruse warnings;\r\r-|normal "
 "Closest filetype for pentadactylrc is vimrc
 au BufEnter *.pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
