@@ -52,6 +52,8 @@ bindkey "[3;5~" kill-word
 #sometimes, you just gotta use ed
 alias ed='ed -p:'
 
+cl() { cd ~/class/"$*"; }
+
 #git aliases
 alias ga='git add'
 alias gp='git push'
