@@ -66,8 +66,10 @@ map `` <C-^>
 "map <C-.> <C-^>
 
 "searching
-nmap s :open l 
-nmap S :tabopen l 
+"nmap s :open l 
+"nmap S :tabopen l 
+nmap s ow 
+nmap S tw 
 
 "tricks for selecting rightmost tabs
 map <C-9> <C-0><C-p>
