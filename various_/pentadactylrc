@@ -3,6 +3,12 @@ set hlfind
 ";s to flip hlfind.  Just like my vimrc :)
 map ;s :set hlfind!<Cr>
 
+"since I search TLPD so much
+map ;d tltld 
+
+"just like my vim mapping
+map Q @q
+
 map <S-A-t> tabout:newtab<Cr>o
 
 "get rid of the #postnumber after making a post on the TL forums
