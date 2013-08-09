@@ -125,7 +125,8 @@ set softtabstop=4                       " Tabs act like they are 4 spaces
 set shiftwidth=4                        " autoindent uses 4 spaces
 set expandtab                           " expand tabs to proper number of spaces
 set shiftround                          " round expanded tabs to multiples of shiftwidth
-set listchars=tab:\ \ ,trail:·          " show tabs and trailing spaces visually
+"set listchars=tab:\ \ ,trail:·          " show tabs and trailing spaces visually
+set listchars=tab:\ \                   " Showing trailing spaces in production code drives you mad.  Saving the original setting for posterity.
 set wrap                                " Lines are wrapped instead of hidden
 set linebreak                           " lines are wrapped at (decently) good points
 set textwidth=0                         " Prevent ftplugins from causing vim to do obnoxious autowrapping
@@ -156,6 +157,7 @@ set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 set mouse=a                             " Enable mouse
+"set path
 
 "-----------------------------------------------------------------------------
 " Minor extension stuff
