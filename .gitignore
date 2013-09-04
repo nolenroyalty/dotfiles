@@ -4,5 +4,6 @@
 *.swp
 *.swo
 *undodir*
+*nouse*
 various_/gitconfig
 vim_/vim/scraps/perl/*
