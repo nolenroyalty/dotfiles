@@ -1,10 +1,8 @@
-#
-escape ^^^^^
-## do not trash BackSpace, usually DEL
-bindkey -k kb
-bindkey -d -k kb
-#
-## do not trash Delete, usually ESC [ 3 ~
-bindkey -k kD
-bindkey -d -k kD
+defscrollback 10000
 escape ^Oo
+hardstatus alwayslastline
+termcapinfo xterm* ti@:te@
+startup_message off
+hardstatus on
+hardstatus alwayslastline "%{= kW}%-Lw%{= wb}%50> %n*%f %t%{= kW}%+Lw%< %{= kW}"
+bindkey ^o^l windowlist
