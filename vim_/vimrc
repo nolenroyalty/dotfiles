@@ -8,6 +8,7 @@ syntax enable             " Yes please syntax highlighting
 let mapleader = ";"       " Set mapleader to ; and use \ for ;'s functionality
 nnoremap \ ;
 colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans colorscheme
+                          " No seriously it's really really ugly.  Don't look at it.
 
 "-----------------------------------------------------------------------------
 " Works in progress
@@ -15,6 +16,7 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 
 "Easy way to enable django + html highlighting
 noremap <Leader>D :setfiletype htmldjango<Cr>
+
 
 "Neat function to reorder parameters, found it browsing a vim wiki a while back.
 function! ReorderParams(args)
@@ -73,6 +75,7 @@ map ZZ :wqa<Cr>
 map Q @q
 "Like I said, I hate ex mode.  So let's avoid ever using it ever ever ever.
 map gQ <Nop>
+"WHY DOES EX MODE EXIST FU VIM
 "I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
 map r<C-c> <Nop>
 
@@ -82,13 +85,13 @@ map <Leader>W :w !sudo tee % >/dev/null
 map <Leader>e :e 
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
-"Center the screen when jumping to a search.  Awesome!  Also enable highlighted searches by default
+"Center the screen when jumping to a search.  Awesome!
 nnoremap n nzz
 nnoremap N Nzz
 
 "Switch buffers with c-n/p
-map <C-n>         :bn<Cr>
-map <C-p>         :bp<Cr>
+map <C-n> :bn<Cr>
+map <C-p> :bp<Cr>
 
 "nerdcommenter mappings.  Use ;j and ;J to comment / uncomment lines(much faster than ;cc/;cu)
 map <Leader>j <Leader>cc
@@ -111,9 +114,6 @@ map <Leader>fr :call RenameFile()<Cr>
 map <Leader>fe :call OpenTempFile()<Cr>
 map <Leader>ft :call TempFile()<Cr>
 
-"Save file with specific format used for my workout logs
-map <Leader>r :call SaveWorkoutLog()<Cr>
-
 "Forgive the silly name, this is a bit of a hack that makes Tagbar's split play nice with my buffer tab display split.
 map <Leader><C-t> :call ToggleOggleOoo()<Cr>
 
@@ -125,7 +125,7 @@ set softtabstop=4                       " Tabs act like they are 4 spaces
 set shiftwidth=4                        " autoindent uses 4 spaces
 set expandtab                           " expand tabs to proper number of spaces
 set shiftround                          " round expanded tabs to multiples of shiftwidth
-"set listchars=tab:\ \ ,trail:·          " show tabs and trailing spaces visually
+"set listchars=tab:\ \ ,trail:·         " show tabs and trailing spaces visually.  Commented out because god damn some of the code I work on has so many trailing spaces...
 set listchars=tab:\ \                   " Showing trailing spaces in production code drives you mad.  Saving the original setting for posterity.
 set wrap                                " Lines are wrapped instead of hidden
 set linebreak                           " lines are wrapped at (decently) good points
@@ -157,7 +157,6 @@ set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 set mouse=a                             " Enable mouse
-"set path
 
 "-----------------------------------------------------------------------------
 " Minor extension stuff
