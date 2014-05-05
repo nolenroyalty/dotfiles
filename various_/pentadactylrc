@@ -6,6 +6,9 @@ imap <C-i> <Esc><C-i>
 "easy redditing
 set hinttags+=.expando-button
 
+"easy to see what's highlighted when completing things
+hi CompItem[selected] background: lightblue;
+
 "Because the default behavior of 1<C-d> is really dumb
 map -count -builtin <C-d> <C-d>
 map -count -builtin <C-u> <C-u>
