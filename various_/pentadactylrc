@@ -1,3 +1,6 @@
+"For machine specific mappings.  Yeah yeah, it's not robust
+source ~/.pentadactyl/pentadactylrc
+
 nmap <Bs> <NOP>
 
 imap <C-o> <Esc><C-o>
