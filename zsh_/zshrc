@@ -82,3 +82,4 @@ source $ZSH/oh-my-zsh.sh
 #export PERL_LOCAL_LIB_ROOT="$HOME/perl5";
 #export PERL_MB_OPT="--install_base /home/nolen/perl5";
 #export PERL_MM_OPT="INSTALL_BASE=/home/nolen/perl5";
+export RPROMPT="%{$fg[green]%}%@%{$reset_color%}"
