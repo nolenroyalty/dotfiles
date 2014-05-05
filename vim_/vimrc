@@ -42,10 +42,10 @@ map <Leader><Leader> "*
 map <Leader>:        "+
 
 "Apple-o in insert mode pastes from *
-inoremap o <C-r>*
+"inoremap o <C-r>*
 "Apple-o to insert a blank line below the current line, Apple-O to insert a blank line above the current line
-nnoremap o o<C-c>
-nnoremap O O<C-c>
+"nnoremap o o<C-c>
+"nnoremap O O<C-c>
 
 "c-j/k for vertical movement, c-h/l for start/end of line
 map <C-j> 15j
