@@ -1,3 +1,5 @@
+nmap <Bs> <NOP>
+
 "Because the default behavior of 1<C-d> is really dumb
 map -count -builtin <C-d> <C-d>
 map -count -builtin <C-u> <C-u>
