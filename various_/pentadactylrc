@@ -1,3 +1,7 @@
+"Because the default behavior of 1<C-d> is really dumb
+map -count -builtin <C-d> <C-d>
+map -count -builtin <C-u> <C-u>
+
 "Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
 set hlfind
 ";s to flip hlfind.  Just like my vimrc :)
