@@ -14,8 +14,18 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 " Works in progress
 "-----------------------------------------------------------------------------
 
+
+"----
+"Easy Motion
+nmap s <Plug>(easymotion-prefix)
+nmap S <Plug>(easymotion-s2)
+"Easy Motion
+"----
+
 "Easy way to enable django + html highlighting
 noremap <Leader>D :setfiletype htmldjango<Cr>
+
+"imap <C-s> <C-o>:w<Cr><C-o>:echo "Refreshed"<Cr>
 
 
 "Neat function to reorder parameters, found it browsing a vim wiki a while back.
@@ -54,7 +64,7 @@ map <C-h> ^
 map <C-l> $
 
 "use tab in normal and visual mode to indent text
-nmap <Tab> v>><Esc>
+"nmap <Tab> v>><Esc>
 nmap <S-Tab> v<<<Esc>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
