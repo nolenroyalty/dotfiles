@@ -156,7 +156,7 @@ cmap <C-c> <Esc>
 "autocmd LocationChange 'https://music.google.com/music/*' :normal! <C-z>
 
 
-set hinttags=:-moz-any-link,area,button,iframe,input:not([type=hidden]),select,textarea,[onclick],[onmouseover],[onmousedown],[onmouseup],[oncommand],[tabindex],[role=link],[role=button],[contenteditable=true],a
+"set hinttags=:-moz-any-link,area,button,iframe,input:not([type=hidden]),select,textarea,[onclick],[onmouseover],[onmousedown],[onmouseup],[oncommand],[tabindex],[role=link],[role=button],[contenteditable=true],a
 javascript <<EOF 
 function MoveTabForward(count){
 	let movecount = "+1";
