@@ -14,6 +14,28 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 " Works in progress
 "-----------------------------------------------------------------------------
 
+"Airline
+let g:airline#extensions#tabline#enabled = 1 " We want tabs!
+let g:airline#extensions#tabline#show_buffers = 1 " And buffers!
+let g:airline#extensions#branch#enabled = 1 " Slick fugitive integration
+let g:airline#extensions#whitespace#enabled = 0 " Whitespace is annoying and useless
+
+let g:airline_left_sep='' "Not a fan of the seperators
+let g:airline_right_sep=''
+
+" 'y' contains some stuff about file encoding that I don't care about
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'warning']
+    \ ]
+
+let g:airline#extensions#branch#empty_message = ' (no-branch) ' " Show a message when we're editing files outside of a git repo
+let g:airline#extensions#branch#symbol = '⎇ ' " Symbol for when we are editing files in a git repo
+
+let g:airline_theme='nolen' " Basically I just ripped off some theme from the internet
+set laststatus=2 " Always show the statusline.
+"End Airline
+
 "Easy way to enable django + html highlighting
 noremap <Leader>D :setfiletype htmldjango<Cr>
 
