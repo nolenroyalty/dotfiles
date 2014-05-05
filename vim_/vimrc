@@ -54,8 +54,8 @@ map <C-h> ^
 map <C-l> $
 
 "use tab in normal and visual mode to indent text
-nmap <Tab> v>><Esc>
-nmap <S-Tab> v<<<Esc>
+"nmap <Tab> v>><Esc>
+"nmap <S-Tab> v<<<Esc>
 vmap <Tab> >gv
 vmap <S-Tab> <gv
 
