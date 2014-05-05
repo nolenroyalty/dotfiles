@@ -36,6 +36,11 @@ let g:airline_theme='nolen' " Basically I just ripped off some theme from the in
 set laststatus=2 " Always show the statusline.
 "End Airline
 
+"Trying easymotion
+nmap s <Plug>(easymotion-prefix)
+nmap S <Plug>(easymotion-s2)
+"Trying easymotion
+
 "Easy way to enable django + html highlighting
 noremap <Leader>D :setfiletype htmldjango<Cr>
 
