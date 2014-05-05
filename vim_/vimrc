@@ -202,7 +202,6 @@ let g:tagbar_width       = 32           " slightly reduce tagbar width for more 
 " Autocommands
 "-----------------------------------------------------------------------------
 "Closest filetype for pentadactylrc is vimrc
-au BufEnter *.pentadactylrc setf vim
 au BufEnter *pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
 au FileType * set formatoptions=lq
