@@ -21,9 +21,6 @@ set hlfind
 ";s to flip hlfind.  Just like my vimrc :)
 map ;s :set hlfind!<Cr>
 
-"since I search TLPD so much
-map ;d tltld 
-
 "just like my vim mapping
 map Q @q
 
@@ -38,7 +35,6 @@ set nextpattern='^Next [>»]','^Next »','\bnext\b',^>$,'^(>>|»)$','^(>|»)','(
 set scrollsteps=1
 set scrolltime=1
 set scroll=0
-"set maxitems=15
 set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
@@ -70,14 +66,8 @@ imap <M-f> <A-Right>
 imap <M-b> <A-Left>
 imap <A-b> <C-Left>
 
-"au LocationChange google.com/search* imap <Tab> <Down>
-"au LocationChange google.com/search* imap <S-Tab> <Up>
-"au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
-"au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
 imap <C-p> <Up>
 imap <C-n> <Down>
-
-"map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 
 cmap <C-b> <Left>
 cmap ∫ <A-Left>
@@ -92,31 +82,12 @@ cmap <M-d> <A-Del>
 imap <C-q> <C-t>
 imap <Esc> <C-[><C-[>
 
-"c-b to bounce between two tabs
-map <C-b> <C-6>
+"double ticket to jump between two tabs
 map `` <C-^>
-"map <C-.> <C-^>
 
-"searching
-"nmap s :open l 
-"nmap S :tabopen l 
+"Search wikipedia with s.
 nmap s ow 
 nmap S tw 
-
-"tricks for selecting rightmost tabs
-map <C-9> <C-0><C-p>
-map <C-8> <C-0>2<C-p>
-map <C-7> <C-0>3<C-p>
-
-"addons...
-map <C-S-M-a> tabout:addons<Cr>
-
-"flip d and D
-"nmap -builtin d D
-"nmap -builtin D d
-
-"tab shit
-"map <M-t> :tabopen! 
 
 "C-f for open in background tab
 map <C-f> ;bb
@@ -149,17 +120,15 @@ map <C-i> :forward<CR>
 
 map <C-t> :tabattach 
 
-map <C-g> magg
-map gu magg
+" Jitter with jk before marking because of some bizarre bug that will prevent us from setting a mark.
+map gu jkmagg
 map ga `a
 map <C-r> ggr
 
 cmap <C-c> <Esc>
 
-"autocmd LocationChange 'https://music.google.com/music/*' :normal! <C-z>
-
-
-"set hinttags=:-moz-any-link,area,button,iframe,input:not([type=hidden]),select,textarea,[onclick],[onmouseover],[onmousedown],[onmouseup],[oncommand],[tabindex],[role=link],[role=button],[contenteditable=true],a
+" These are silly.  Scripts to swap a tab with the tab to the left/right.  Accepts a count and does proper wrapping.
+" There's almost definitely a better way to do this or a function for it.  Whatever.
 javascript <<EOF 
 function MoveTabForward(count){
 	let movecount = "+1";
