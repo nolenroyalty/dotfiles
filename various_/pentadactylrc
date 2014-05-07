@@ -1,6 +1,9 @@
 " For custom, per machine mappings.  Yeah yeah, it's fragile.
 source ~/.pentadactyl/pentadactylrc
 
+" Use ctrl-c to exit input elements since there's some bug that stops Esc from working and C-[ is hard to press
+imap <C-c> <C-[>
+
 " I never use the weird caret mode thing, so prevent it.
 nmap i <NOP>
 
