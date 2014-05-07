@@ -1,10 +1,36 @@
+" For custom, per machine mappings.  Yeah yeah, it's fragile.
+source ~/.pentadactyl/pentadactylrc
+
+" I never use the weird caret mode thing, so prevent it.
+nmap i <NOP>
+
+" Stop backspace from being annoying
+nmap -builtin <BS> <NOP>
+
+"inspect element toggle
+nmap -builtin <M-;> <M-A-i>
+imap -builtin <M-;> <Esc><M-A-i>
+
+set editor='/usr/local/bin/mvim -f +<line> <file>'
+
+" Allow my forward/back gestures to work in insert mode
+imap <C-o> <Esc><C-o>
+imap <C-i> <Esc><C-i>
+
+" The behavior of 1<C-d> is super annoying, so prevent it
+map -count -builtin <C-u> <C-u>
+map -count -builtin <C-d> <C-d>
+
+"easy to see which option is selected in command line
+hi CompItem[selected] background: lightblue;
+
+"easy expand reddit text posts
+set hinttags+=.expando-button
+
 "Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
 set hlfind
 ";s to flip hlfind.  Just like my vimrc :)
 map ;s :set hlfind!<Cr>
-
-"since I search TLPD so much
-map ;d tltld 
 
 "just like my vim mapping
 map Q @q
@@ -85,7 +111,8 @@ map <C-s><C-b> :┻━┻ ︵╰(°□°)╯︵ ┻━┻<M-a><M-c><Esc>
 map <C-s><C-u> :┬──┬ ノ( °□°ノ)<M-a><M-c><Esc>
 map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
 map <C-s><C-f> :( ͡° ͜ʖ ͡°)<M-a><M-c><Esc>
-
+map <C-s><C-r> :ヽ༼ຈل͜ຈ༽ﾉ  RIOT ヽ༼ຈل͜ຈ༽ﾉ<M-a><M-c><Esc>
+map <C-s><C-d> :༼ つ ◕_◕ ༽つ Give DIRETIDE ༼ つ ◕_◕ ༽つ<M-A><M-c><Esc>
 
 "for quick navigation of next/prev
 map <C-S-n> ]]
@@ -111,9 +138,7 @@ map <C-r> ggr
 
 cmap <C-c> <Esc>
 
-"autocmd LocationChange 'https://music.google.com/music/*' :normal! <C-z>
-
-
+" Funny little functions for switching tabs forward / back.  Respects counts and wraps properly.
 javascript <<EOF 
 function MoveTabForward(count){
 	let movecount = "+1";
