@@ -13,8 +13,6 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
-" Much easier to read help when it's in a vertical split.
-nnoremap <Leader>h :vert bo help<Space>
 
 "-----------------------------------------------------------------------------
 " Airline
@@ -70,6 +68,9 @@ let g:airline_mode_map = {
 "-----------------------------------------------------------------------------
 " Mappings
 "-----------------------------------------------------------------------------
+" Much easier to read help when it's in a vertical split.
+nnoremap <Leader>h :vert bo help<Space>
+
 "Space to insert a char
 nnoremap <Space> i_<Esc>r
 
