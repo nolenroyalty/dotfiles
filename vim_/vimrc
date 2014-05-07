@@ -14,49 +14,9 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 " Works in progress
 "-----------------------------------------------------------------------------
 
-"Airline
-let g:airline#extensions#tabline#enabled = 1 " We want tabs!
-let g:airline#extensions#tabline#show_buffers = 1 " And buffers!
-let g:airline#extensions#branch#enabled = 1 " Slick fugitive integration
-let g:airline#extensions#whitespace#enabled = 0 " Whitespace is annoying and useless
-
-let g:airline_left_sep='' "Not a fan of the seperators
-let g:airline_right_sep=''
-
-" 'y' contains some stuff about file encoding that I don't care about
-let g:airline#extensions#default#layout = [
-    \ [ 'a', 'b', 'c' ],
-    \ [ 'x', 'z', 'warning']
-    \ ]
-
-let g:airline_mode_map = {
-    \ '__' : '-',
-    \ 'n'  : 'N',
-    \ 'i'  : 'I',
-    \ 'R'  : 'R',
-    \ 'c'  : 'C',
-    \ 'v'  : 'V',
-    \ 'V'  : 'V',
-    \ '' : 'V',
-    \ 's'  : 'S',
-    \ 'S'  : 'S',
-    \ '' : 'S',
-    \ }
-
-let g:airline#extensions#branch#empty_message = '' " Show a message when we're editing files outside of a git repo
-let g:airline#extensions#branch#symbol = '' " Symbol for when we are editing files in a git repo
-let g:airline_theme='nolen' " Basically I just ripped off some theme from the internet
-set laststatus=2 " Always show the statusline.
-"End Airline
-
-"Trying easymotion
-nmap s <Plug>(easymotion-prefix)
-nmap S <Plug>(easymotion-s2)
-"Trying easymotion
-
-"Easy way to enable django + html highlighting
+" Easy way to enable django + html highlighting
+" TODO this is silly and I'm sure there's a 'real' way to do it
 noremap <Leader>D :setfiletype htmldjango<Cr>
-
 
 "Neat function to reorder parameters, found it browsing a vim wiki a while back.
 function! ReorderParams(args)
@@ -72,6 +32,57 @@ endfunction
 nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
 
 "-----------------------------------------------------------------------------
+" Airline
+"-----------------------------------------------------------------------------
+set laststatus=2 " We always want that sweet status bar
+
+let g:airline_theme = 'airlineish' " Slightly modified, stolen from the internet
+
+let g:airline#extensions#tabline#enabled          = 1 " Tabline rocks, so use it.
+let g:airline#extensions#tabline#show_buffers     = 1 " Show the buffers!
+let g:airline#extensions#tabline#buffer_min_count = 0 " Always show the buffers!
+let g:airline#extensions#tabline#tab_min_count    = 0 " Still always show the buffers!
+let g:airline#extensions#branch#enabled           = 1 " Slick fugitive integration
+let g:airline#extensions#whitespace#enabled       = 0 " Whitespace plugin is annoying
+
+" I don't like the look of most separators, plus installing fonts is a pain.  So don't use them.
+let g:airline_right_sep = ''
+let g:airline_left_sep = ''
+let g:airline#extensions#branch#symbol = ''
+let g:airline#extensions#branch#empty_message = ''
+
+" Section c just contains the file path.  We want the full path since the buffers at the top just have the file name.
+" Uses some fnamemodify and expand nonsense to make it relative and remove the extra slashes I tend to add to paths.
+let g:airline_section_c = "%{fnamemodify(expand('%'), ':~:.')}"
+
+" Simplify section z.  Just %, line, column
+let g:airline_section_z = "%3p%% %#__accent_bold#%4l%#__restore__#%3c"
+
+" Just show the file name for each buffer (no full path, no condensing).
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Section 'y' is typically some encoding stuff (useless), and I haven't found a better use for the section.
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'warning' ],
+    \ ]
+
+" Nice, simple indicators for which mode you're in.
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+
+"-----------------------------------------------------------------------------
 " Mappings
 "-----------------------------------------------------------------------------
 "Space to insert a char
@@ -81,23 +92,11 @@ nnoremap <Space> i_<Esc>r
 map <Leader><Leader> "*
 map <Leader>:        "+
 
-"Apple-o in insert mode pastes from *
-"inoremap o <C-r>*
-"Apple-o to insert a blank line below the current line, Apple-O to insert a blank line above the current line
-"nnoremap o o<C-c>
-"nnoremap O O<C-c>
-
 "c-j/k for vertical movement, c-h/l for start/end of line
 map <C-j> 15j
 map <C-k> 15k
 map <C-h> ^
 map <C-l> $
-
-"use tab in normal and visual mode to indent text
-"nmap <Tab> v>><Esc>
-"nmap <S-Tab> v<<<Esc>
-vmap <Tab> >gv
-vmap <S-Tab> <gv
 
 "toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
 map <F7>          :set spell! spell?<Cr>
@@ -119,7 +118,7 @@ map gQ <Nop>
 "I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
 map r<C-c> <Nop>
 
-";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir
+";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir.  ;E is really useful
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee % >/dev/null
 map <Leader>e :e 
@@ -154,9 +153,6 @@ map <Leader>fr :call RenameFile()<Cr>
 map <Leader>fe :call OpenTempFile()<Cr>
 map <Leader>ft :call TempFile()<Cr>
 
-"Forgive the silly name, this is a bit of a hack that makes Tagbar's split play nice with my buffer tab display split.
-map <Leader><C-t> :call ToggleOggleOoo()<Cr>
-
 "-----------------------------------------------------------------------------
 " Settings
 "-----------------------------------------------------------------------------
@@ -188,7 +184,6 @@ set wildmenu                            " enable enhanced tab complete
 set ofu=syntaxcomplete#Complete         " enable omnifunc completion
 set pumheight=10                        " no more than 10 items at a time in insert mode completion
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
-"set virtualedit=onemore                " allow cursor to move 1 character past end of line.  Mostly here to remind me that this option exists.
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
@@ -196,20 +191,6 @@ set undoreload=10000                    " Reload a bunch of undolevels
 set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
-set mouse=a                             " Enable mouse
-
-"-----------------------------------------------------------------------------
-" Minor extension stuff
-"-----------------------------------------------------------------------------
-let g:Tb_MoreThanOne     = 1            " It's nice to always have the buffer tab bar open
-let g:pydiction_location = '~/.vim/vimfiles/ftplugin/pydiction/complete-dict'
-
-"-----------------------------------------------------------------------------
-" Tagbar stuff
-"-----------------------------------------------------------------------------
-let g:tagbar_compact     = 1            " no need to waste tagbar space, compact mode is better
-let g:tagbar_autofocus   = 1            " autofocus tagbar upon opening it
-let g:tagbar_width       = 32           " slightly reduce tagbar width for more screen real estate
 
 "-----------------------------------------------------------------------------
 " Autocommands
