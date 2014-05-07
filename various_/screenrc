@@ -1,4 +1,4 @@
-defscrollback 10000
+defscrollback 50000
 escape ^Oo
 hardstatus alwayslastline
 termcapinfo xterm* ti@:te@
