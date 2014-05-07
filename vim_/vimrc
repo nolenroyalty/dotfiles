@@ -25,8 +25,6 @@ nmap S <Plug>(easymotion-s2)
 "Easy way to enable django + html highlighting
 noremap <Leader>D :setfiletype htmldjango<Cr>
 
-"imap <C-s> <C-o>:w<Cr><C-o>:echo "Refreshed"<Cr>
-
 
 "Neat function to reorder parameters, found it browsing a vim wiki a while back.
 function! ReorderParams(args)
@@ -40,6 +38,57 @@ function! ReorderParams(args)
   echo ''
 endfunction
 nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
+
+"-----------------------------------------------------------------------------
+" Airline
+"-----------------------------------------------------------------------------
+set laststatus=2 " We always want that sweet status bar
+
+let g:airline_theme = 'airlineish' " Slightly modified, stolen from the internet
+
+let g:airline#extensions#tabline#enabled          = 1 " Tabline rocks, so use it.
+let g:airline#extensions#tabline#show_buffers     = 1 " Show the buffers!
+let g:airline#extensions#tabline#buffer_min_count = 0 " Always show the buffers!
+let g:airline#extensions#tabline#tab_min_count    = 0 " Still always show the buffers!
+let g:airline#extensions#branch#enabled           = 1 " Slick fugitive integration
+let g:airline#extensions#whitespace#enabled       = 0 " Whitespace plugin is annoying
+
+" I don't like the look of most separators, plus installing fonts is a pain.  So don't use them.
+let g:airline_right_sep = ''
+let g:airline_left_sep = ''
+let g:airline#extensions#branch#symbol = ''
+let g:airline#extensions#branch#empty_message = ''
+
+" Section c just contains the file path.  We want the full path since the buffers at the top just have the file name.
+" Uses some fnamemodify and expand nonsense to make it relative and remove the extra slashes I tend to add to paths.
+let g:airline_section_c = "%{fnamemodify(expand('%'), ':~:.')}"
+
+" Simplify section z.  Just %, line, column
+let g:airline_section_z = "%3p%% %#__accent_bold#%4l%#__restore__#%3c"
+
+" Just show the file name for each buffer (no full path, no condensing).
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Section 'y' is typically some encoding stuff (useless), and I haven't found a better use for the section.
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'warning' ],
+    \ ]
+
+" Nice, simple indicators for which mode you're in.
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
 
 "-----------------------------------------------------------------------------
 " Mappings
