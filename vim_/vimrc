@@ -124,7 +124,7 @@ map r<C-c> <Nop>
 ";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir.  ;E is really useful
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee % >/dev/null
-map <Leader>e :e 
+map <Leader>e :e<Space>
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
 "Center the screen when jumping to a search.  Awesome!
