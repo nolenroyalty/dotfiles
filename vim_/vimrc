@@ -31,6 +31,9 @@ function! ReorderParams(args)
 endfunction
 nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
 
+" Much easier to read help when it's in a vertical split.
+nnoremap <Leader>h :vert bo help<Space>
+
 "-----------------------------------------------------------------------------
 " Airline
 "-----------------------------------------------------------------------------
