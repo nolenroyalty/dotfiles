@@ -29,9 +29,22 @@ let g:airline#extensions#default#layout = [
     \ [ 'x', 'z', 'warning']
     \ ]
 
-let g:airline#extensions#branch#empty_message = ' (no-branch) ' " Show a message when we're editing files outside of a git repo
-let g:airline#extensions#branch#symbol = '⎇ ' " Symbol for when we are editing files in a git repo
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
 
+let g:airline#extensions#branch#empty_message = '' " Show a message when we're editing files outside of a git repo
+let g:airline#extensions#branch#symbol = '' " Symbol for when we are editing files in a git repo
 let g:airline_theme='nolen' " Basically I just ripped off some theme from the internet
 set laststatus=2 " Always show the statusline.
 "End Airline
