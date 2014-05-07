@@ -128,8 +128,8 @@ nmap K 6k
 
 map <C-t> :tabattach 
 
-map <C-g> magg
-map gu magg
+" gu/ga to jump to top of page and pack.  jk for jitter to prevent some weird bug.
+map gu jkmagg
 map ga `a
 map <C-r> ggr
 
