@@ -126,9 +126,6 @@ nmap <C-h> 15h
 nmap J 6j
 nmap K 6k
 
-map <C-o> :back<CR>
-map <C-i> :forward<CR>
-
 map <C-t> :tabattach 
 
 map <C-g> magg
