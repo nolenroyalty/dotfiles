@@ -19,8 +19,6 @@ set nextpattern='^Next [>»]','^Next »','\bnext\b',^>$,'^(>>|»)$','^(>|»)','(
 
 set scrollsteps=1
 set scrolltime=1
-set scroll=0
-"set maxitems=15
 set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
@@ -52,14 +50,8 @@ imap <M-f> <A-Right>
 imap <M-b> <A-Left>
 imap <A-b> <C-Left>
 
-"au LocationChange google.com/search* imap <Tab> <Down>
-"au LocationChange google.com/search* imap <S-Tab> <Up>
-"au LocationChange !google.com/search*,* inoremap <Tab> <Tab>
-"au LocationChange !google.com/search*,* inoremap <S-Tab> <S-Tab>
 imap <C-p> <Up>
 imap <C-n> <Down>
-
-"map <C-l> :<C-p><C-a><A-right><A-BS>open l<Cr>
 
 cmap <C-b> <Left>
 cmap ∫ <A-Left>
@@ -74,31 +66,12 @@ cmap <M-d> <A-Del>
 imap <C-q> <C-t>
 imap <Esc> <C-[><C-[>
 
-"c-b to bounce between two tabs
-map <C-b> <C-6>
+" Double tick to bounce between tabs
 map `` <C-^>
-"map <C-.> <C-^>
 
-"searching
-"nmap s :open l 
-"nmap S :tabopen l 
+" s for searching wikipedia (uses a custom search keyword)
 nmap s ow 
 nmap S tw 
-
-"tricks for selecting rightmost tabs
-map <C-9> <C-0><C-p>
-map <C-8> <C-0>2<C-p>
-map <C-7> <C-0>3<C-p>
-
-"addons...
-map <C-S-M-a> tabout:addons<Cr>
-
-"flip d and D
-"nmap -builtin d D
-"nmap -builtin D d
-
-"tab shit
-"map <M-t> :tabopen! 
 
 "C-f for open in background tab
 map <C-f> ;bb
@@ -141,7 +114,6 @@ cmap <C-c> <Esc>
 "autocmd LocationChange 'https://music.google.com/music/*' :normal! <C-z>
 
 
-set hinttags=:-moz-any-link,area,button,iframe,input:not([type=hidden]),select,textarea,[onclick],[onmouseover],[onmousedown],[onmouseup],[oncommand],[tabindex],[role=link],[role=button],[contenteditable=true],a
 javascript <<EOF 
 function MoveTabForward(count){
 	let movecount = "+1";
