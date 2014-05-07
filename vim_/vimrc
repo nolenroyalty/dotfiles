@@ -13,24 +13,6 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
-
-" Easy way to enable django + html highlighting
-" TODO this is silly and I'm sure there's a 'real' way to do it
-noremap <Leader>D :setfiletype htmldjango<Cr>
-
-"Neat function to reorder parameters, found it browsing a vim wiki a while back.
-function! ReorderParams(args)
-  let oldz = @z
-  normal "zdi(
-  let params = split(a:args, ',\s')
-  let order = input(string(map(copy(params), 'v:key + 1 . ": " . v:val')))
-  let @z = join(map(split(order, '[0-9]\zs'), 'params[str2nr(v:val) - 1]'), ', ')
-  normal "zP
-  let @z = oldz
-  echo ''
-endfunction
-nnoremap <Leader>x "zdi(:call ReorderParams(@z)<Cr>
-
 " Much easier to read help when it's in a vertical split.
 nnoremap <Leader>h :vert bo help<Space>
 
