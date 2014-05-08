@@ -92,6 +92,12 @@ noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 
+" LEARN TO VIM NOOB
+map <C-w>j <Nop>
+map <C-w>k <Nop>
+map <C-w>h <Nop>
+map <C-w>l <Nop>
+
 " toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
 map <F7>          :set spell! spell?<Cr>
 map <F8>          :Pylint<Cr>:redraw!<Cr>
