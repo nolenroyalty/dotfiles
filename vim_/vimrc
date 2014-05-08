@@ -13,6 +13,17 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 " Works in progress
 "-----------------------------------------------------------------------------
+au BufEnter *dotfiles_config setf zsh
+
+set wildignore+=*undodir*,*.swp* " vim
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ }
+let g:ctrlp_map = "p"
+
+" Keep selection when indenting text in visual mode
+vnoremap < <gv
+vnoremap > >gv
 
 "-----------------------------------------------------------------------------
 " Airline
@@ -75,11 +86,11 @@ nnoremap <Space> i_<Esc>r
 map <Leader><Leader> "*
 map <Leader>:        "+
 
-"c-j/k for vertical movement, c-h/l for start/end of line
-map <C-j> 15j
-map <C-k> 15k
-map <C-h> ^
-map <C-l> $
+" Movement between splits
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
 
 "toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
 map <F7>          :set spell! spell?<Cr>
@@ -182,10 +193,6 @@ set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 au BufEnter *pentadactylrc setf vim
 "Formatoptions drives me crazy, these are the only two that don't suck
 au FileType * set formatoptions=lq
-"Scheme formatting.  Also I really wish you could set multiple values in one autocommand statement, that drives me crazy
-au BufEnter *.scm setl tabstop=2
-au BufEnter *.scm setl softtabstop=2
-au BufEnter *.scm setl shiftwidth=2
 
 "-----------------------------------------------------------------------------
 " Misc
@@ -196,3 +203,11 @@ hi clear SpecialKey                     " Clear specialkey (escape characters li
 hi SpecialKey ctermfg=81 guifg=Cyan     " Set them to a nice light blue
 hi clear CursorLine                     " Cursorline has strange strange highlighting by default
 hi CursorLine cterm=NONE,reverse        " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
+
+"-----------------------------------------------------------------------------
+" Other
+"-----------------------------------------------------------------------------
+" Allow machine-specific overrides in vimrc.local
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
