@@ -1,0 +1,216 @@
+"-----------------------------------------------------------------------------
+" Settings that cause problems if they aren't run first
+"-----------------------------------------------------------------------------
+set nocompatible          " Don't try to be compatible with vi
+call pathogen#infect()    " Tell pathogen to enable bundle plugins
+filetype plugin indent on " Enable filetype detection, as well as ftplugins and filetype indenting
+syntax enable             " Yes please syntax highlighting
+let mapleader = ";"       " Set mapleader to ; and use \ for ;'s functionality
+nnoremap \ ;
+colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans colorscheme
+                          " No seriously it's really really ugly.  Don't look at it.
+
+"-----------------------------------------------------------------------------
+" Works in progress
+"-----------------------------------------------------------------------------
+au BufEnter *dotfiles_config setf zsh
+
+set wildignore+=*undodir*,*.swp* " vim
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ }
+let g:ctrlp_map = "p"
+
+" Keep selection when indenting text in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
+" Help is much easier to read in a vertical split
+noremap <Leader>h :vert bo he<Space>
+
+"-----------------------------------------------------------------------------
+" Airline
+"-----------------------------------------------------------------------------
+set laststatus=2 " We always want that sweet status bar
+
+let g:airline_theme = 'airlineish' " Slightly modified, stolen from the internet
+
+let g:airline#extensions#tabline#enabled          = 1 " Tabline rocks, so use it.
+let g:airline#extensions#tabline#show_buffers     = 1 " Show the buffers!
+let g:airline#extensions#tabline#buffer_min_count = 0 " Always show the buffers!
+let g:airline#extensions#tabline#tab_min_count    = 0 " Still always show the buffers!
+let g:airline#extensions#branch#enabled           = 1 " Slick fugitive integration
+let g:airline#extensions#whitespace#enabled       = 0 " Whitespace plugin is annoying
+
+" I don't like the look of most separators, plus installing fonts is a pain.  So don't use them.
+let g:airline_right_sep = ''
+let g:airline_left_sep = ''
+let g:airline#extensions#branch#symbol = ''
+let g:airline#extensions#branch#empty_message = ''
+
+" Section c just contains the file path.  We want the full path since the buffers at the top just have the file name.
+" Uses some fnamemodify and expand nonsense to make it relative and remove the extra slashes I tend to add to paths.
+let g:airline_section_c = "%{fnamemodify(expand('%'), ':~:.')}"
+
+" Just show the file name for each buffer (no full path, no condensing).
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Section 'y' is typically some encoding stuff (useless), and I haven't found a better use for the section.
+let g:airline#extensions#default#layout = [
+    \ [ 'a', 'b', 'c' ],
+    \ [ 'x', 'z', 'warning' ],
+    \ ]
+
+" Nice, simple indicators for which mode you're in.
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+
+"-----------------------------------------------------------------------------
+" Mappings
+"-----------------------------------------------------------------------------
+" Much easier to read help when it's in a vertical split.
+nnoremap <Leader>h :vert bo help<Space>
+
+" Space to insert a char
+nnoremap <Space> i_<Esc>r
+
+" Easily access the + and * buffers, meaning I can hit ;;p to paste from the system clipboard.
+map <Leader><Leader> "*
+map <Leader>:        "+
+
+" Movement between splits
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-h> <C-w>h
+noremap <C-l> <C-w>l
+
+" toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
+map <F7>          :set spell! spell?<Cr>
+map <F8>          :Pylint<Cr>:redraw!<Cr>
+map <Leader>s     :set hlsearch! hlsearch?<Cr>
+map <Leader><C-f> :set cursorline<Cr>:sleep 250m<Cr>:set nocursorline<Cr>
+
+" Use ;d to black hole delete
+nnoremap <silent> <Leader>d "_d
+vnoremap <silent> <Leader>d "_d
+
+" Make ZZ work the way I expect it too with lots of buffers and stuff
+map ZZ :wqa<Cr>
+" The greatest mapping ever.  Not only do I hate ex mode, but using Q to run macro q makes recording macro q and playing it back super easy.
+map Q @q
+" Like I said, I hate ex mode.  So let's avoid ever using it ever ever ever.
+map gQ <Nop>
+" WHY DOES EX MODE EXIST FU VIM
+" I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
+map r<C-c> <Nop>
+
+" ;w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir.  ;E is really useful
+map <Leader>w :w<Cr>:echo "Written"<Cr>
+map <Leader>W :w !sudo tee % >/dev/null
+map <Leader>e :e<Space>
+map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
+
+" Center the screen when jumping to a search.  Awesome!
+nnoremap n nzz
+nnoremap N Nzz
+
+" Switch buffers with c-n/p
+map <C-n> :bn<Cr>
+map <C-p> :bp<Cr>
+
+" nerdcommenter mappings.  Use ;j and ;J to comment / uncomment lines(much faster than ;cc/;cu)
+map <Leader>j <Leader>cc
+map <Leader>J <Leader>cu
+" use ;<C-d> to create a copy of a line + comment out the original line.  Useful when you want to change a function but want to view a copy of the original at the same time.
+nmap <Leader><C-d> Ypk<Leader>cc
+vmap <Leader><C-d> ygvA<Esc>pgv<Leader>ccgvA<Esc>j
+
+" vv to open vimrc, R to reload vimrc
+map <Leader>vv :e ~/.vimrc<Cr>
+map <Leader>R  :source ~/.vimrc<Cr>:echo "Refreshed"<Cr>
+
+" ctrl c sends an escape while in insert and visual mode.  Otherwise things like visual column insert won't work using C-c.
+inoremap <C-c> <Esc>
+vnoremap <C-c> <Esc>
+
+" Mapings for functions in plugin/generalFunctions.vim and other personal plugins
+" Leader f for file-functions.  f[r]ename, f[e]dit temp file, reopen as f[t]emp file
+map <Leader>fr :call RenameFile()<Cr>
+map <Leader>fe :call OpenTempFile()<Cr>
+map <Leader>ft :call TempFile()<Cr>
+
+"-----------------------------------------------------------------------------
+" Settings
+"-----------------------------------------------------------------------------
+set tabstop=8                           " Tabs are 8 spaces
+set softtabstop=4                       " Tabs act like they are 4 spaces
+set shiftwidth=4                        " autoindent uses 4 spaces
+set expandtab                           " expand tabs to proper number of spaces
+set shiftround                          " round expanded tabs to multiples of shiftwidth
+"set listchars=tab:\ \ ,trail:·         " show tabs and trailing spaces visually.  Commented out because god damn some of the code I work on has so many trailing spaces...
+set listchars=tab:\ \                   " Showing trailing spaces in production code drives you mad.  Saving the original setting for posterity.
+set wrap                                " Lines are wrapped instead of hidden
+set linebreak                           " lines are wrapped at (decently) good points
+set textwidth=0                         " Prevent ftplugins from causing vim to do obnoxious autowrapping
+set list                                " show tabs
+set backspace=indent,eol,start          " backspace is able to kill indents, line breaks, and pre-insert
+set shortmess=atI                       " Attempt to prevent annoying multiline prompts
+set showcmd                             " show commands as they are typed
+set ruler                               " show absolute position in bottom right
+set relativenumber                      " linenumbers relative to current position
+set numberwidth=2                       " don't allocate too much space for numbers(don't need much since I use relativenumber)
+set scrolloff=2                         " give cursor breathing room at top and bottom of screen
+set incsearch                           " find searches as you type
+set ignorecase                          " ignore case for searches
+set hlsearch                            " highlight searches by default
+set smartcase                           " stop ignoring case for searches if capital letters are used
+set gdefault                            " default to global search and replace, /g to disable
+set complete-=i                         " don't bother with imports when doing tab completion
+set wildmenu                            " enable enhanced tab complete
+set ofu=syntaxcomplete#Complete         " enable omnifunc completion
+set pumheight=10                        " no more than 10 items at a time in insert mode completion
+set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
+set hidden                              " This allows you to switch to a new buffer without writing your current one
+set history=1000                        " Save a lot of history
+set undolevels=1000                     " Save a lot of undos as well
+set undoreload=10000                    " Reload a bunch of undolevels
+set undodir=~/.vim/undodir              " For persistent undo
+set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
+set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
+
+"-----------------------------------------------------------------------------
+" Autocommands
+"-----------------------------------------------------------------------------
+" Closest filetype for pentadactylrc is vimrc
+au BufEnter *pentadactylrc setf vim
+" Formatoptions drives me crazy, these are the only two that don't suck
+au FileType * set formatoptions=lq
+
+"-----------------------------------------------------------------------------
+" Highlighting
+"-----------------------------------------------------------------------------
+hi clear MatchParen                     " Clear matchparen so that I can set it
+hi MatchParen ctermfg=200               " Set matchparen to a ridiculous color so I can see it.  Other good colors are 416,128,185,269
+hi clear SpecialKey                     " Clear specialkey (escape characters like  because they are invisible to me on default settings
+hi SpecialKey ctermfg=81 guifg=Cyan     " Set them to a nice light blue
+hi clear CursorLine                     " Cursorline has strange strange highlighting by default
+hi CursorLine cterm=NONE,reverse        " Set cursorline to just reverse the color of the line, mostly I use it to flash cursor location for a few seconds
+
+"-----------------------------------------------------------------------------
+" Other
+"-----------------------------------------------------------------------------
+" Allow machine-specific overrides in vimrc.local
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
