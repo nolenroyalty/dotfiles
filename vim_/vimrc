@@ -79,10 +79,10 @@ let g:airline_mode_map = {
 " Much easier to read help when it's in a vertical split.
 nnoremap <Leader>h :vert bo help<Space>
 
-"Space to insert a char
+" Space to insert a char
 nnoremap <Space> i_<Esc>r
 
-"Easily access the + and * buffers, meaning I can hit ;;p to paste from the system clipboard.
+" Easily access the + and * buffers, meaning I can hit ;;p to paste from the system clipboard.
 map <Leader><Leader> "*
 map <Leader>:        "+
 
@@ -92,57 +92,57 @@ noremap <C-k> <C-w>k
 noremap <C-h> <C-w>h
 noremap <C-l> <C-w>l
 
-"toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
+" toggles: <F7> spell check, <F8> pylint, ;s hlsearch, ;<C-f> flash cursor line
 map <F7>          :set spell! spell?<Cr>
 map <F8>          :Pylint<Cr>:redraw!<Cr>
 map <Leader>s     :set hlsearch! hlsearch?<Cr>
 map <Leader><C-f> :set cursorline<Cr>:sleep 250m<Cr>:set nocursorline<Cr>
 
-"Use ;d to black hole delete
+" Use ;d to black hole delete
 nnoremap <silent> <Leader>d "_d
 vnoremap <silent> <Leader>d "_d
 
-"Make ZZ work the way I expect it too with lots of buffers and stuff
+" Make ZZ work the way I expect it too with lots of buffers and stuff
 map ZZ :wqa<Cr>
-"The greatest mapping ever.  Not only do I hate ex mode, but using Q to run macro q makes recording macro q and playing it back super easy.
+" The greatest mapping ever.  Not only do I hate ex mode, but using Q to run macro q makes recording macro q and playing it back super easy.
 map Q @q
-"Like I said, I hate ex mode.  So let's avoid ever using it ever ever ever.
+" Like I said, I hate ex mode.  So let's avoid ever using it ever ever ever.
 map gQ <Nop>
-"WHY DOES EX MODE EXIST FU VIM
-"I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
+" WHY DOES EX MODE EXIST FU VIM
+" I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
 map r<C-c> <Nop>
 
-";w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir.  ;E is really useful
+" ;w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir.  ;E is really useful
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee % >/dev/null
 map <Leader>e :e<Space>
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
 
-"Center the screen when jumping to a search.  Awesome!
+" Center the screen when jumping to a search.  Awesome!
 nnoremap n nzz
 nnoremap N Nzz
 
-"Switch buffers with c-n/p
+" Switch buffers with c-n/p
 map <C-n> :bn<Cr>
 map <C-p> :bp<Cr>
 
-"nerdcommenter mappings.  Use ;j and ;J to comment / uncomment lines(much faster than ;cc/;cu)
+" nerdcommenter mappings.  Use ;j and ;J to comment / uncomment lines(much faster than ;cc/;cu)
 map <Leader>j <Leader>cc
 map <Leader>J <Leader>cu
-"use ;<C-d> to create a copy of a line + comment out the original line.  Useful when you want to change a function but want to view a copy of the original at the same time.
+" use ;<C-d> to create a copy of a line + comment out the original line.  Useful when you want to change a function but want to view a copy of the original at the same time.
 nmap <Leader><C-d> Ypk<Leader>cc
 vmap <Leader><C-d> ygvA<Esc>pgv<Leader>ccgvA<Esc>j
 
-"vv to open vimrc, R to reload vimrc
+" vv to open vimrc, R to reload vimrc
 map <Leader>vv :e ~/.vimrc<Cr>
 map <Leader>R  :source ~/.vimrc<Cr>:echo "Refreshed"<Cr>
 
-"ctrl c sends an escape while in insert and visual mode.  Otherwise things like visual column insert won't work using C-c.
+" ctrl c sends an escape while in insert and visual mode.  Otherwise things like visual column insert won't work using C-c.
 inoremap <C-c> <Esc>
 vnoremap <C-c> <Esc>
 
-"Mapings for functions in plugin/generalFunctions.vim and other personal plugins
-"Leader f for file-functions.  f[r]ename, f[e]dit temp file, reopen as f[t]emp file
+" Mapings for functions in plugin/generalFunctions.vim and other personal plugins
+" Leader f for file-functions.  f[r]ename, f[e]dit temp file, reopen as f[t]emp file
 map <Leader>fr :call RenameFile()<Cr>
 map <Leader>fe :call OpenTempFile()<Cr>
 map <Leader>ft :call TempFile()<Cr>
@@ -189,13 +189,13 @@ set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 "-----------------------------------------------------------------------------
 " Autocommands
 "-----------------------------------------------------------------------------
-"Closest filetype for pentadactylrc is vimrc
+" Closest filetype for pentadactylrc is vimrc
 au BufEnter *pentadactylrc setf vim
-"Formatoptions drives me crazy, these are the only two that don't suck
+" Formatoptions drives me crazy, these are the only two that don't suck
 au FileType * set formatoptions=lq
 
 "-----------------------------------------------------------------------------
-" Misc
+" Highlighting
 "-----------------------------------------------------------------------------
 hi clear MatchParen                     " Clear matchparen so that I can set it
 hi MatchParen ctermfg=200               " Set matchparen to a ridiculous color so I can see it.  Other good colors are 416,128,185,269
