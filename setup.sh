@@ -17,26 +17,24 @@ for dir in $DIRECTORIES; do
     echo "Setting up symlinks for all items in $dir"
     for file in $(ls $dir); do
 
-        if [ -L ~/.$file ]; then
+        if [ -L ~/.$file ]; then # No need to backup symbolic links, and they cause weird circular issues.
             echo "Removing symbolic link at ~/.$file"
-            rm ~/.$file # Just remove the file if it's already a symlink.  Prevents weird cyclical symlink bugs
-        fi
-
-        if [ -e ~/.$file ]; then
+            rm ~/.$file 
+        elif [ -e ~/.$file ]; then
             echo "Backing up $file"
             mv ~/.$file $BACKUP_DIR
         fi
 
         echo "Creating symlink for $file"
-        echo 'ln -s "$DOTFILES_DIR/$dir/$file" "~/.$file"'
         ln -s $DOTFILES_DIR/$dir/$file ~/.$file
 
     done
-    echo "Done setting up symlinks for $dir"
-    echo ''
+    echo -e "Done setting up symlinks for $dir\n"
 done
 
+echo "Done setting up symlinks"
+
+echo "Touching files for local machine settings"
 touch ~/.dotfiles_config # Local machine settings for terminal
 touch ~/.pentadactyl/pentadactylrc # Local machine settings for browser
-
-echo "Done creating symlinks.  Setup complete."
+echo "Done"
