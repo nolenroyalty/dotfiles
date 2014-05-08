@@ -182,6 +182,9 @@ set hidden                              " This allows you to switch to a new buf
 set history=1000                        " Save a lot of history
 set undolevels=1000                     " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
+if !isdirectory($HOME."/.vim/undodir")  " For Some reason using ~ instead of $HOME causes problems here.
+    silent !mkdir $HOME/.vim/undodir
+end
 set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
