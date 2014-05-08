@@ -3,7 +3,7 @@
 
 function! SetPythonOptions()
     "setlocal formatoptions-=o formatoptions-=r
-    setlocal omnifunc=pythoncomplete#Complete
+    "setlocal omnifunc=pythoncomplete#Complete
     let b:filetype_extension="py"
 
     let g:pylint_onwrite = 0
