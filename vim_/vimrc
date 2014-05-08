@@ -38,9 +38,6 @@ let g:airline#extensions#branch#empty_message = ''
 " Uses some fnamemodify and expand nonsense to make it relative and remove the extra slashes I tend to add to paths.
 let g:airline_section_c = "%{fnamemodify(expand('%'), ':~:.')}"
 
-" Simplify section z.  Just %, line, column
-let g:airline_section_z = "%3p%% %#__accent_bold#%4l%#__restore__#%3c"
-
 " Just show the file name for each buffer (no full path, no condensing).
 let g:airline#extensions#tabline#fnamemod = ':t'
 
