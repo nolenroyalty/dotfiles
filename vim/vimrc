@@ -25,6 +25,9 @@ let g:ctrlp_map = "p"
 vnoremap < <gv
 vnoremap > >gv
 
+" Help is much easier to read in a vertical split
+noremap <Leader>h :vert bo he<Space>
+
 "-----------------------------------------------------------------------------
 " Airline
 "-----------------------------------------------------------------------------
