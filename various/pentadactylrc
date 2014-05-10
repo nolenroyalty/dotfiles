@@ -1,14 +1,18 @@
 " For custom, per machine mappings.  Yeah yeah, it's fragile.
 source ~/.pentadactyl/pentadactylrc
 
+" Go to streamer's vods on twitch.tv
+map ;P O/profile/pastBroadcasts/<Cr>
+
 map <C-o> :back<Cr>
 map <C-i> :forward<Cr>
 
 " Use ctrl-c to exit input elements since there's some bug that stops Esc from working and C-[ is hard to press
 imap <C-c> <C-[>
 
-" I never use the weird caret mode thing, so prevent it.
-nmap i <NOP>
+" Caret mode is annoying, and gi is really useful.
+nmap i 1gi
+nmap I 2gi
 
 " Stop backspace from being annoying
 nmap -builtin <BS> <NOP>
