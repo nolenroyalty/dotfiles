@@ -17,6 +17,9 @@ setopt RM_STAR_WAIT
 #try to stop those really annoying corrections...
 alias sudo='nocorrect sudo'
 
+alias igrep='grep -i' # Case insensitive grep
+alias zzz='source ~/.zshrc'
+
 alias vv='vim ~/.vimrc'
 alias zz='vim ~/.zshrc'
 alias pp='vim ~/.pentadactylrc'
