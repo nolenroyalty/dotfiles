@@ -8,7 +8,10 @@
 
 
 if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
-    PROMPT='[%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%}:%{$fg[cyan]%}%~%{$reset_color%}$(git_prompt_info)]
+    # Use #{PWD/#$HOME/~} so that we still condense $HOME to ~, but otherwise don't show path variables in the prompt
+    # Otherwise eg. ~/.oh-my-zsh will display as $ZSH.
+    # Note that this only happens on some systems: on OSX using %~ works fine, but on Linux this trick is needed
+    PROMPT='[%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%}:%{$fg[cyan]%}${PWD/#$HOME/~}%{$reset_color%}$(git_prompt_info)]
 %# '
 
     ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[green]%}"
@@ -16,10 +19,8 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
     ZSH_THEME_GIT_PROMPT_DIRTY=""
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-    # display exitcode on the right when >0
-    return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-
-    RPROMPT='${return_code}$(git_prompt_status)%{$reset_color%}'
+    # I don't find the git prompt info on the right side to be useful, and knowing what time you ran a command is very nice
+    RPROMPT="%{$fg[green]%}%@%{$reset_color%}"
 
     ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
     ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
@@ -28,7 +29,7 @@ if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
     ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} "
     ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 else
-    PROMPT='[%n@%m:%~$(git_prompt_info)]
+    PROMPT='[%n@%m:${PWD/#$HOME/~}$(git_prompt_info)]
 %# '
 
     ZSH_THEME_GIT_PROMPT_PREFIX=" on"
@@ -36,10 +37,7 @@ else
     ZSH_THEME_GIT_PROMPT_DIRTY=""
     ZSH_THEME_GIT_PROMPT_CLEAN=""
 
-    # display exitcode on the right when >0
-    return_code="%(?..%? ↵)"
-
-    RPROMPT='${return_code}$(git_prompt_status)'
+    RPROMPT="%{$fg[green]%}%@%{$reset_color%}"
 
     ZSH_THEME_GIT_PROMPT_ADDED=" ✚"
     ZSH_THEME_GIT_PROMPT_MODIFIED=" ✹"
