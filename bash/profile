@@ -1,19 +1,18 @@
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/git/bin
-export PATH=/usr/local/bin:/usr/local/share/python:/usr/local/share:/usr/local/sbin:/usr/local/lib:${PATH}
-export PATH="$HOME/bin:$PATH"
-export PATH=/usr/local/ActivePerl-5.14/bin:$PATH
-export PATH=$PATH:/usr/local/opt/ruby/bin
+# Paths and a few other settings
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
+export PATH=/usr/X11/bin:/usr/local/git/bin:${PATH}
 
-if [ -e /usr/local/nolen_bin ]; then
-    export PATH=${PATH}:/usr/local/nolen_bin
+if hash rbenv; then
+    eval "$(rbenv init -)";
+fi
+
+if [ -e $HOME/bin ]; then
+    export PATH=$HOME/bin:${PATH}
 fi
 
 if [ -e /usr/local/bin/brew ]; then
     export BYOBU_PREFIX=$(brew --prefix)
-fi
-
-if [ -e $HOME/.dotfiles_config ]; then
-    source $HOME/.dotfiles_config
 fi
 
 export PYTHONSTARTUP=~/.pythonrc.py
