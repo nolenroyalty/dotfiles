@@ -1,50 +1,25 @@
-# ------------------------------------------------------------------------------
-#          FILE:  nolen.zsh-theme
-#   DESCRIPTION:  oh-my-zsh theme file.
-#        AUTHOR:  Kévin Gomez (geek63@gmail.com) modified by Nolen Royalty
-#       VERSION:  1.0.0
-#    SCREENSHOT:
-# ------------------------------------------------------------------------------
+color() {
+    if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
+        echo "%{$fg[$1]%}$2%{$reset_color%}"
+    else
+        echo $2
+    fi
+}
 
+# Use #{PWD/#$HOME/~} so that we still condense $HOME to ~, but otherwise don't show path variables in the prompt
+# Otherwise eg. ~/.oh-my-zsh will display as $ZSH.
+# Note that this only happens on some systems: %~ does what I want on OSX but not Linux.
+CWD=$(color cyan '${PWD/#$HOME/~}')
+USER=$(color red %n)
+HOST_NAME=$(color magenta %m)
+GIT=$(color yellow '$(git_prompt_info)')
+TIME=$(color green '$(date +%H:%M%p)')
 
-if [[ "$TERM" != "dumb" ]] && [[ "$DISABLE_LS_COLORS" != "true" ]]; then
-    PROMPT='[%{$fg[red]%}%n%{$reset_color%}@%{$fg[magenta]%}%m%{$reset_color%}:%{$fg[cyan]%}%~%{$reset_color%}$(git_prompt_info)]
-%# '
+TOP_PROMPT="[$TIME] [$USER@$HOST_NAME:$CWD]$GIT"
+BOTTOM_PROMPT=$'\n''%# ' # Newlines in a zsh prompt are weird
+PROMPT=$TOP_PROMPT$BOTTOM_PROMPT
+unset CWD USER HOST_NAME GIT TIME TOP_PROMPT BOTTOM_PROMPT # using local for these variables doesn't seem to work
 
-    ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[green]%}"
-    ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-    ZSH_THEME_GIT_PROMPT_DIRTY=""
-    ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-    # display exitcode on the right when >0
-    return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
-
-    RPROMPT='${return_code}$(git_prompt_status)%{$reset_color%}'
-
-    ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
-    ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ✹"
-    ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
-    ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
-    ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} "
-    ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
-else
-    PROMPT='[%n@%m:%~$(git_prompt_info)]
-%# '
-
-    ZSH_THEME_GIT_PROMPT_PREFIX=" on"
-    ZSH_THEME_GIT_PROMPT_SUFFIX=""
-    ZSH_THEME_GIT_PROMPT_DIRTY=""
-    ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-    # display exitcode on the right when >0
-    return_code="%(?..%? ↵)"
-
-    RPROMPT='${return_code}$(git_prompt_status)'
-
-    ZSH_THEME_GIT_PROMPT_ADDED=" ✚"
-    ZSH_THEME_GIT_PROMPT_MODIFIED=" ✹"
-    ZSH_THEME_GIT_PROMPT_DELETED=" ✖"
-    ZSH_THEME_GIT_PROMPT_RENAMED=" ➜"
-    ZSH_THEME_GIT_PROMPT_UNMERGED=" "
-    ZSH_THEME_GIT_PROMPT_UNTRACKED=" ✭"
-fi
+ZSH_THEME_GIT_PROMPT_PREFIX=" ["
+ZSH_THEME_GIT_PROMPT_SUFFIX="]"
+ZSH_THEME_GIT_PROMPT_DIRTY="" # By default this is a *, which is annoying

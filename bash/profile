@@ -1,19 +1,23 @@
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/git/bin
-export PATH=/usr/local/bin:/usr/local/share/python:/usr/local/share:/usr/local/sbin:/usr/local/lib:${PATH}
-export PATH="$HOME/bin:$PATH"
-export PATH=/usr/local/ActivePerl-5.14/bin:$PATH
-export PATH=$PATH:/usr/local/opt/ruby/bin
+# Paths and a few other settings
+path_add () {
+    if [ -e $1 ]; then
+        export PATH=$1:${PATH}
+    fi
+}
 
-if [ -e /usr/local/nolen_bin ]; then
-    export PATH=${PATH}:/usr/local/nolen_bin
-fi
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 
-if [ -e /usr/local/bin/brew ]; then
-    export BYOBU_PREFIX=$(brew --prefix)
-fi
+path_add /usr/local/git/bin
+path_add $HOME/.rbenv/bin
+path_add $HOME/bin
 
-if [ -e $HOME/.dotfiles_config ]; then
-    source $HOME/.dotfiles_config
+# Awesome or awful?  You decide
+dotfiles=$(ls -la $HOME|grep '^l.*dotfiles'|sed -E 's/.* (\/.*dotfiles).*/\1/g'|head -1)
+path_add $dotfiles/bin
+
+if hash rbenv; then
+    eval "$(rbenv init -)";
 fi
 
 export PYTHONSTARTUP=~/.pythonrc.py
