@@ -1,18 +1,20 @@
 # Paths and a few other settings
+path_add () {
+    if [ -e $1 ]; then
+        export PATH=$1:${PATH}
+    fi
+}
+
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
-export PATH=/usr/X11/bin:/usr/local/git/bin:${PATH}
+
+path_add /usr/local/git/bin
+path_add $HOME/.rbenv/bin
+path_add $HOME/bin
+path_add $CODEDIR/dotfiles/bin
 
 if hash rbenv; then
     eval "$(rbenv init -)";
-fi
-
-if [ -e $HOME/bin ]; then
-    export PATH=$HOME/bin:${PATH}
-fi
-
-if [ -e /usr/local/bin/brew ]; then
-    export BYOBU_PREFIX=$(brew --prefix)
 fi
 
 export PYTHONSTARTUP=~/.pythonrc.py
