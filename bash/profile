@@ -13,7 +13,7 @@ path_add $HOME/.rbenv/bin
 path_add $HOME/bin
 
 # Awesome or awful?  You decide
-dotfiles=$(ls -la|grep '^l.*dotfiles'|awk '{print $11}'|sed 's/dotfiles\/.*/dotfiles/g'|head -1)
+dotfiles=$(ls -la $HOME|grep '^l.*dotfiles'|awk '{print $11}'|sed 's/dotfiles\/.*/dotfiles/g'|head -1)
 path_add $dotfiles/bin
 
 if hash rbenv; then
