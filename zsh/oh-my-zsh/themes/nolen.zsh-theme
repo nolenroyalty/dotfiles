@@ -13,7 +13,7 @@ CWD=$(color cyan '${PWD/#$HOME/~}')
 USER=$(color red %n)
 HOST_NAME=$(color magenta %m)
 GIT=$(color yellow '$(git_prompt_info)')
-TIME=$(color green %@)
+TIME=$(color green '$(date +%H:%M%p)')
 
 TOP_PROMPT="[$TIME] [$USER@$HOST_NAME:$CWD]$GIT"
 BOTTOM_PROMPT=$'\n''%# ' # Newlines in a zsh prompt are weird
