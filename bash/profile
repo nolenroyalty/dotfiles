@@ -11,7 +11,10 @@ export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 path_add /usr/local/git/bin
 path_add $HOME/.rbenv/bin
 path_add $HOME/bin
-path_add $CODEDIR/dotfiles/bin
+
+# Awesome or awful?  You decide
+dotfiles=$(ls -la|grep '^l.*dotfiles'|awk '{print $11}'|sed 's/dotfiles\/.*/dotfiles/g'|head -1)
+path_add $dotfiles/bin
 
 if hash rbenv; then
     eval "$(rbenv init -)";
