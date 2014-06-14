@@ -37,4 +37,6 @@ echo "Done setting up symlinks"
 echo "Touching files for local machine settings"
 touch ~/.dotfiles_config # Local machine settings for terminal
 touch ~/.pentadactyl/pentadactylrc # Local machine settings for browser
+mkdir -p ~/.vim/undodir
+
 echo "Done"
