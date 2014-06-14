@@ -5,9 +5,25 @@
 # Basic idea and format stolen from http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
 ##################################################
 
-DOTFILES_DIR=$(pwd -P)
 BACKUP_DIR=~/.old_dotfiles
 DIRECTORIES="vim bash zsh various"
+
+if [ $(uname) == 'Darwin' ]; then
+    rlink='greadlink'
+else
+    rlink='readlink'
+fi
+
+# detect if current working directory is the same
+# as the directory this script is in
+# Hat tip to sciurus on github for this one
+if [ "$(dirname $($rlink -e $0))" != "$($rlink -e $(pwd))" ]; then
+    echo 'ERROR: Your current working directory must be your dotfiles repository'
+    echo 'Exiting'
+    exit 1
+else
+    DOTFILES_DIR="$($rlink -e $(pwd))"
+fi
 
 echo -n "Creating backup directory for dotfiles at $BACKUP_DIR..."
 mkdir -p $BACKUP_DIR

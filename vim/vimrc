@@ -15,6 +15,12 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 au BufEnter *dotfiles_config setf zsh
 
+map <Leader>,j :lnext<Cr>
+map <Leader>,k :lprev<Cr>
+map <Leader>b :b<Space>
+
+let g:is_bash=1 " Tells vim that it's ok that your bash scripts aren't /bin/sh compatible
+
 set wildignore+=*undodir*,*.swp* " vim
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -183,8 +189,11 @@ set pumheight=10                        " no more than 10 items at a time in ins
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
-set undolevels=1000                     " Save a lot of undos as well
+set undolevels=10000                     " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
+if !isdirectory($HOME."/.vim/undodir")  " For Some reason using ~ instead of $HOME causes problems here.
+    silent !mkdir $HOME/.vim/undodir
+end
 set undodir=~/.vim/undodir              " For persistent undo
 set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
