@@ -1,67 +1,27 @@
-export ZSH=$HOME/.oh-my-zsh
 # Source dotfiles_config early because of weird local machine settings.
 if [ -e $HOME/.dotfiles_config ]; then
     source $HOME/.dotfiles_config
 fi
 
-export TERM=xterm-256color
+source $HOME/.zsh/settings.zsh
+source $HOME/.zsh/functions.zsh
+source $HOME/.zsh/aliases.zsh
+source $HOME/.zsh/paths.zsh
 
+# Not nearly as butchered as my current vim theme
 ZSH_THEME="nolen"
-
-# Blank pushd goes to home
-setopt PUSHD_TO_HOME
-
-# protect against crazy rm...
-setopt RM_STAR_WAIT
-
-# Open all the things
-alias e='extract'
-
-#try to stop those really annoying corrections...
-alias sudo='nocorrect sudo'
-
-alias igrep='grep -i' # Case insensitive grep
-alias zzz='source ~/.zshrc'
-
-alias vv='vim ~/.vimrc'
-alias zz='vim ~/.zshrc'
-alias pp='vim ~/.pentadactylrc'
-alias bp='bpython'
-#alias emacs='emacs -nw'
-alias code='cd $CODEDIR'
-alias dotf='cd $CODEDIR/dotfiles'
-alias down='cd ~/Downloads/'
-#ctrl-delete to forward kill word
-bindkey "[3;5~" kill-word
-
-#sometimes, you just gotta use ed
-alias ed='ed -p:'
-
-#git aliases
-alias ga='git add'
-alias gp='git push'
-alias gl='git log'
-alias gs='git status'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gm='git commit -m'
-alias gma='git commit -am'
-alias gb='git branch'
-alias gc='git checkout'
-alias gpu='git pull'
-alias gcl='git clone'
-alias gr='git rm'
-alias gmv='git mv'
 
 # Autoupdate is annoying.
 DISABLE_AUTO_UPDATE="true"
-# Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(osx pip python brew extract)
 
-#for paths
-source $HOME/.profile
+# It's nice to know how your title is being set
+DISABLE_AUTO_TITLE="true"
+
+# oh-my-zsh plugins to use (~/.oh-my-zsh/plugins/)
+# NOT COMMA SEPARATED LOL
+plugins=(pip python brew extract mercurial svn)
+
+# Make oh-my-zsh work.
+# the ZSH variable is used by various omz scripts
+export ZSH=$HOME/.oh-my-zsh
 source $ZSH/oh-my-zsh.sh
