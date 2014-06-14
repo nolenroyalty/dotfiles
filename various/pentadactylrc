@@ -1,8 +1,8 @@
 " For custom, per machine mappings.  Yeah yeah, it's fragile.
 source ~/.pentadactyl/pentadactylrc
 
-map <C-o> :back<Cr>
-map <C-i> :forward<Cr>
+map <C-o> -ex back
+map <C-i> -ex forward
 
 " Use ctrl-c to exit input elements since there's some bug that stops Esc from working and C-[ is hard to press
 imap <C-c> <C-[>
@@ -12,6 +12,10 @@ nmap i <NOP>
 
 " Stop backspace from being annoying
 nmap -builtin <BS> <NOP>
+
+map -modes=repl <C-n> <Down>
+map -modes=repl <C-p> <Up>
+map -modes=repl <C-e> <C-Right>
 
 "inspect element toggle
 nmap -builtin <M-;> <M-A-i>
@@ -32,6 +36,9 @@ hi CompItem[selected] background: lightblue;
 
 "easy expand reddit text posts
 set hinttags+=.expando-button
+
+"stack overflow
+set hinttags+=.vote-up-off,.vote-down-off
 
 "Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
 set hlfind
