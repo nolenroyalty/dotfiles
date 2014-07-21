@@ -5,5 +5,7 @@
 *.swo
 *undodir*
 *nouse*
+*tags*
+*.VimballRecord*
 various/gitconfig
 vim/vim/scraps/perl/*
