@@ -4,11 +4,6 @@ source ~/.pentadactyl/pentadactylrc
 " private window
 map -builtin <M-S-p> :private winopen<Cr>
 
-" Go to streamer's vods on twitch.tv
-"map ;P O/profile/pastBroadcasts/<Cr>
-
-"map ;C O<C-a><M-f><C-f>cache:<Cr>
-
 " So that I can easily jump back to where I was if I accidentally swipe down or up
 " Use in conjunction with better touch tool, where I map swipe up/down to these keys
 map -builtin <C-S-g> jkmjG
@@ -29,8 +24,6 @@ abbreviate winonly you didn't want to type that
 cmap -builtin <C-f> <Right>
 cmap -builtin <C-b> <Left>
 
-"map <C-o> :back<Cr>
-"map <C-i> :forward<Cr>
 map -builtin <C-o> -ex back
 map -builtin <C-i> -ex forward
 
@@ -68,6 +61,10 @@ cmap -builtin <M-Cr> -ex GoToRoot | feedkeys <Return>
 " Stop backspace from being annoying
 nmap -builtin <BS> <NOP>
 
+map -modes=repl <C-n> <Down>
+map -modes=repl <C-p> <Up>
+map -modes=repl <C-e> <C-Right>
+
 "inspect element toggle
 nmap -builtin <M-;> <M-A-i>
 imap -builtin <M-;> <Esc><M-A-i>
@@ -87,6 +84,9 @@ hi CompItem[selected] background: lightblue;
 
 "easy expand reddit text posts
 set hinttags+=.expando-button
+
+"stack overflow
+set hinttags+=.vote-up-off,.vote-down-off
 
 "Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
 set hlfind
