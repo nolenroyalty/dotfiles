@@ -1,18 +1,69 @@
 " For custom, per machine mappings.  Yeah yeah, it's fragile.
 source ~/.pentadactyl/pentadactylrc
 
-" Go to streamer's vods on twitch.tv
-map ;P O/profile/pastBroadcasts/<Cr>
+" private window
+map -builtin <M-S-p> :private winopen<Cr>
 
-map <C-o> :back<Cr>
-map <C-i> :forward<Cr>
+" Go to streamer's vods on twitch.tv
+"map ;P O/profile/pastBroadcasts/<Cr>
+
+"map ;C O<C-a><M-f><C-f>cache:<Cr>
+
+" So that I can easily jump back to where I was if I accidentally swipe down or up
+" Use in conjunction with better touch tool, where I map swipe up/down to these keys
+map -builtin <C-S-g> jkmjG
+map -builtin <C-S-A-g> kmjgg
+map -builtin <M-A-k> `j
+map -builtin <C-S-k> `j
+
+"map ;cc O/search?q=&sort=comments&restrict_sr=on<Cr>
+"map ;ct O/search?q=&sort=top&restrict_sr=on<Cr>
+"map ;cT O?sort=top<Cr>
+"map ;cb O?sort=best<Cr>
+
+" Because I did it once and lost all my tabs :(
+abbreviate winonl you didn't want to type that
+abbreviate winonly you didn't want to type that
+
+" I thought these were already there
+cmap -builtin <C-f> <Right>
+cmap -builtin <C-b> <Left>
+
+"map <C-o> :back<Cr>
+"map <C-i> :forward<Cr>
+map -builtin <C-o> -ex back
+map -builtin <C-i> -ex forward
 
 " Use ctrl-c to exit input elements since there's some bug that stops Esc from working and C-[ is hard to press
-imap <C-c> <C-[>
+imap -builtin <C-c> <C-[>
 
 " Caret mode is annoying, and gi is really useful.
-nmap i 1gi
-nmap I 2gi
+nmap -builtin i 1gi
+nmap -builtin I 2gi
+
+" Messing around with some mappings to clean up urls
+"cmap -js <M-Cr> var c = commandline.command.split(" ");dactyl.open(c[0] + " " + URL(c[1]).host);commandline.clear();
+"cmap -js <M-Cr> var c = commandline.command.split(" ");dactyl.execute(c[0] + " " + URL(c[1]).host)
+"cmap <M-Cr> -ex :js (function foo () {var c = commandline.command.split(" ");dactyl.execute(c[0] + " " + URL(c[1]).host)}())();
+
+" Trim url when completing in command mode
+"cmap <M-Cr> -js var c = commandline.command.split(' '); CommandExMode().open(c[0] + " " + URL(c[1]).hostname);
+
+javascript <<EOF
+function GoToRoot() {
+    var c = commandline.command.split(' ');
+    CommandExMode().open(c[0] + " " + URL(c[1]).hostname);
+}
+EOF
+
+command! GoToRoot -js GoToRoot();
+cmap -builtin <M-Cr> -ex GoToRoot | feedkeys <Return>
+
+" for testing
+"map <M-cr> :<up><C-a><A-right><right>alert(<C-e>)<Cr>
+
+"for later
+":com! -nargs=* sitesearch exe "t http://www.google.com/search?q=" + encodeURIComponent("<args>") + "&sitesearch=" + window.content.location.hostname
 
 " Stop backspace from being annoying
 nmap -builtin <BS> <NOP>
@@ -21,15 +72,15 @@ nmap -builtin <BS> <NOP>
 nmap -builtin <M-;> <M-A-i>
 imap -builtin <M-;> <Esc><M-A-i>
 
-set editor='/usr/local/bin/mvim -f +<line> <file>'
+set editor='/usr/local/bin/vim -f +<line> <file>'
 
 " Allow my forward/back gestures to work in insert mode
-imap <C-o> <Esc><C-o>
-imap <C-i> <Esc><C-i>
+imap -builtin <C-o> <Esc><C-o>
+imap -builtin <C-i> <Esc><C-i>
 
 " The behavior of 1<C-d> is super annoying, so prevent it
-map -count -builtin <C-u> <C-u>
-map -count -builtin <C-d> <C-d>
+"map -builtin <C-u> <Esc><C-u>
+"map -builtin <C-d> <Esc><C-d>
 
 "easy to see which option is selected in command line
 hi CompItem[selected] background: lightblue;
@@ -40,15 +91,15 @@ set hinttags+=.expando-button
 "Because I suckkk at finding matches on the page without highlighted search now.  Equivalent of vim's hlsearch
 set hlfind
 ";s to flip hlfind.  Just like my vimrc :)
-map ;s :set hlfind!<Cr>
+map -builtin ;s :set hlfind!<Cr>
 
 "just like my vim mapping
-map Q @q
+map -builtin Q @q
 
-map <S-A-t> tabout:newtab<Cr>o
+map -builtin <S-A-t> tabout:newtab<Cr>o
 
 "get rid of the #postnumber after making a post on the TL forums
-map <C-S-w> O<C-w><BS><CR>G
+map -builtin <C-S-w> O<C-w><BS><CR>G
 
 set previouspattern='[<«] Prev$','« Prev$','\bprev(ious)\b',^<$,'^(<<|«)$','^(<|«)','(<|«)$','Newer'
 set nextpattern='^Next [>»]','^Next »','\bnext\b',^>$,'^(>>|»)$','^(>|»)','(>|»)$','\bmore\b','Older'
@@ -59,91 +110,108 @@ set maxitems=10
 hi -a Hint  font: "Arial";
 hi -a Hint font-size: 8pt;
 
-map <C-S-l> O<C-e>&currentpage=last<Cr>
-map <C-S-m> O<C-e>&currentpage=all<Cr>
-cmap <A-o> <S-Insert>
+"map <C-S-l> O<C-e>&currentpage=last<Cr>
+"map <C-S-m> O<C-e>&currentpage=all<Cr>
+"cmap <A-o> <S-Insert>
 
 nmap -builtin <F1> <Nop>
 cmap -builtin <F1> <Nop>
 imap -builtin <F1> <Nop>
 
-map <A-r> <Esc><r>
+"map <A-r> <Esc><r>
 
-map <A-}> <C-Tab>
-map <A-{> <S-C-Tab>
-imap <A-}> <C-Tab>
-imap <A-{> <S-C-Tab>
-map <A-t> t
-imap <A-t> t
-cmap <A-t> t
-map <C-A-w> d
-cmap <C-A-w> <C-a><C-k><Bs>d
-imap <C-A-w> <Esc>d
-imap <C-f> <Right>
-imap <C-b> <Left>
-imap <A-f> <C-Right>
-imap <M-f> <A-Right>
-imap <M-b> <A-Left>
-imap <A-b> <C-Left>
+" Don't believe these are necessary
+"map <A-}> <C-Tab>
+"map <A-{> <S-C-Tab>
+"imap <A-}> <C-Tab>
+"imap <A-{> <S-C-Tab>
 
-imap <C-p> <Up>
-imap <C-n> <Down>
+" TODO: I really need to go back and figure out if/why these are needed.
+"map <A-t> t
+"imap <A-t> t
+"cmap <A-t> t
+"map <C-A-w> d
+"cmap <C-A-w> <C-a><C-k><Bs>d
+"imap <C-A-w> <Esc>d
 
-cmap <C-b> <Left>
-cmap ∫ <A-Left>
-cmap <C-f> <Right>
-cmap ƒ <A-Right>
-cmap <M-b> <A-Left>
-cmap <M-f> <A-Right>
-cmap <A-b> <C-Left>
-cmap <A-f> <C-Right>
-cmap <M-d> <A-Del>
+" Some nice text movement mappings.
+" Pentadactyl provides an "Input" mapping that seems to cover the bases pretty well
+" TODO: clean this up big time
 
-imap <C-q> <C-t>
-imap <Esc> <C-[><C-[>
+map -builtin -modes=input <C-f> <Right>
+map -builtin -modes=input <C-b> <Left>
+map -builtin -modes=input <A-f> <C-Right>
+map -builtin -modes=input <M-f> <A-Right>
+map -builtin -modes=input <M-b> <A-Left>
+map -builtin -modes=input <A-b> <C-Left>
+map -builtin -modes=input <C-n> <Down>
+map -builtin -modes=input <C-p> <Up>
+"imap <C-f> <Right>
+"imap <C-b> <Left>
+"imap <A-f> <C-Right>
+"imap <M-f> <A-Right>
+"imap <M-b> <A-Left>
+"imap <A-b> <C-Left>
+
+"imap <C-p> <Up>
+"imap <C-n> <Down>
+
+"cmap <C-b> <Left>
+"cmap ∫ <A-Left>
+"cmap <C-f> <Right>
+"cmap ƒ <A-Right>
+"cmap <M-b> <A-Left>
+"cmap <M-f> <A-Right>
+"cmap <A-b> <C-Left>
+"cmap <A-f> <C-Right>
+"cmap <M-d> <A-Del>
+
+" WUT
+imap -builtin <C-q> <C-t>
+imap -builtin <Esc> <C-[><C-[>
 
 " Double tick to bounce between tabs
-map `` <C-^>
+map -builtin `` <C-^>
 
 " s for searching wikipedia (uses a custom search keyword)
-nmap s ow 
-nmap S tw 
+nmap -builtin s ow 
+nmap -builtin S tw 
 
 "C-f for open in background tab
-map <C-f> ;bb
+map -builtin <C-f> ;b
 
 "lolyes
-map <C-s><C-t> :(╯°□°）╯︵ ┻━┻<M-a><M-c><Esc>
-map <C-s><C-s> :¯\_(ツ)_/¯<M-a><M-c><Esc>
-map <C-s><C-a> :(ノಠ益ಠ)ノ彡┻━┻ <M-a><M-c><Esc>
-map <C-s><C-o> :(╯°□°）╯︵ /(.O.)\<M-a><M-c><Esc>
-map <C-s><C-b> :┻━┻ ︵╰(°□°)╯︵ ┻━┻<M-a><M-c><Esc>
-map <C-s><C-u> :┬──┬ ノ( °□°ノ)<M-a><M-c><Esc>
-map <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
-map <C-s><C-f> :( ͡° ͜ʖ ͡°)<M-a><M-c><Esc>
-map <C-s><C-r> :ヽ༼ຈل͜ຈ༽ﾉ  RIOT ヽ༼ຈل͜ຈ༽ﾉ<M-a><M-c><Esc>
-map <C-s><C-d> :༼ つ ◕_◕ ༽つ Give DIRETIDE ༼ つ ◕_◕ ༽つ<M-A><M-c><Esc>
+map -builtin <C-s><C-t> :(╯°□°）╯︵ ┻━┻<M-a><M-c><Esc>
+map -builtin <C-s><C-s> :¯\_(ツ)_/¯<M-a><M-c><Esc>
+map -builtin <C-s><C-a> :(ノಠ益ಠ)ノ彡┻━┻ <M-a><M-c><Esc>
+map -builtin <C-s><C-o> :(╯°□°）╯︵ /(.O.)\<M-a><M-c><Esc>
+map -builtin <C-s><C-b> :┻━┻ ︵╰(°□°)╯︵ ┻━┻<M-a><M-c><Esc>
+map -builtin <C-s><C-u> :┬──┬ ノ( °□°ノ)<M-a><M-c><Esc>
+map -builtin <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><Esc>
+map -builtin <C-s><C-f> :( ͡° ͜ʖ ͡°)<M-a><M-c><Esc>
+map -builtin <C-s><C-r> :ヽ༼ຈل͜ຈ༽ﾉ  RIOT ヽ༼ຈل͜ຈ༽ﾉ<M-a><M-c><Esc>
+map -builtin <C-s><C-d> :༼ つ ◕_◕ ༽つ Give DIRETIDE ༼ つ ◕_◕ ༽つ<M-A><M-c><Esc>
 
 "for quick navigation of next/prev
-map <C-S-n> ]]
-map <C-S-p> [[
+map -builtin <C-S-n> ]]
+map -builtin <C-S-p> [[
 
 "these make life easier
-nmap <C-j> 15j
-nmap <C-k> 15k
-nmap <C-l> 15l
-nmap <C-h> 15h
-nmap J 6j
-nmap K 6k
+map -builtin <C-j> 15j
+map -builtin <C-k> 15k
+map -builtin <C-l> 15l
+map -builtin <C-h> 15h
+map -builtin J 6j
+map -builtin K 6k
 
-map <C-t> :tabattach 
+map -builtin <C-t> :tabattach 
 
 " gu/ga to jump to top of page and pack.  jk for jitter to prevent some weird bug.
-map gu jkmagg
-map ga `a
-map <C-r> ggr
+map -builtin gu jkmagg
+map -builtin ga `a
+map -builtin <C-r> ggr
 
-cmap <C-c> <Esc>
+cmap -builtin <C-c> <Esc>
 
 " Funny little functions for switching tabs forward / back.  Respects counts and wraps properly.
 javascript <<EOF 
@@ -162,5 +230,5 @@ function MoveTabBackward(count){
 EOF
 com -count MoveTabForward :javascript MoveTabForward(<count>);
 com -count MoveTabBackward :javascript MoveTabBackward(<count>);
-map <C-q> -count :<count>MoveTabBackward<CR>
-map <C-w> -count :<count>MoveTabForward<CR>
+map -builtin <C-q> -count :<count>MoveTabBackward<CR>
+map -builtin <C-w> -count :<count>MoveTabForward<CR>
