@@ -49,8 +49,8 @@ if ( !hasmapto('<SID>PEP8()') && (maparg(g:pep8_map) == '') )
 "  map! <F5> :call <SID>Pep8()<CR>
 else
   if ( !has("gui_running") || has("win32") )
-    echo "Python PEP8 Error: No Key mapped.\n".
-          \ g:pep8_map ." is taken and a replacement was not assigned."
+    "echo "Python PEP8 Error: No Key mapped.\n".
+          "\ g:pep8_map ." is taken and a replacement was not assigned."
   endif
 endif
 
