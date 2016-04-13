@@ -12,3 +12,4 @@ export TERM=xterm-256color
 
 # Don't use hosts file for ssh completion, because I have a lot of stuff blocked in there
 zstyle ':completion:*' hosts off
+stty -ixon
