@@ -15,10 +15,10 @@ import subprocess
 import operator
 import time
 
-def timer(fn, *args):
+def timer(fn, *args, **kwargs):
     "Time the application of fn to args. Return (result, seconds)."
     start = time.time()
-    return fn(*args), time.time() - start
+    return fn(*args, **kwargs), time.time() - start
 
 def mult(sequence):
     "Multiply together all values in sequence"
