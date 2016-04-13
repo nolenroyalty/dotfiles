@@ -191,6 +191,8 @@ map -builtin <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><E
 map -builtin <C-s><C-f> :( ͡° ͜ʖ ͡°)<M-a><M-c><Esc>
 map -builtin <C-s><C-r> :ヽ༼ຈل͜ຈ༽ﾉ  RIOT ヽ༼ຈل͜ຈ༽ﾉ<M-a><M-c><Esc>
 map -builtin <C-s><C-d> :༼ つ ◕_◕ ༽つ Give DIRETIDE ༼ つ ◕_◕ ༽つ<M-A><M-c><Esc>
+map -builtin <C-s><C-p> :༼ ▀̿̿Ĺ̯̿̿▀̿ ̿ ༽ PROTECT ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿ ༽<M-a><M-c><Esc>
+
 
 "for quick navigation of next/prev
 map -builtin <C-S-n> ]]
