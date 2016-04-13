@@ -16,6 +16,6 @@ path_add $HOME/bin
 dotfiles=$(ls -la $HOME|grep '^l.*dotfiles'|perl -pe 's/.* (\/.*dotfiles).*/\1/'|head -1)
 path_add $dotfiles/bin
 
-if hash rbenv; then
-    eval "$(rbenv init -)";
-fi
+#if hash rbenv; then
+    #eval "$(rbenv init -)";
+#fi
