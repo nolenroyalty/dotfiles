@@ -1,10 +1,16 @@
 # get the name of the branch we are on
+#function git_prompt_info() {
+  #if [[ "$(git config --get oh-my-zsh.hide-status)" != "1" ]]; then
+    #ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
+    #ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
+    #echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
+  #fi
+#}
+
+# don't use parse_git_dirty cause it calls git status which is slow
 function git_prompt_info() {
-  if [[ "$(git config --get oh-my-zsh.hide-status)" != "1" ]]; then
-    ref=$(command git symbolic-ref HEAD 2> /dev/null) || \
-    ref=$(command git rev-parse --short HEAD 2> /dev/null) || return
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$(parse_git_dirty)$ZSH_THEME_GIT_PROMPT_SUFFIX"
-  fi
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
 }
 
 
