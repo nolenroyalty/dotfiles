@@ -15,11 +15,11 @@ ZSH_THEME="nolen"
 DISABLE_AUTO_UPDATE="true"
 
 # It's nice to know how your title is being set
-DISABLE_AUTO_TITLE="true"
+#DISABLE_AUTO_TITLE="true"
 
 # oh-my-zsh plugins to use (~/.oh-my-zsh/plugins/)
 # NOT COMMA SEPARATED LOL
-plugins=(pip python brew extract mercurial svn git)
+plugins=(pip python brew extract git golang svn)
 
 # Make oh-my-zsh work.
 # the ZSH variable is used by various omz scripts
