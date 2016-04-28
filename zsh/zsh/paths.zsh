@@ -16,6 +16,11 @@ path_add $HOME/bin
 dotfiles=$(ls -la $HOME|grep '^l.*dotfiles'|perl -pe 's/.* (\/.*dotfiles).*/\1/'|head -1)
 path_add $dotfiles/bin
 
+if [[ -z "$CODEDIR" ]]; then
+    export GOPATH=$HOME/go
+else
+    export GOPATH=$CODEDIR/go
+fi
 #if hash rbenv; then
     #eval "$(rbenv init -)";
 #fi
