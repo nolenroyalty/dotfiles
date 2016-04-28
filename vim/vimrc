@@ -17,7 +17,11 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 au BufEnter *dotfiles_config setf zsh
 
 " easier ctrl-p?
-map <Leader>r <Leader>p
+map <Leader>n <Leader>p
+
+" I don't think I've ever intentionally used this feature: disable for now
+" (by default it tries to look up the word under the cursor)
+map <S-k> <Nop>
 
 " r: nearest ancestor that contains a .git/.hg/.svn or similar
 " c: directory of current file, IFF current working directory is not an ancestor of the current file
@@ -25,7 +29,7 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
 let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrpl'
 
 " I AM A GOLDEN GOD
@@ -38,7 +42,7 @@ else
 endif
 
 if !isdirectory(my_undodir)
-    silent !mkdir &my_undodir
+    silent execute '!mkdir -p ' . my_undodir
 end
 let &undodir=my_undodir
 set undofile
