@@ -21,9 +21,15 @@ alias gl='git log'
 alias gs='git status'
 alias gd='git diff'
 alias gm='git commit'
+alias gp='git push origin HEAD'
+alias gc='git checkout'
+alias gcb='git checkout -b'
+
+# 'x' for 'eXpand'
+alias xx='command atool -x'
 
 #try to stop those really annoying corrections...
-alias sudo='nocorrect sudo'
+#alias sudo='nocorrect sudo'
 
 #sometimes, you just gotta use ed
 alias ed='ed -p:'

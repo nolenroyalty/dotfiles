@@ -10,6 +10,8 @@ map -builtin <C-S-g> jkmjG
 map -builtin <C-S-A-g> kmjgg
 map -builtin <M-A-k> `j
 map -builtin <C-S-k> `j
+com Pin open _pinboard
+map -builtin <C-S-p> :Pin<Cr>
 
 "map ;cc O/search?q=&sort=comments&restrict_sr=on<Cr>
 "map ;ct O/search?q=&sort=top&restrict_sr=on<Cr>
@@ -191,10 +193,7 @@ map -builtin <C-s><C-g> :( •_•)( •_•)>⌐■-■(⌐■_■)<M-a><M-c><E
 map -builtin <C-s><C-f> :( ͡° ͜ʖ ͡°)<M-a><M-c><Esc>
 map -builtin <C-s><C-r> :ヽ༼ຈل͜ຈ༽ﾉ  RIOT ヽ༼ຈل͜ຈ༽ﾉ<M-a><M-c><Esc>
 map -builtin <C-s><C-d> :༼ つ ◕_◕ ༽つ Give DIRETIDE ༼ つ ◕_◕ ༽つ<M-A><M-c><Esc>
-
-"for quick navigation of next/prev
-map -builtin <C-S-n> ]]
-map -builtin <C-S-p> [[
+map -builtin <C-s><C-p> :༼ ▀̿̿Ĺ̯̿̿▀̿ ̿ ༽ PROTECT ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿ ༽<M-a><M-c><Esc>
 
 "these make life easier
 map -builtin <C-j> 15j

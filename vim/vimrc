@@ -1,6 +1,7 @@
 "-----------------------------------------------------------------------------
 " Settings that cause problems if they aren't run first
 "-----------------------------------------------------------------------------
+
 set nocompatible          " Don't try to be compatible with vi
 call pathogen#infect()    " Tell pathogen to enable bundle plugins
 filetype plugin indent on " Enable filetype detection, as well as ftplugins and filetype indenting
@@ -15,12 +16,49 @@ colorscheme jellybeans    " Use a super butchered, heavily modified jellybeans c
 "-----------------------------------------------------------------------------
 au BufEnter *dotfiles_config setf zsh
 
-" Easily use many buffers.  Not sold on this one.
+" easier ctrl-p?
+map <Leader>n <Leader>p
+
+" I don't think I've ever intentionally used this feature: disable for now
+" (by default it tries to look up the word under the cursor)
+map <S-k> <Nop>
+
+" r: nearest ancestor that contains a .git/.hg/.svn or similar
+" c: directory of current file, IFF current working directory is not an ancestor of the current file
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrpl'
+
+" I AM A GOLDEN GOD
+" since ~/.vim is mounted in, vim doesn't play nice with using it for an undodir
+" so instead, use a different directory
+if system("whoami") =~ "support"
+    let my_undodir = $HOME."/.vim_deepfield/undodir"
+else
+    let my_undodir = $HOME."/.vim/undodir"
+endif
+
+if !isdirectory(my_undodir)
+    silent execute '!mkdir -p ' . my_undodir
+end
+let &undodir=my_undodir
+set undofile
+
+" because typing shift is HARD
+cnoreabbrev align Align
+
+" Easily use many buffers.
 map <Leader>b :b<Space>
 
-let g:is_bash=1 " Tells vim that it's ok that your bash scripts aren't /bin/sh compatible
+" Tells vim that it's ok that your bash scripts aren't /bin/sh compatible
+" Otherwise it complains about syntax and highlights it in red and is generally annoying
+let g:is_bash=1
 
-set wildignore+=*undodir*,*.swp* " Don't tab complete swap files and undo files
+set wildignore+=*undodir*,*.swp*,*.pyc*,*.pyo*,*tmp* "Avoid tab completing stupid files
+set wildignore+=*versions*
 
 " Keep selection when indenting text in visual mode
 vnoremap < <gv
@@ -103,6 +141,7 @@ map <Leader>ft :call TempFile()<Cr>
 "-----------------------------------------------------------------------------
 " Settings
 "-----------------------------------------------------------------------------
+set diffopt+=vertical                   " Edit diffs in vertical splits.  Should be the default I think but this seems to be necessary.
 set tabstop=8                           " Tabs are 8 spaces
 set softtabstop=4                       " Tabs act like they are 4 spaces
 set shiftwidth=4                        " autoindent uses 4 spaces
@@ -133,13 +172,8 @@ set pumheight=10                        " no more than 10 items at a time in ins
 set completeopt=menuone,longest,preview " insert completion: use popup menu(even for 1 match), only insert longest common text, show extra info about current completion
 set hidden                              " This allows you to switch to a new buffer without writing your current one
 set history=1000                        " Save a lot of history
-set undolevels=10000                     " Save a lot of undos as well
+set undolevels=10000                    " Save a lot of undos as well
 set undoreload=10000                    " Reload a bunch of undolevels
-if !isdirectory($HOME."/.vim/undodir")  " For Some reason using ~ instead of $HOME causes problems here.
-    silent !mkdir $HOME/.vim/undodir
-end
-set undodir=~/.vim/undodir              " For persistent undo
-set undofile                            " Also enables persistent undo(undo between sessions).  Using vim changed when I discovered this.
 set pastetoggle=<C-F7>                  " Toggle pastemode with ctrl-F7
 
 "-----------------------------------------------------------------------------
@@ -172,7 +206,7 @@ endif
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ }
-let g:ctrlp_map = "p"
+let g:ctrlp_map = "<Leader>p"
 
 "-----------------------------------------------------------------------------
 " Airline
