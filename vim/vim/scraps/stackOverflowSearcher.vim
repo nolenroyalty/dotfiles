@@ -8,8 +8,8 @@ function! StackoverflowQuery()
 python << EOF
 
 import vim
-import urllib2
 import re
+import requests
 
 current_os = vim.eval("substitute(system('uname'), '\n', '', '')")
 if current_os == "Darwin":
@@ -41,7 +41,15 @@ def get_query(linenum, queryprompt="Enter query, or leave blank to use current l
     return query.strip('"')
 
 def get_questions(query):
-    response = urllib2.urlopen(SEARCH_URL + query).read()
+    headers = {"Host": "stackoverflow.com",
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:45.0) Gecko/20100101 Firefox/45.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.5',
+    'Connection': 'keep-alive',
+    'Cache-Control': 'max-age=0'
+    }
+    response = requests.get(SEARCH_URL + query, headers=headers).text
+
     vals = re.findall(find_pattern, response)
     return [[x[0], re.sub(kill_pattern, "", x[1]).strip(), re.sub(kill_pattern, "", x[2]).strip()] for x in vals]
 

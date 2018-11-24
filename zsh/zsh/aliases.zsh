@@ -2,6 +2,8 @@
 alias e='extract' # Extract!
 alias igrep='grep -i' # Case insensitive grep
 alias zzz='source ~/.zshrc'
+alias duh='du -h'
+alias dff="df -lh|grep -v TimeMachine|grep -v /private/var/vm|awk ' { print \$2,"\t"\$3,"\t"\$4,"\t"\$5 }'"
 
 # Useful paths
 alias code='cd $CODEDIR'
