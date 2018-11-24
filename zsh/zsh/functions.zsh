@@ -4,19 +4,25 @@ fff () {
 }
 
 tt () {
-    livestreamer ${2:=twitch}.${4:=tv}/$1 ${3:=best} --twitch-oauth-token $TWITCH_TOKEN
+    streamlink ${2:=twitch}.${4:=tv}/$1 ${3:=best} --twitch-disable-hosting
 }
 
 rr () {
-    mkdir -p ~/Desktop/streams/$1; livestreamer ${2:=twitch}.${4:=tv}/$1 ${3:=best} -o ~/Desktop/streams/$1/$1.mp4 --twitch-oauth-token $TWITCH_TOKEN
+    mkdir -p ~/Desktop/streams/$1
+    streamlink ${2:=twitch}.${4:=tv}/$1 ${3:=best} -o ~/Desktop/streams/$1/$1.mp4 --twitch-disable-hosting
 }
 
 ttv () {
-    livestreamer $1 ${2:=source} --player-passthrough=hls --twitch-oauth-token $TWITCH_TOKEN
+    streamlink $1 ${2:=source} --player-passthrough=hls
 }
 
 rrw () {
-    while true; do mkdir -p $HOME/desktop/streams/$1; mv $HOME/Desktop/streams/$1/$1.mp4 $HOME/Desktop/streams/$1/$1-`date "+%m-%d_%H-%M-%S"`.mp4; livestreamer ${2:=twitch}.${4:=tv}/$1 ${3:=best} -o ~/Desktop/streams/$1/$1.mp4 --twitch-oauth-token $TWITCH_TOKEN; sleep 30; done
+    while true; do 
+        mkdir -p $HOME/desktop/streams/$1;
+        d=$(date "+%m-%dT%H-%M-%S")
+        streamlink ${2:=twitch}.${4:=tv}/$1 ${3:=best} -o ~/Desktop/streams/$1/$1-$d.mp4 --twitch-disable-hosting;
+        sleep 30; 
+    done
 }
 
 torclear () {
