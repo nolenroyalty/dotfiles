@@ -32,15 +32,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrpl'
 
-" I AM A GOLDEN GOD
-" since ~/.vim is mounted in, vim doesn't play nice with using it for an undodir
-" so instead, use a different directory
-if system("whoami") =~ "support"
-    let my_undodir = $HOME."/.vim_deepfield/undodir"
-else
-    let my_undodir = $HOME."/.vim/undodir"
-endif
-
+let my_undordir = $HOME."/.vim/undodir"
 if !isdirectory(my_undodir)
     silent execute '!mkdir -p ' . my_undodir
 end
