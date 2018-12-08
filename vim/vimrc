@@ -32,7 +32,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrpl'
 
-let my_undordir = $HOME."/.vim/undodir"
+let my_undodir = $HOME."/.vim/undodir"
 if !isdirectory(my_undodir)
     silent execute '!mkdir -p ' . my_undodir
 end
