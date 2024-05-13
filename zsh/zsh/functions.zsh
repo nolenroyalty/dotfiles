@@ -13,7 +13,7 @@ rr () {
 }
 
 ttv () {
-    streamlink $1 ${2:=source} --player-passthrough=hls
+    streamlink $1 ${2:=best} --player-passthrough=hls
 }
 
 rrw () {

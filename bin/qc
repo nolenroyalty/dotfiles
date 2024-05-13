@@ -1,2 +1,2 @@
 #!/bin/sh
-python -c "from math import *; print($(echo $1|sed s/',//g'))"
+python3 -c "from math import *; print($(echo $1|sed s/',//g'))"

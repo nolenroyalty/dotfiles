@@ -32,6 +32,12 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrpl'
 
+" Prettier stuff
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
+" Make sure that parcel picks up my changes
+au FileType javascript,html,css set backupcopy=yes
+
 let my_undodir = $HOME."/.vim/undodir"
 if !isdirectory(my_undodir)
     silent execute '!mkdir -p ' . my_undodir
@@ -95,11 +101,15 @@ map gQ <Nop>
 " I use C-c over escape, and I don't like inserting a literal <C-c> when trying to cancel a replace operation.
 map r<C-c> <Nop>
 
+
 " ;w write file, ;W sudo write file, ;e edit file, ;E edit file in current dir.  ;E is really useful
 map <Leader>w :w<Cr>:echo "Written"<Cr>
 map <Leader>W :w !sudo tee % >/dev/null
 map <Leader>e :e<Space>
 map <Leader>E :e <C-r>=expand('%:p:h').'/'<Cr>
+
+map <Leader>l 0gg/---o{% include logger.html date="=system('date +%Y-%m-%d')bA" %}ki
+
 
 " Center the screen when jumping to a search.  Awesome!
 nnoremap n nzz

@@ -30,6 +30,11 @@ alias gcb='git checkout -b'
 # 'x' for 'eXpand'
 alias xx='command atool -x'
 
+# The node stuff we installed via an installer
+# idk the right way to manage this yet, let's not think about it too hard
+alias node-lts='/usr/local/bin/node'
+alias npm-lts='/usr/local/bin/npm'
+
 #try to stop those really annoying corrections...
 #alias sudo='nocorrect sudo'
 
