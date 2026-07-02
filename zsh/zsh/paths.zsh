@@ -12,6 +12,7 @@ path_add /usr/local/git/bin
 path_add $HOME/.rbenv/bin
 path_add $HOME/bin
 path_add /usr/local/share/dotnet/
+path_add $HOME/.local/bin
 
 path_add /opt/homebrew/Cellar/node/21.2.0/bin/
 
